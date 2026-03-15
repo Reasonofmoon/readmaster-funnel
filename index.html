@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>READ MASTER ACADEMY — 문해력 전문 교육원 · 부천 옥길동 본원 · 춘천 우두동점</title>
+<meta name="description" content="읽는 힘이 모든 학습의 시작입니다. AI 기반 문해력 레벨테스트 · LMS · 디지털 도서관 · 상담 예약."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#062016;--g2:#0a2d1e;--g3:#e8f0ec;
+  --iv:#f9f7f2;--iv2:#fefcf8;
+  --gold:#c9a94d;--gold2:#a8893a;
+  --burgundy:#3a1010;
+  --ch:#1c2928;--dim:#5a6b65;
+  --w:#fff;--card:#fff;
+  --br:rgba(6,32,22,0.12);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--iv);color:var(--ch);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;background:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.7);font-size:.85rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:var(--gold);color:#fff;font-size:.85rem;font-weight:700;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;transition:background .2s}
+.nav-cta:hover{background:var(--gold2)}
+
+section{padding:96px 5vw}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-size:clamp(2rem,4vw,3rem);line-height:1.2;margin-bottom:14px;color:var(--g)}
+.sec-desc{color:var(--dim);max-width:520px;font-size:.95rem}
+.sec-head{margin-bottom:52px}
+
+#hero{min-height:100vh;padding:130px 5vw 80px;display:flex;align-items:center;background:var(--iv);position:relative}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;max-width:1200px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--g3);border:1px solid var(--br);border-radius:100px;padding:6px 18px;font-size:.8rem;color:var(--g);margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1.hero-title{font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.12;color:var(--g);margin-bottom:20px}
+h1.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1rem;color:var(--dim);max-width:480px;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-g{background:var(--g);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:10px;padding:15px 34px;cursor:pointer;transition:background .2s}
+.btn-g:hover{background:var(--g2)}
+.btn-out{background:transparent;color:var(--g);font-size:1rem;font-weight:500;border:2px solid var(--br);border-radius:10px;padding:15px 34px;cursor:pointer;transition:border-color .2s,color .2s}
+.btn-out:hover{border-color:var(--g);color:var(--g)}
+.hero-stats{display:flex;gap:36px;margin-top:52px;flex-wrap:wrap}
+.stat{text-align:left}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--g)}
+.stat-lbl{font-size:.8rem;color:var(--dim)}
+
+.hero-card{background:var(--g);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(26,58,46,0.25)}
+.hc-top{background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:16px}
+.hc-label{font-size:.75rem;color:rgba(255,255,255,0.5);margin-bottom:4px}
+.hc-val{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:600;color:#fff}
+.hc-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.7rem;font-weight:700;border-radius:100px;padding:3px 10px;margin-top:6px}
+.hc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.hc-mini{background:rgba(255,255,255,0.06);border-radius:10px;padding:12px}
+.hc-mini-lbl{font-size:.7rem;color:rgba(255,255,255,0.45);margin-bottom:3px}
+.hc-mini-val{font-size:1rem;font-weight:600;color:#fff}
+.hc-progress{display:flex;flex-direction:column;gap:8px}
+.hcp-row{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,0.6)}
+.hcp-bar{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:4px}
+.hcp-fill{height:100%;border-radius:4px;background:var(--gold)}
+
+#trust{padding:40px 5vw;background:var(--g);display:flex;align-items:center;justify-content:center;gap:64px;flex-wrap:wrap}
+.trust-item{text-align:center}
+.trust-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.trust-lbl{font-size:.8rem;color:rgba(255,255,255,0.6);margin-top:2px}
+
+#levels{background:var(--iv2)}
+.levels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.lv-card{background:var(--w);border:1px solid var(--br);border-radius:16px;padding:24px;transition:transform .25s,box-shadow .25s;cursor:default;position:relative;overflow:hidden}
+.lv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.lv1::before{background:linear-gradient(90deg,#a8d5b0,#7bc49f)}
+.lv2::before{background:linear-gradient(90deg,#7bc49f,#52b086)}
+.lv3::before{background:linear-gradient(90deg,#52b086,#2d9b70)}
+.lv4::before{background:linear-gradient(90deg,#2d9b70,#1d7a56)}
+.lv5::before{background:linear-gradient(90deg,#1d7a56,#163d32)}
+.lv6::before{background:linear-gradient(90deg,#163d32,#4a6e5a)}
+.lv7::before{background:linear-gradient(90deg,#c9883a,#e8ab5a)}
+.lv8::before{background:linear-gradient(90deg,#e8ab5a,#f0c070)}
+.lv9::before{background:linear-gradient(90deg,#f0c070,#ffd700)}
+.lv-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,58,46,0.12)}
+.lv-code{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.lv-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--g);margin-bottom:4px}
+.lv-range{font-size:.75rem;color:var(--dim);margin-bottom:10px}
+.lv-meta{font-size:.8rem;color:var(--dim);line-height:1.7}
+.lv-meta strong{color:var(--ch)}
+.lv-suneung{display:inline-block;margin-top:10px;background:var(--g3);border:1px solid var(--br);border-radius:100px;padding:3px 12px;font-size:.72rem;color:var(--g);font-weight:600}
+
+#modules{background:var(--iv)}
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.mod-card{background:var(--w);border:1px solid var(--br);border-radius:18px;padding:30px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.mod-card:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,58,46,0.1)}
+.mod-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px}
+.mi-g{background:var(--g3)}
+.mi-gd{background:rgba(201,136,58,0.12)}
+.mod-title{font-size:1.05rem;font-weight:700;color:var(--g);margin-bottom:8px}
+.mod-desc{font-size:.85rem;color:var(--dim);line-height:1.75}
+.mod-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.pill{background:var(--g3);border:1px solid var(--br);border-radius:100px;padding:3px 12px;font-size:.7rem;color:var(--g)}
+.pill-gold{background:rgba(201,136,58,0.1);border-color:rgba(201,136,58,0.2);color:var(--gold)}
+
+#library{background:var(--iv2)}
+.lib-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
+.lib-all{font-size:.85rem;color:var(--gold);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:2px;transition:opacity .2s}
+.lib-all:hover{opacity:.7}
+.lib-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.filt{background:var(--w);border:1px solid var(--br);border-radius:100px;padding:6px 18px;font-size:.8rem;color:var(--dim);cursor:pointer;transition:all .2s}
+.filt.active,.filt:hover{background:var(--g);color:#fff;border-color:var(--g)}
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:20px}
+.book-card{background:var(--w);border:1px solid var(--br);border-radius:14px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.book-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(26,58,46,0.12)}
+.book-cover{height:140px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.book-info{padding:14px}
+.book-genre{font-size:.68rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.book-title{font-size:.88rem;font-weight:700;color:var(--ch);margin-bottom:2px;line-height:1.3}
+.book-stars{color:var(--gold);font-size:.75rem;margin-top:4px}
+
+#roadmap{background:var(--g)}
+#roadmap .tag{color:var(--gold)}
+#roadmap .sec-title{color:#fff}
+#roadmap .sec-desc{color:rgba(255,255,255,0.6)}
+.rm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.rm-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:22px;transition:background .25s}
+.rm-card:hover{background:rgba(255,255,255,0.08)}
+.rm-phase{font-size:.7rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.rm-period{font-size:.8rem;color:rgba(255,255,255,0.5);margin-bottom:10px}
+.rm-title{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:8px}
+.rm-items{list-style:none;display:flex;flex-direction:column;gap:5px}
+.rm-items li{font-size:.78rem;color:rgba(255,255,255,0.55);display:flex;align-items:flex-start;gap:6px}
+.rm-items li::before{content:'›';color:var(--gold)}
+
+#booking{background:var(--iv)}
+.booking-wrap{display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:start;max-width:1100px;margin:0 auto}
+.bk-info h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--g);margin-bottom:16px}
+.bk-info p{color:var(--dim);margin-bottom:32px}
+.bk-steps{display:flex;flex-direction:column;gap:18px}
+.bk-step{display:flex;gap:16px;align-items:flex-start}
+.bk-step-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--g);color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.bk-step-body h4{font-size:.95rem;font-weight:700;color:var(--g);margin-bottom:3px}
+.bk-step-body p{font-size:.82rem;color:var(--dim)}
+.form-card{background:var(--w);border:1px solid var(--br);border-radius:20px;padding:36px;box-shadow:0 8px 40px rgba(26,58,46,0.08)}
+.form-steps{display:flex;gap:0;margin-bottom:28px}
+.fs{flex:1;text-align:center;font-size:.72rem;font-weight:600;color:var(--dim);padding:8px 4px;border-bottom:2px solid var(--g3);transition:all .2s}
+.fs.active{color:var(--g);border-bottom-color:var(--g)}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--g);margin-bottom:6px}
+input,select,textarea{width:100%;border:1px solid var(--br);border-radius:10px;padding:12px 16px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;color:var(--ch);background:var(--iv2);outline:none;transition:border-color .2s;margin-bottom:20px}
+input:focus,select:focus,textarea:focus{border-color:var(--g)}
+.radio-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.radio-opt{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--br);border-radius:10px;cursor:pointer;font-size:.82rem;color:var(--dim);transition:all .2s}
+.radio-opt:hover,.radio-opt.sel{border-color:var(--g);background:var(--g3);color:var(--g)}
+.btn-submit{width:100%;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:12px;padding:16px;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:var(--gold2)}
+.form-trust{text-align:center;font-size:.75rem;color:var(--dim);margin-top:14px}
+
+#testimonials{background:var(--iv2)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.testi-card{background:var(--w);border:1px solid var(--br);border-radius:18px;padding:26px;transition:border-color .25s}
+.testi-card:hover{border-color:var(--g)}
+.testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:12px}
+.testi-q{font-size:.9rem;color:var(--dim);line-height:1.75;font-style:italic;margin-bottom:18px}
+.testi-name{font-size:.88rem;font-weight:700;color:var(--ch)}
+.testi-role{font-size:.76rem;color:var(--dim)}
+
+footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:32px}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#fff}
+.ft-brand p{font-size:.8rem;color:rgba(255,255,255,0.5);font-family:'Noto Sans KR',sans-serif;font-weight:300;margin-top:6px;line-height:1.8}
+.ft-links{display:flex;gap:20px;flex-wrap:wrap}
+.ft-links a{font-size:.8rem;color:rgba(255,255,255,0.5);transition:color .2s}
+.ft-links a:hover{color:var(--gold)}
+.ft-copy{font-size:.75rem;color:rgba(255,255,255,0.35);align-self:flex-end}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.vis{opacity:1;transform:none}
+
+/* IELTS Section */
+#ielts{background:var(--iv)}
+.ielts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.ielts-card{background:var(--w);border:1px solid var(--br);border-radius:18px;padding:28px;transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.ielts-card::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s}
+.ielts-card:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,58,46,0.1)}
+.ielts-icon{width:52px;height:52px;border-radius:14px;background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px}
+.ielts-title{font-size:1.05rem;font-weight:700;color:var(--g);margin-bottom:6px}
+.ielts-sub{font-size:.78rem;font-weight:600;color:var(--gold);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.ielts-desc{font-size:.83rem;color:var(--dim);line-height:1.75;margin-bottom:14px}
+.ielts-score{display:inline-flex;align-items:center;gap:6px;background:var(--g3);border:1px solid var(--br);border-radius:100px;padding:4px 14px;font-size:.75rem;color:var(--g);font-weight:600}
+.ielts-status{position:absolute;top:16px;right:16px;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:100px}
+.status-ai{background:rgba(201,136,58,0.1);color:var(--gold);border:1px solid rgba(201,136,58,0.25)}
+.ielts-steps{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--br);padding-top:12px;margin-top:4px}
+.ielts-step{font-size:.76rem;color:var(--dim);display:flex;align-items:center;gap:7px}
+.ielts-step::before{content:'›';color:var(--g);font-weight:700}
+.band-scale{display:flex;gap:4px;margin-top:4px}
+.band{flex:1;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--g);background:var(--g3);border:1px solid var(--br)}
+.band.hi{background:var(--g);color:#fff}
+
+/* Debate Section */
+#debate{background:var(--g)}
+#debate .tag{color:var(--gold)}
+#debate .sec-title{color:#fff}
+#debate .sec-desc{color:rgba(255,255,255,0.6)}
+.debate-flow{display:flex;gap:0;margin-bottom:40px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;overflow:hidden}
+.df-step{flex:1;padding:14px 10px;text-align:center;font-size:.75rem;color:rgba(255,255,255,0.45);border-right:1px solid rgba(255,255,255,0.08);transition:background .2s}
+.df-step:last-child{border-right:none}
+.df-step strong{display:block;font-size:.88rem;color:rgba(255,255,255,0.85);margin-bottom:2px}
+.df-step.active{background:rgba(201,136,58,0.12)}
+.df-step.active strong{color:var(--gold)}
+.debate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.dcat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:16px;padding:22px;transition:border-color .25s,background .25s,transform .25s;cursor:pointer}
+.dcat-card:hover{border-color:rgba(201,136,58,0.5);background:rgba(255,255,255,0.07);transform:translateY(-2px)}
+.dcat-icon{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.dcat-ar{position:absolute;top:0;right:0;font-size:.65rem;font-weight:700;color:var(--gold);background:rgba(201,136,58,0.12);border:1px solid rgba(201,136,58,0.2);border-radius:100px;padding:3px 10px}
+.dcat-name{font-size:1rem;font-weight:700;color:#fff;margin-bottom:2px}
+.dcat-en{font-size:.75rem;color:var(--gold);margin-bottom:8px}
+.dcat-desc{font-size:.78rem;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:14px}
+.dcat-foot{display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,0.35);border-top:1px solid rgba(255,255,255,0.06);padding-top:10px}
+.debate-stats{display:flex;gap:40px;margin-bottom:48px;flex-wrap:wrap}
+.db-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--gold)}
+.db-stat-lbl{font-size:.78rem;color:rgba(255,255,255,0.45)}
+
+@media(max-width:900px){
+  .hero-inner,.booking-wrap{grid-template-columns:1fr}
+  .hero-card{display:none}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .rm-grid,.levels-grid{grid-template-columns:1fr 1fr}
+  .radio-group{grid-template-columns:1fr}
+  footer{flex-direction:column}
+}
+/* Announcement Banner */
+#announce{background:var(--gold);padding:0}
+.ann-inner{max-width:980px;margin:0 auto;padding:32px 24px}
+.ann-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.ann-badge{background:var(--g);color:var(--gold);font-size:.68rem;font-weight:800;letter-spacing:.1em;padding:5px 14px;border-radius:100px;text-transform:uppercase;flex-shrink:0}
+.ann-main{display:flex;flex-direction:column;gap:4px}
+.ann-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--g);line-height:1.2}
+.ann-sub{font-size:.82rem;color:rgba(26,58,46,0.75);font-weight:500}
+.ann-limit{background:var(--g);color:#fff;font-size:.75rem;font-weight:700;padding:4px 14px;border-radius:100px;align-self:flex-start}
+.ann-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,0.4);border-radius:12px;overflow:hidden}
+.ann-table th{background:var(--g);color:rgba(255,255,255,0.7);font-size:.7rem;font-weight:600;text-align:left;padding:9px 14px;letter-spacing:.04em}
+.ann-table td{padding:9px 14px;font-size:.8rem;color:var(--g);border-bottom:1px solid rgba(26,58,46,0.12)}
+.ann-table tr:last-child td{border-bottom:none}
+.ann-grade{font-weight:700;color:var(--g);white-space:nowrap}
+.ann-cta-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(26,58,46,0.2)}
+.ann-addr{font-size:.75rem;color:rgba(26,58,46,0.7)}
+.ann-tel{display:flex;gap:16px;flex-wrap:wrap}
+.ann-tel a{font-size:.8rem;font-weight:700;color:var(--g);text-decoration:none;display:flex;align-items:center;gap:5px}
+.ann-tel a:hover{text-decoration:underline}
+.ann-go{background:var(--g);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:.82rem;font-weight:700;cursor:pointer;transition:opacity .2s;text-decoration:none;display:inline-block}
+.ann-go:hover{opacity:.85}
+/* Announcement Slider */
+#announce{background:transparent;padding:0;overflow:hidden}
+.slider-wrap{position:relative;overflow:hidden;width:100%}
+.slider-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);will-change:transform}
+.slide{
+  min-width:100%;box-sizing:border-box;
+  padding:clamp(20px,4vw,40px) clamp(16px,5vw,60px);
+  display:flex;flex-direction:column;justify-content:center;
+  min-height:clamp(200px,28vw,360px);
+}
+.slide-1{background:linear-gradient(135deg,var(--g) 0%,#0d3526 100%)}
+.slide-2{background:linear-gradient(135deg,#b8970b 0%,#c9a94d 60%,#e0c870 100%)}
+.slide-3{background:linear-gradient(135deg,var(--g) 0%,#1a3a2a 100%)}
+.slide-4{background:linear-gradient(135deg,var(--burgundy) 0%,#5a1e1e 100%)}
+.sl-label{display:inline-block;font-size:clamp(.55rem,.9vw,.7rem);font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:clamp(8px,1.5vw,14px)}
+.sl-1-label{background:var(--gold);color:var(--g)}
+.sl-2-label{background:var(--g);color:var(--gold)}
+.sl-3-label{background:rgba(255,255,255,.15);color:rgba(255,255,255,.85)}
+.sl-4-label{background:var(--gold);color:var(--g)}
+.sl-heading{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.15;margin:0 0 clamp(6px,1vw,12px);white-space:normal;word-break:keep-all}
+.slide-1 .sl-heading,.slide-3 .sl-heading,.slide-4 .sl-heading{color:#fff;font-size:clamp(1.4rem,4vw,2.6rem)}
+.slide-2 .sl-heading{color:var(--g);font-size:clamp(1.3rem,3.5vw,2.2rem)}
+.sl-sub{font-size:clamp(.75rem,1.3vw,1rem);line-height:1.6;word-break:keep-all}
+.slide-1 .sl-sub,.slide-3 .sl-sub,.slide-4 .sl-sub{color:rgba(255,255,255,.8)}
+.slide-2 .sl-sub{color:rgba(26,58,46,.8)}
+.sl-body{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.sl-left{flex:1;min-width:0}
+.sl-right{flex-shrink:0}
+.sl-pill{display:inline-block;padding:8px 20px;border-radius:100px;font-size:clamp(.72rem,1.1vw,.88rem);font-weight:700;text-decoration:none;cursor:pointer;transition:opacity .2s;white-space:nowrap}
+.sl-pill-gold{background:var(--gold);color:var(--g)}
+.sl-pill-white{background:#fff;color:var(--g)}
+.sl-pill:hover{opacity:.85}
+.sl-table{width:100%;border-collapse:collapse;margin-top:clamp(10px,2vw,18px)}
+.sl-table th{background:rgba(26,58,46,.85);color:rgba(255,255,255,.75);font-size:.68rem;font-weight:600;text-align:left;padding:8px 12px;letter-spacing:.04em}
+.sl-table td{padding:8px 12px;font-size:clamp(.7rem,1.1vw,.82rem);color:var(--g);border-bottom:1px solid rgba(26,58,46,.12);background:rgba(255,255,255,.35);word-break:keep-all}
+.sl-table tr:last-child td{border-bottom:none}
+.sl-grade{font-weight:800;white-space:nowrap}
+.sl-addr{font-size:clamp(.68rem,1vw,.78rem);color:rgba(26,58,46,.7);margin-top:10px;word-break:keep-all}
+.sl-tel{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.sl-tel a{font-size:clamp(.72rem,1.1vw,.8rem);font-weight:700;color:var(--g);text-decoration:none}
+.sl-tel a:hover{text-decoration:underline}
+.sl-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.sl-chip{padding:5px 14px;border-radius:100px;font-size:clamp(.68rem,1vw,.8rem);font-weight:600;white-space:nowrap}
+.sl-chip-green{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25)}
+/* Nav controls */
+.slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:10;background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(4px);transition:background .2s}
+.slider-btn:hover{background:rgba(255,255,255,.35)}
+.slider-prev{left:12px}
+.slider-next{right:12px}
+.slider-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+.slider-dot{width:7px;height:7px;border-radius:50%;border:none;cursor:pointer;background:rgba(255,255,255,.4);transition:background .3s,transform .3s;padding:0}
+.slider-dot.active{background:#fff;transform:scale(1.3)}
+@media(max-width:640px){
+  .sl-right{display:none}
+  .sl-table td,.sl-table th{padding:6px 8px}
+}
+/* ===== GLEAS-CAT Gem Level Grid ===== */
+.gem-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:10px}
+.gem-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.2);
+  border-radius:14px;padding:16px 10px;text-align:center;cursor:default;
+  transition:all .3s ease;
+}
+.gem-card:hover{
+  background:rgba(201,169,77,.12);border-color:rgba(201,169,77,.6);
+  transform:translateY(-4px);
+  box-shadow:0 8px 28px rgba(201,169,77,.2);
+}
+.gem-card-diamond{
+  background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(201,169,77,.15));
+  border-color:rgba(255,255,255,.4);
+}
+.gem-card-diamond:hover{box-shadow:0 8px 32px rgba(255,255,255,.25)}
+.gem-icon{font-size:1.6rem;margin-bottom:8px;display:block;transition:transform .3s}
+.gem-card:hover .gem-icon{transform:scale(1.2) rotate(5deg)}
+.gem-code{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:2px}
+.gem-name{font-size:.72rem;font-weight:700;letter-spacing:.03em;margin-bottom:6px;display:block}
+.gem-range{font-size:.65rem;color:rgba(255,255,255,.5);line-height:1.4;margin-bottom:6px}
+.gem-cefr{display:inline-block;padding:2px 8px;border-radius:100px;font-size:.6rem;font-weight:700;background:rgba(201,169,77,.2);color:var(--gold);letter-spacing:.06em}
+@media(max-width:900px){.gem-grid{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:580px){.gem-grid{grid-template-columns:repeat(3,1fr)}}
+/* ===== Motion Graphics: Kinetic Ticker ===== */
+#motion-strip{
+  background:var(--g);overflow:hidden;padding:0;position:relative;
+  border-top:1px solid rgba(201,169,77,0.25);border-bottom:1px solid rgba(201,169,77,0.25);
+}
+.motion-ticker{display:flex;white-space:nowrap;animation:ticker 22s linear infinite;will-change:transform;padding:18px 0}
+.motion-ticker:hover{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:18px;padding:0 40px;font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.5rem);font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:.04em}
+.ticker-item .ti-sep{color:var(--gold);font-size:1.6em;line-height:1}
+.ticker-item strong{color:var(--gold);font-style:italic}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ===== Motion Feature: READ MASTER CSS Kinetic Typography ===== */
+#motion-feature{background:linear-gradient(135deg,var(--g) 0%,#0d2a1c 50%,#1a0a0a 100%)}
+/* Particles */
+.mf-particles{position:absolute;inset:0;pointer-events:none;z-index:0}
+.mf-p{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.3;animation:mfFloat 8s ease-in-out infinite alternate}
+.mf-p-lg{width:8px;height:8px;opacity:.15}
+@keyframes mfFloat{0%{transform:translateY(0) scale(1);opacity:.3}100%{transform:translateY(-30px) scale(1.5);opacity:.08}}
+/* Stage */
+.mf-stage{position:relative;z-index:2;text-align:center;max-width:840px;width:100%;margin:0 auto}
+.mf-slide{display:none;animation:mfSlideIn .6s ease-out both}
+.mf-slide-active{display:block}
+@keyframes mfSlideIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+/* Overtag */
+.mf-overtag{font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;border:1px solid rgba(201,169,77,.35);padding:5px 20px;border-radius:100px;display:inline-block}
+/* Heading with word-by-word animation */
+.mf-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.8rem);font-weight:700;line-height:1.1;margin:0 0 24px;display:flex;flex-direction:column;gap:8px}
+.mf-word-anim{color:#fff;display:block;animation:mfWordIn .5s ease-out both}
+.mf-gold-line{color:var(--gold)!important;font-style:italic}
+@keyframes mfWordIn{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:translateX(0)}}
+/* Body */
+.mf-body{font-size:clamp(.88rem,1.6vw,1.05rem);color:rgba(255,255,255,.72);line-height:1.75;margin:0 0 30px;max-width:560px;margin-left:auto;margin-right:auto}
+/* Pill row */
+.mf-pill-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:0}
+.mf-pill{padding:8px 22px;border:1px solid rgba(201,169,77,.4);border-radius:100px;font-size:.8rem;color:rgba(255,255,255,.85);background:rgba(201,169,77,.1);transition:all .3s}
+.mf-pill:hover{background:rgba(201,169,77,.25);border-color:var(--gold);color:#fff}
+/* Gem row */
+.mf-gem-row{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:4px;font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.8vw,1.15rem);font-weight:700}
+/* Program grid */
+.mf-prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:8px;text-align:left}
+.mf-prog-item{background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.2);border-radius:12px;padding:14px 16px}
+.mf-prog-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:900;color:var(--gold);margin-bottom:6px}
+.mf-prog-name{font-weight:700;font-size:.92rem;color:#fff;margin-bottom:4px}
+.mf-prog-sub{font-size:.73rem;color:rgba(255,255,255,.5);line-height:1.4}
+/* CTA button */
+.mf-cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--g);font-weight:800;font-size:.9rem;padding:14px 32px;border-radius:10px;text-decoration:none;margin-top:28px;transition:opacity .2s,transform .2s}
+.mf-cta-btn:hover{opacity:.88;transform:translateY(-2px)}
+/* Progress bar */
+.mf-progress-bar{position:absolute;bottom:0;left:0;width:100%;height:3px;background:rgba(255,255,255,.08);z-index:3}
+.mf-progress-fill{height:100%;background:var(--gold);width:0%;transition:width .1s linear}
+/* Dots */
+.mf-dots{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3}
+.mf-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.3);cursor:pointer;padding:0;transition:all .3s}
+.mf-dot-active{background:var(--gold);transform:scale(1.3)}
+
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="42" height="42" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
+      <circle cx="24" cy="24" r="22" fill="rgba(201,169,77,0.12)" stroke="#c9a94d" stroke-width="1" opacity="0.6"/>
+      <path d="M8 35 Q5 28 7 21 Q10 18 12 21 Q10 26 13 31Z" fill="#c9a94d" opacity="0.85"/>
+      <path d="M10 28 Q7 22 9 17 Q12 14 14 17 Q12 22 15 27Z" fill="#c9a94d" opacity="0.85"/>
+      <path d="M13 21 Q11 15 14 11 Q17 9 19 12 Q17 17 19 22Z" fill="#c9a94d" opacity="0.7"/>
+      <path d="M40 35 Q43 28 41 21 Q38 18 36 21 Q38 26 35 31Z" fill="#c9a94d" opacity="0.85"/>
+      <path d="M38 28 Q41 22 39 17 Q36 14 34 17 Q36 22 33 27Z" fill="#c9a94d" opacity="0.85"/>
+      <path d="M35 21 Q37 15 34 11 Q31 9 29 12 Q31 17 29 22Z" fill="#c9a94d" opacity="0.7"/>
+      <text x="24" y="32" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="17" font-weight="700" font-style="italic" fill="#c9a94d">RM</text>
+    </svg>
+    READ MASTER <em>ACADEMY</em>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#levels">문해력 레벨</a></li>
+    <li><a href="#level-test">레벨테스트</a></li>
+    <li><a href="#modules">플랫폼</a></li>
+    <li><a href="#library">서재</a></li>
+    <li><a href="#ielts">IELTS</a></li>
+    <li><a href="#debate">영어 토론</a></li>
+    <li><a href="#booking">상담 예약</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">무료 레벨 테스트</a>
+</nav>
+
+<!-- 우두동 설명회 배너 슬라이더 -->
+<section id="announce">
+  <div class="slider-wrap" id="annSlider">
+    <div class="slider-track" id="annTrack">
+
+      <!-- Slide 1: GRAND OPEN -->
+      <div class="slide slide-1">
+        <div class="sl-body">
+          <div class="sl-left">
+            <span class="sl-label sl-1-label">형 GRAND OPEN · 춘천 우두동 본점</span>
+            <div class="sl-heading">2026.4.1대개강<br/><em style="font-style:italic;color:var(--gold)">READ MASTER ACADEMY</em></div>
+            <p class="sl-sub">영국 University of York 출신 EBS 해외초청 IELTS 1타 강사 &middot; 강남·압구정 22년의 노하우를
+              춘천 우두동에 그대로 담았습니다.<br/>
+              “문해력이 올라가면 국내·해외 명문대 입시는 문제없다”</p>
+            <div class="sl-chips">
+              <span class="sl-chip sl-chip-green">단테 원장 (중·고등) 010-8460-1764</span>
+              <span class="sl-chip sl-chip-green">백민 원장 (초등부) 010-9595-3225</span>
+              <span class="sl-chip sl-chip-green">타 충천시 영서로 2790−1 2층</span>
+            </div>
+          </div>
+          <div class="sl-right">
+            <a href="#booking" class="sl-pill sl-pill-gold" style="font-size:1rem;padding:12px 28px">무료 레벨 테스트 예약 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: 설명회 일정 -->
+      <div class="slide slide-2">
+        <div class="sl-body">
+          <div class="sl-left">
+            <span class="sl-label sl-2-label">학부모 설명회 · 선착순 20명</span>
+            <div class="sl-heading">리드마스터 학부모 설명회에 초대합니다</div>
+            <p class="sl-sub">참석자 자녀 레벨 테스트 + 특별 선물 증정 &middot; 3월 19일(수)까지 예약 필수</p>
+            <table class="sl-table">
+              <thead>
+                <tr><th>대상</th><th>일시</th><th>주제</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="sl-grade">초&middot;중등</span></td><td style="white-space:nowrap">3/21(토) 11:00~12:30</td><td>영어·국어 문해력으로 국내외 명문대 가는 법</td></tr>
+                <tr><td><span class="sl-grade">고등</span></td><td style="white-space:nowrap">3/21(토) 13:30~15:00</td><td>수시·수능 그리고 해외대학 입시까지</td></tr>
+                <tr><td><span class="sl-grade">초&middot;중등</span></td><td style="white-space:nowrap">3/25(수) 19:00~20:30</td><td>영어·국어 문해력으로 국내외 명문대 가는 법</td></tr>
+                <tr><td><span class="sl-grade">초&middot;중등</span></td><td style="white-space:nowrap">3/28(토) 11:00~12:30</td><td>처음 상담 무료 · 문해력 진단 포함</td></tr>
+                <tr><td><span class="sl-grade">고등</span></td><td style="white-space:nowrap">3/28(토) 13:30~15:00</td><td>수시·수능 그리고 해외대학 입시까지</td></tr>
+              </tbody>
+            </table>
+            <div class="sl-addr">📍 춘천시 영서로 2790-1 2층 (우두동 · 1층 CU 건물)</div>
+            <div class="sl-tel">
+              <a href="tel:010-8460-1764">📞 단테 원장 010-8460-1764</a>
+              <a href="tel:010-9595-3225">📞 백민 원장 010-9595-3225</a>
+            </div>
+          </div>
+          <div class="sl-right" style="padding-top:40px">
+            <a href="#booking" class="sl-pill sl-pill-white">설명회 예약 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: 부천 옥길동 -->
+      <div class="slide slide-3">
+        <div class="sl-body">
+          <div class="sl-left">
+            <span class="sl-label sl-3-label">COMING SOON · 부천 옥길동 본점</span>
+            <div class="sl-heading">2026.7.20<br/>부천 옥길동 본점 대개강</div>
+            <p class="sl-sub">춘천 우두동 본점의 검증된 커리큐럼과 Academy OS를<br/>부천 옥길동에도 동일하게 제공합니다.<br/>
+              상담 및 사전 예약을 지금 바로 시작하세요.</p>
+            <div class="sl-chips">
+              <span class="sl-chip sl-chip-green">4대 통합 커리큐럼</span>
+              <span class="sl-chip sl-chip-green">AI 첨삭 연동</span>
+              <span class="sl-chip sl-chip-green">Firebase LMS</span>
+              <span class="sl-chip sl-chip-green">IRT 레벨테스트</span>
+            </div>
+          </div>
+          <div class="sl-right">
+            <a href="#booking" class="sl-pill sl-pill-gold" style="padding:12px 28px">상담 예약 →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: 4대 프로그램 -->
+      <div class="slide slide-4">
+        <div class="sl-body">
+          <div class="sl-left">
+            <span class="sl-label sl-4-label">4대 통합 커리큐럼</span>
+            <div class="sl-heading">읽는 힙이<br/>모든 학습의 시작</div>
+            <p class="sl-sub">영어 접다른 문해력 &rarr; 국어 논술 &rarr; 영어/국어 토론·글쓰기 &rarr; IELTS 유학영어<br/>수능에서 해외 명문대까지. 한 원에서 커버합니다.</p>
+            <div class="sl-chips">
+              <span class="sl-chip sl-chip-green">📚 영어 원서독서</span>
+              <span class="sl-chip sl-chip-green">✍️ 국어 논술</span>
+              <span class="sl-chip sl-chip-green">🎯 영어/국어 토론</span>
+              <span class="sl-chip sl-chip-green">🌍 IELTS 유학영어</span>
+            </div>
+          </div>
+          <div class="sl-right">
+            <a href="#levels" class="sl-pill sl-pill-gold" style="padding:12px 28px">레벨 체계 보기 →</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /slider-track -->
+    <button class="slider-btn slider-prev" id="annPrev" aria-label="Previous">‹</button>
+    <button class="slider-btn slider-next" id="annNext" aria-label="Next">›</button>
+    <div class="slider-dots" id="annDots"></div>
+  </div><!-- /slider-wrap -->
+</section>
+
+<!-- Motion Ticker Strip -->
+<div id="motion-strip" aria-hidden="true">
+  <div class="motion-ticker" id="ticker">
+    <span class="ticker-item"><strong>READ MASTER</strong><span class="ti-sep">·</span>문해력 중심 통합 교육<span class="ti-sep">·</span></span>
+    <span class="ticker-item">읽는 힘이 모든 학습의 시작<span class="ti-sep">·</span></span>
+    <span class="ticker-item"><strong>영어 원서독서</strong><span class="ti-sep">·</span>국어 논술<span class="ti-sep">·</span></span>
+    <span class="ticker-item">영어/국어 <strong>토론·글쓰기</strong><span class="ti-sep">·</span></span>
+    <span class="ticker-item"><strong>IELTS</strong> 유학영어<span class="ti-sep">·</span></span>
+    <span class="ticker-item">The power to read, understand, and <strong>create the future</strong><span class="ti-sep">·</span></span>
+    <span class="ticker-item">춘천 우두동 본점 <strong>2026.4.1</strong> 개원<span class="ti-sep">·</span></span>
+    <span class="ticker-item">부천 옥길동 본점 <strong>2026.7.20</strong> 개원<span class="ti-sep">·</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><strong>READ MASTER</strong><span class="ti-sep">·</span>문해력 중심 통합 교육<span class="ti-sep">·</span></span>
+    <span class="ticker-item">읽는 힘이 모든 학습의 시작<span class="ti-sep">·</span></span>
+    <span class="ticker-item"><strong>영어 원서독서</strong><span class="ti-sep">·</span>국어 논술<span class="ti-sep">·</span></span>
+    <span class="ticker-item">영어/국어 <strong>토론·글쓰기</strong><span class="ti-sep">·</span></span>
+    <span class="ticker-item"><strong>IELTS</strong> 유학영어<span class="ti-sep">·</span></span>
+    <span class="ticker-item">The power to read, understand, and <strong>create the future</strong><span class="ti-sep">·</span></span>
+    <span class="ticker-item">춘천 우두동 본점 <strong>2026.4.1</strong> 개원<span class="ti-sep">·</span></span>
+    <span class="ticker-item">부천 옥길동 본점 <strong>2026.7.20</strong> 개원<span class="ti-sep">·</span></span>
+  </div>
+</div>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="dot"></span>춘천 우두동 본점 개원 2026.4.1 &amp; 부천 옥길동 본점 개원 2026.7.20</div>
+      <h1 class="hero-title">읽는 힘이<br/><em>모든 학습의</em><br/>시작입니다</h1>
+      <p class="hero-sub">The power to read, understand, and create the future.<br/>AI 기반 문해력 진단 · 맞춤 커리큘럼 · 수능 독서 전문 교육</p>
+      <div class="hero-btns">
+        <a href="#booking" class="btn-g">무료 레벨 테스트 예약 →</a>
+        <a href="#levels" class="btn-out">문해력 9단계 보기</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">9단계</div><div class="stat-lbl">문해력 레벨 체계</div></div>
+        <div class="stat"><div class="stat-num">4대</div><div class="stat-lbl">통합 프로그램</div></div>
+        <div class="stat"><div class="stat-num">2개</div><div class="stat-lbl">프랜차이즈 지점</div></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-top">
+        <div class="hc-label">학생 문해력 레벨</div>
+        <div class="hc-val">L6 · 고급 독해</div>
+        <span class="hc-badge">▲ 2단계 성장</span>
+      </div>
+      <div class="hc-row">
+        <div class="hc-mini"><div class="hc-mini-lbl">이번 달 독서량</div><div class="hc-mini-val">4권</div></div>
+        <div class="hc-mini"><div class="hc-mini-lbl">과제 완료율</div><div class="hc-mini-val">92%</div></div>
+      </div>
+      <div class="hc-progress">
+        <div class="hcp-row">비문학 독해<div class="hcp-bar"><div class="hcp-fill" style="width:82%"></div></div>82</div>
+        <div class="hcp-row">어휘·배경지식<div class="hcp-bar"><div class="hcp-fill" style="width:76%"></div></div>76</div>
+        <div class="hcp-row">논리·추론<div class="hcp-bar"><div class="hcp-fill" style="width:68%"></div></div>68</div>
+        <div class="hcp-row">표현·글쓰기<div class="hcp-bar"><div class="hcp-fill" style="width:71%"></div></div>71</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="trust">
+  <div class="trust-item"><div class="trust-num">2026.4.1</div><div class="trust-lbl">춘천 우두동 본점 개원</div></div>
+  <div class="trust-item"><div class="trust-num">2026.7.20</div><div class="trust-lbl">부천 옥길동 본점 개원</div></div>
+  <div class="trust-item"><div class="trust-num">4대</div><div class="trust-lbl">통합 커리큘럼 프로그램</div></div>
+  <div class="trust-item"><div class="trust-num">AI 첨삭</div><div class="trust-lbl">Claude · Gemini 연동</div></div>
+</div>
+
+<!-- Motion Feature Section — READ MASTER CSS Kinetic Typography -->
+<section id="motion-feature" style="background:var(--g);min-height:70vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:80px 5vw">
+
+  <!-- Animated particle background -->
+  <div class="mf-particles" aria-hidden="true">
+    <span class="mf-p" style="left:8%;top:20%;animation-delay:0s;animation-duration:8s"></span>
+    <span class="mf-p" style="left:22%;top:70%;animation-delay:1.2s;animation-duration:10s"></span>
+    <span class="mf-p" style="left:45%;top:15%;animation-delay:2s;animation-duration:12s"></span>
+    <span class="mf-p" style="left:68%;top:55%;animation-delay:0.5s;animation-duration:9s"></span>
+    <span class="mf-p" style="left:85%;top:30%;animation-delay:3s;animation-duration:11s"></span>
+    <span class="mf-p mf-p-lg" style="left:15%;top:45%;animation-delay:1.8s;animation-duration:14s"></span>
+    <span class="mf-p mf-p-lg" style="left:75%;top:75%;animation-delay:0.8s;animation-duration:13s"></span>
+    <span class="mf-p" style="left:55%;top:80%;animation-delay:2.5s;animation-duration:7s"></span>
+    <span class="mf-p" style="left:92%;top:60%;animation-delay:4s;animation-duration:9s"></span>
+    <span class="mf-p mf-p-lg" style="left:35%;top:40%;animation-delay:1s;animation-duration:15s"></span>
+  </div>
+
+  <!-- Kinetic Typography Slides -->
+  <div class="mf-stage" id="mfStage">
+
+    <!-- Slide 1: Brand Declaration -->
+    <div class="mf-slide mf-slide-active" id="mfSlide0">
+      <div class="mf-overtag">Brand Philosophy · 브랜드 선언</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim" style="color:#fff">읽는 힘이</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">미래를 만든다</span>
+      </h2>
+      <p class="mf-body">The power to read, understand, and create the future.<br>단순한 독해를 넘어, 생각하고 창조하는 문해력을 기릅니다.</p>
+      <div class="mf-pill-row">
+        <span class="mf-pill">영어 원서독서</span>
+        <span class="mf-pill">국어 논술</span>
+        <span class="mf-pill">영/국어 토론</span>
+        <span class="mf-pill">IELTS</span>
+      </div>
+    </div>
+
+    <!-- Slide 2: 문해력 레벨 -->
+    <div class="mf-slide" id="mfSlide1">
+      <div class="mf-overtag">9-Level Gem System · 보석 성장 체계</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim">L1 Pearl</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">→ L9 Diamond</span>
+      </h2>
+      <p class="mf-body">IRT 2PL 적응형 테스트로 30문항 이내에 정확한 레벨 진단.<br>보석이 빛나듯, 아이의 문해력이 단계별로 성장합니다.</p>
+      <div class="mf-gem-row">
+        <span style="color:#E8E8E8">Pearl</span><span style="color:#F0E6FF">Opal</span>
+        <span style="color:#06B6D4">Aqua</span><span style="color:#059669">Jade</span>
+        <span style="color:#3B82F6">Sapphire</span><span style="color:#8B5CF6">Amethyst</span>
+        <span style="color:#F59E0B">Topaz</span><span style="color:#10B981">Emerald</span>
+        <span style="color:#fff;text-shadow:0 0 12px rgba(255,255,255,.6)">✦ Diamond</span>
+      </div>
+    </div>
+
+    <!-- Slide 3: 4대 프로그램 -->
+    <div class="mf-slide" id="mfSlide2">
+      <div class="mf-overtag">Core Programs · 4대 핵심 프로그램</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim">통합 문해력</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">교육 시스템</span>
+      </h2>
+      <div class="mf-prog-grid">
+        <div class="mf-prog-item"><div class="mf-prog-num">01</div><div class="mf-prog-name">영어 원서독서</div><div class="mf-prog-sub">Lexile·AR 레벨 기반 1,200권</div></div>
+        <div class="mf-prog-item"><div class="mf-prog-num">02</div><div class="mf-prog-name">국어 논술</div><div class="mf-prog-sub">논리·구조·표현 체계 훈련</div></div>
+        <div class="mf-prog-item"><div class="mf-prog-num">03</div><div class="mf-prog-name">영/국어 토론</div><div class="mf-prog-sub">OET Korea 계승 48유닛</div></div>
+        <div class="mf-prog-item"><div class="mf-prog-num">04</div><div class="mf-prog-name">IELTS 유학영어</div><div class="mf-prog-sub">Reading·Writing·Speaking·Listening</div></div>
+      </div>
+    </div>
+
+    <!-- Slide 4: AI 첨삭 -->
+    <div class="mf-slide" id="mfSlide3">
+      <div class="mf-overtag">AI-Powered Feedback · AI 첨삭 시스템</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim">Claude · Gemini</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">AI 글쓰기 첨삭</span>
+      </h2>
+      <p class="mf-body">논리·어휘·구조·표현 4개 영역 실시간 AI 분석.<br>교사 최종 확인으로 2-트랙 정밀 피드백 제공.</p>
+      <div class="mf-pill-row">
+        <span class="mf-pill">Claude API 연동</span>
+        <span class="mf-pill">OCR 손글씨 입력</span>
+        <span class="mf-pill">포트폴리오 관리</span>
+        <span class="mf-pill">수능 국어 연계</span>
+      </div>
+    </div>
+
+    <!-- Slide 5: 프랜차이즈 -->
+    <div class="mf-slide" id="mfSlide4">
+      <div class="mf-overtag">Franchise Network · 프랜차이즈 2본점</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim">춘천 우두동</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">부천 옥길동</span>
+      </h2>
+      <div class="mf-prog-grid">
+        <div class="mf-prog-item"><div class="mf-prog-num">🏫</div><div class="mf-prog-name">춘천 우두동 본점</div><div class="mf-prog-sub">2026년 4월 1일 개원 · 강원도 춘천시</div></div>
+        <div class="mf-prog-item"><div class="mf-prog-num">🏫</div><div class="mf-prog-name">부천 옥길동 본점</div><div class="mf-prog-sub">2026년 7월 20일 개원 · 경기도 부천시</div></div>
+      </div>
+    </div>
+
+    <!-- Slide 6: CTA -->
+    <div class="mf-slide" id="mfSlide5">
+      <div class="mf-overtag">Start Now · 지금 시작하세요</div>
+      <h2 class="mf-heading">
+        <span class="mf-word-anim">내 아이의 문해력은</span>
+        <span class="mf-word-anim mf-gold-line" style="animation-delay:.3s">몇 레벨일까요?</span>
+      </h2>
+      <p class="mf-body">30문항으로 정확하게 진단하고, 맞춤 커리큘럼으로 시작하세요.<br>전문 교사가 레벨 결과를 1:1 해석해 드립니다.</p>
+      <a href="#booking" class="mf-cta-btn">무료 레벨 진단 시작 →</a>
+    </div>
+
+  </div><!-- /mf-stage -->
+
+  <!-- Progress bar -->
+  <div class="mf-progress-bar" id="mfProgress"><div class="mf-progress-fill" id="mfFill"></div></div>
+
+  <!-- Dots nav -->
+  <div class="mf-dots" id="mfDots">
+    <button class="mf-dot mf-dot-active" aria-label="Slide 1" onclick="mfGo(0)"></button>
+    <button class="mf-dot" aria-label="Slide 2" onclick="mfGo(1)"></button>
+    <button class="mf-dot" aria-label="Slide 3" onclick="mfGo(2)"></button>
+    <button class="mf-dot" aria-label="Slide 4" onclick="mfGo(3)"></button>
+    <button class="mf-dot" aria-label="Slide 5" onclick="mfGo(4)"></button>
+    <button class="mf-dot" aria-label="Slide 6" onclick="mfGo(5)"></button>
+  </div>
+
+</section>
+
+<section id="levels">
+  <div class="sec-head reveal">
+    <span class="tag">Literacy Level System</span>
+    <h2 class="sec-title">문해력 9단계 성장 체계</h2>
+    <p class="sec-desc">IRT 기반 적응형 레벨테스트로 정확히 진단하고, L1부터 L9까지 체계적으로 성장합니다.</p>
+  </div>
+  <div class="levels-grid">
+    <div class="lv-card lv1 reveal"><div class="lv-code">L1</div><div class="lv-name">기초 독해</div><div class="lv-range">초 3~4 · 기본 어휘 · 사실 파악</div><div class="lv-meta"><strong>목표:</strong> 지문 이해, 중심 문장 파악<br/><strong>교재:</strong> 기초 비문학 읽기</div><span class="lv-suneung">수능 대비 준비</span></div>
+    <div class="lv-card lv2 reveal"><div class="lv-code">L2</div><div class="lv-name">기본 이해</div><div class="lv-range">초 5~6 · 단락 구조 · 요약</div><div class="lv-meta"><strong>목표:</strong> 단락 요약, 주제 파악<br/><strong>교재:</strong> 설명문·기사문 읽기</div><span class="lv-suneung">수능 9등급 목표</span></div>
+    <div class="lv-card lv3 reveal"><div class="lv-code">L3</div><div class="lv-name">구조 파악</div><div class="lv-range">중 1 · 논리 구조 · 전개방식</div><div class="lv-meta"><strong>목표:</strong> 글의 구조, 전개방식 분석<br/><strong>교재:</strong> 논설문·비교 분석</div><span class="lv-suneung">수능 8등급 목표</span></div>
+    <div class="lv-card lv4 reveal"><div class="lv-code">L4</div><div class="lv-name">추론 독해</div><div class="lv-range">중 2 · 함축 의미 · 빈칸 추론</div><div class="lv-meta"><strong>목표:</strong> 함축·추론 문제 해결<br/><strong>교재:</strong> 인문·사회 지문</div><span class="lv-suneung">수능 7등급 목표</span></div>
+    <div class="lv-card lv5 reveal"><div class="lv-code">L5</div><div class="lv-name">비판 독해</div><div class="lv-range">중 3 · 관점 분석 · 근거 평가</div><div class="lv-meta"><strong>목표:</strong> 필자의 관점, 비판적 사고<br/><strong>교재:</strong> 과학·기술 지문</div><span class="lv-suneung">수능 6등급 목표</span></div>
+    <div class="lv-card lv6 reveal"><div class="lv-code">L6</div><div class="lv-name">고급 독해</div><div class="lv-range">고 1 · 복합 지문 · 정보 통합</div><div class="lv-meta"><strong>목표:</strong> 복합 지문, 정보 통합<br/><strong>교재:</strong> EBS 연계 비문학</div><span class="lv-suneung">수능 5등급 목표</span></div>
+    <div class="lv-card lv7 reveal"><div class="lv-code">L7</div><div class="lv-name">심화 분석</div><div class="lv-range">고 2 · 고난도 추론 · 세부 정보</div><div class="lv-meta"><strong>목표:</strong> 고난도 문항, 세부 정보 파악<br/><strong>교재:</strong> 수능 기출 심화</div><span class="lv-suneung">수능 4등급 목표</span></div>
+    <div class="lv-card lv8 reveal"><div class="lv-code">L8</div><div class="lv-name">수능 완성</div><div class="lv-range">고 2~3 · 수능 유형 마스터리</div><div class="lv-meta"><strong>목표:</strong> 수능 전 유형 완전 이해<br/><strong>교재:</strong> 수능 응용·변형</div><span class="lv-suneung">수능 2~3등급 목표</span></div>
+    <div class="lv-card lv9 reveal"><div class="lv-code">L9</div><div class="lv-name">최상위 독해</div><div class="lv-range">고 3 · 1등급 완성</div><div class="lv-meta"><strong>목표:</strong> 수능 1등급, 논술 대비<br/><strong>교재:</strong> 최고난도·논술 통합</div><span class="lv-suneung">수능 1등급 목표</span></div>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="sec-head reveal">
+    <span class="tag">Integrated Platform · 8 Modules</span>
+    <h2 class="sec-title">8개 모듈 통합 플랫폼</h2>
+    <p class="sec-desc">Firebase 기반 실시간 LMS부터 AI 첨삭, 디지털 도서관, 프랜차이즈 허브까지. Academy OS를 계승한 모듈식 구조로 부천·춘천 두 지점이 동일 시스템을 공유합니다.</p>
+  </div>
+  <div class="mod-grid">
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-g">📚</div>
+      <div class="mod-title">LMS Core — Academy OS 계승</div>
+      <div class="mod-desc">반 관리·출결·과제·성적·학부모 포털을 Firebase Firestore 기반으로 실시간 동기화. 기존 Academy OS 데이터 모델을 직접 계승합니다.</div>
+      <div class="mod-pills"><span class="pill">Firebase Realtime</span><span class="pill">출결 자동화</span><span class="pill">학부모 포털</span></div>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-gd">🔬</div>
+      <div class="mod-title">레벨 테스트 엔진 (IRT)</div>
+      <div class="mod-desc">IRT 2PL 모델 기반 적응형 평가로 30문항 이내에 정확한 L1~L9 레벨을 진단. 수능 예측 등급까지 자동 매핑됩니다.</div>
+      <div class="mod-pills"><span class="pill-gold pill">IRT 적응형</span><span class="pill-gold pill">수능 등급 매핑</span><span class="pill-gold pill">Firebase 저장</span></div>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-g">📖</div>
+      <div class="mod-title">디지털 도서관</div>
+      <div class="mod-desc">Lexile·AR 레벨 기반 1,200권 큐레이션 컬렉션. 독서 기록, 독후 활동, AI 추천 엔진이 통합된 자기주도 독서 환경.</div>
+      <div class="mod-pills"><span class="pill">1,200권 큐레이션</span><span class="pill">독서 로그</span><span class="pill">AI 추천</span></div>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-gd">✏️</div>
+      <div class="mod-title">AI 글쓰기 첨삭</div>
+      <div class="mod-desc">Claude API 연동 AI 첨삭. 논리·어휘·구조·표현 4개 영역 분석 및 교사 최종 확인. OCR 손글씨 입력 지원으로 종이 글쓰기도 디지털 피드백.</div>
+      <div class="mod-pills"><span class="pill-gold pill">Claude API</span><span class="pill-gold pill">OCR 손글씨</span><span class="pill-gold pill">포트폴리오</span></div>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-g">📊</div>
+      <div class="mod-title">학습자료 허브</div>
+      <div class="mod-desc">교사가 원문 지문을 업로드하면 AI가 변형 문제·어휘 학습지·요약 활동지를 자동 생성. 버전 관리 및 수업 자동 연결.</div>
+      <div class="mod-pills"><span class="pill">AI 문제 생성</span><span class="pill">버전 관리</span><span class="pill">Gemini 연동</span></div>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-icon mi-gd">📅</div>
+      <div class="mod-title">퍼널 상담 CRM</div>
+      <div class="mod-desc">3단계 퍼널 예약 폼 → Firebase 자동 등록 → 카카오톡 알림 → 교사 배정까지 End-to-End 자동화. 전환율 대시보드 내장.</div>
+      <div class="mod-pills"><span class="pill-gold pill">Firebase CRM</span><span class="pill-gold pill">카카오 알림</span><span class="pill-gold pill">전환율 추적</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GLEAS-CAT Level Test Preview ===== -->
+<section id="level-test" style="background:var(--g);padding:96px 5vw">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="sec-head reveal" style="margin-bottom:52px">
+      <span class="tag" style="color:var(--gold)">GLEAS-CAT · IRT 2PL Adaptive Test</span>
+      <h2 class="sec-title" style="color:#fff">AI 적응형 레벨테스트</h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.65);max-width:580px">IRT(Item Response Theory) 기반 컴퓨터 적응형 평가로 20~35문항만으로 정확한 L1~L9 레벨을 진단합니다. 문해력 보석 단계로 성장을 눈에 보이게 확인하세요.</p>
+    </div>
+
+    <!-- IRT Stats Row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:40px" class="reveal">
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.25);border-radius:14px;padding:20px;text-align:center">
+        <div style="color:#60a5fa;font-size:1.9rem;font-weight:900;font-family:'Cormorant Garamond',serif">9단계</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:6px">보석 레벨 체계</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.25);border-radius:14px;padding:20px;text-align:center">
+        <div style="color:#34d399;font-size:1.9rem;font-weight:900;font-family:'Cormorant Garamond',serif">IRT 2PL</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:6px">능력 추정 모델</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.25);border-radius:14px;padding:20px;text-align:center">
+        <div style="color:#c084fc;font-size:1.9rem;font-weight:900;font-family:'Cormorant Garamond',serif">EAP</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:6px">Bayesian θ 추정</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,169,77,.25);border-radius:14px;padding:20px;text-align:center">
+        <div style="color:var(--gold);font-size:1.9rem;font-weight:900;font-family:'Cormorant Garamond',serif">20~35</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.78rem;margin-top:6px">적응형 문항 수</div>
+      </div>
+    </div>
+
+    <!-- Gem Level Grid -->
+    <div class="gem-grid reveal">
+      <div class="gem-card" data-gem="pearl">
+        <div class="gem-icon">🦋</div>
+        <div class="gem-code">L1</div>
+        <div class="gem-name" style="color:#E8E8E8">Pearl</div>
+        <div class="gem-range">초3~4 · 기초 어휘</div>
+        <div class="gem-cefr">Pre-A1</div>
+      </div>
+      <div class="gem-card" data-gem="opal">
+        <div class="gem-icon">🌸</div>
+        <div class="gem-code">L2</div>
+        <div class="gem-name" style="color:#F0E6FF">Opal</div>
+        <div class="gem-range">초5~6 · 단락 구조</div>
+        <div class="gem-cefr">A1</div>
+      </div>
+      <div class="gem-card" data-gem="aqua">
+        <div class="gem-icon">💧</div>
+        <div class="gem-code">L3</div>
+        <div class="gem-name" style="color:#06B6D4">Aquamarine</div>
+        <div class="gem-range">중1 · 논리 구조</div>
+        <div class="gem-cefr">A2</div>
+      </div>
+      <div class="gem-card" data-gem="jade">
+        <div class="gem-icon">🌿</div>
+        <div class="gem-code">L4</div>
+        <div class="gem-name" style="color:#059669">Jade</div>
+        <div class="gem-range">중2 · 추론 독해</div>
+        <div class="gem-cefr">B1</div>
+      </div>
+      <div class="gem-card" data-gem="sapphire">
+        <div class="gem-icon">🔷</div>
+        <div class="gem-code">L5</div>
+        <div class="gem-name" style="color:#3B82F6">Sapphire</div>
+        <div class="gem-range">중3 · 비판 독해</div>
+        <div class="gem-cefr">B2</div>
+      </div>
+      <div class="gem-card" data-gem="amethyst">
+        <div class="gem-icon">💜</div>
+        <div class="gem-code">L6</div>
+        <div class="gem-name" style="color:#8B5CF6">Amethyst</div>
+        <div class="gem-range">고1 · 복합 지문</div>
+        <div class="gem-cefr">B2+</div>
+      </div>
+      <div class="gem-card" data-gem="topaz">
+        <div class="gem-icon">🌟</div>
+        <div class="gem-code">L7</div>
+        <div class="gem-name" style="color:#F59E0B">Topaz</div>
+        <div class="gem-range">고2 · 심화 분석</div>
+        <div class="gem-cefr">C1</div>
+      </div>
+      <div class="gem-card" data-gem="emerald">
+        <div class="gem-icon">💎</div>
+        <div class="gem-code">L8</div>
+        <div class="gem-name" style="color:#10B981">Emerald</div>
+        <div class="gem-range">고2~3 · 수능 완성</div>
+        <div class="gem-cefr">C1+</div>
+      </div>
+      <div class="gem-card gem-card-diamond" data-gem="diamond">
+        <div class="gem-icon">✨</div>
+        <div class="gem-code">L9</div>
+        <div class="gem-name" style="color:#fff">Diamond</div>
+        <div class="gem-range">고3 · 최상위 1등급</div>
+        <div class="gem-cefr">C2</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal" style="text-align:center;margin-top:44px">
+      <a href="#booking" class="btn-g" style="background:var(--gold);color:var(--g);font-size:1rem;padding:16px 40px;border-radius:10px;display:inline-block;font-weight:800">
+        무료 레벨 진단 시작 →
+      </a>
+      <p style="margin-top:14px;color:rgba(255,255,255,.45);font-size:.82rem">결과지 PDF 즉시 발급 · 담당 교사 1:1 해석 상담 포함</p>
+    </div>
+  </div>
+</section>
+
+<section id="library">
+  <div class="lib-head">
+    <div>
+      <span class="tag">Digital Library</span>
+      <h2 class="sec-title" style="margin-bottom:0">큐레이션 서재</h2>
+    </div>
+    <a href="#booking" class="lib-all">전체 도서 보기 →</a>
+  </div>
+  <div class="lib-filters">
+    <button class="filt active">전체</button>
+    <button class="filt">비문학</button>
+    <button class="filt">문학</button>
+    <button class="filt">수능 독서</button>
+    <button class="filt">추천도서</button>
+  </div>
+  <div class="book-grid">
+    <div class="book-card reveal"><div class="book-cover" style="background:#e8f0ec">🌌</div><div class="book-info"><div class="book-genre">비문학</div><div class="book-title">코스모스</div><div class="book-stars">★★★★☆</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#f0ece8">📜</div><div class="book-info"><div class="book-genre">비문학</div><div class="book-title">총균쇠</div><div class="book-stars">★★★★★</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#ece8f0">📕</div><div class="book-info"><div class="book-genre">문학</div><div class="book-title">82년생 김지영</div><div class="book-stars">★★★★☆</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#e8f0e8">🔬</div><div class="book-info"><div class="book-genre">비문학</div><div class="book-title">종의 기원</div><div class="book-stars">★★★★★</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#f0e8e8">🌊</div><div class="book-info"><div class="book-genre">문학</div><div class="book-title">이방인</div><div class="book-stars">★★★★☆</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#e8ece8">🌿</div><div class="book-info"><div class="book-genre">문학</div><div class="book-title">채식주의자</div><div class="book-stars">★★★★☆</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#ece8ec">🧬</div><div class="book-info"><div class="book-genre">비문학</div><div class="book-title">사피엔스</div><div class="book-stars">★★★★★</div></div></div>
+    <div class="book-card reveal"><div class="book-cover" style="background:#e8e8f0">🌟</div><div class="book-info"><div class="book-genre">수능 독서</div><div class="book-title">데미안</div><div class="book-stars">★★★★★</div></div></div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="sec-head reveal" style="text-align:center;max-width:600px;margin:0 auto 52px">
+    <span class="tag">Development Roadmap</span>
+    <h2 class="sec-title">개원 로드맵</h2>
+    <p class="sec-desc" style="max-width:100%">Academy OS 모듈을 계승하여 2026년 7월 개원까지 4단계로 점진 개발합니다.</p>
+  </div>
+  <div class="rm-grid">
+    <div class="rm-card reveal">
+      <div class="rm-phase">Phase 0</div>
+      <div class="rm-period">2026년 3~4월 · 8주</div>
+      <div class="rm-title">Foundation</div>
+      <ul class="rm-items"><li>Firebase 프로젝트 세팅</li><li>Academy OS DB 마이그레이션</li><li>인증 시스템 (Firebase Auth)</li><li>디자인 시스템 구축</li></ul>
+    </div>
+    <div class="rm-card reveal">
+      <div class="rm-phase">Phase 1</div>
+      <div class="rm-period">2026년 5~6월 · 8주</div>
+      <div class="rm-title">MVP</div>
+      <ul class="rm-items"><li>퍼널 상담 예약 + CRM</li><li>레벨테스트 엔진 MVP</li><li>LMS 코어 (반·수업·출결)</li><li>블로그 CMS</li></ul>
+    </div>
+    <div class="rm-card reveal">
+      <div class="rm-phase">Phase 2</div>
+      <div class="rm-period">2026년 7월 · 4주</div>
+      <div class="rm-title">Launch 🎉</div>
+      <ul class="rm-items"><li>개원 및 실학생 온보딩</li><li>운영 안정화·버그 수정</li><li>학부모 포털 오픈</li><li>카카오 알림 연동</li></ul>
+    </div>
+    <div class="rm-card reveal">
+      <div class="rm-phase">Phase 3~4</div>
+      <div class="rm-period">2026년 8~12월</div>
+      <div class="rm-title">Growth</div>
+      <ul class="rm-items"><li>AI 추천 도서관 확장</li><li>AI 글쓰기 첨삭 (Claude)</li><li>결제 연동 (TossPayments)</li><li>분석 대시보드 고도화</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="booking-wrap">
+    <div class="bk-info">
+      <span class="tag">Free Consultation</span>
+      <h2 class="serif">무료 레벨 테스트<br/>상담 예약</h2>
+      <p>전문 선생님이 직접 레벨테스트 결과를 분석하고 맞춤 커리큘럼을 설계해 드립니다.<br/>부담 없이 신청하세요.</p>
+      <div class="bk-steps">
+        <div class="bk-step"><div class="bk-step-num">1</div><div class="bk-step-body"><h4>학생 정보 입력</h4><p>학년·관심 분야·고민을 알려주세요</p></div></div>
+        <div class="bk-step"><div class="bk-step-num">2</div><div class="bk-step-body"><h4>상담 일시 선택</h4><p>원하는 날짜와 시간을 선택합니다</p></div></div>
+        <div class="bk-step"><div class="bk-step-num">3</div><div class="bk-step-body"><h4>예약 확정 + 알림</h4><p>카카오톡·SMS로 확인 메시지 발송</p></div></div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <div class="form-steps">
+        <div class="fs active">① 학생 정보</div>
+        <div class="fs">② 고민 선택</div>
+        <div class="fs">③ 예약 확정</div>
+      </div>
+      <label>학생 이름</label>
+      <input type="text" id="f-name" placeholder="홍길동"/>
+      <label>학년</label>
+      <select id="f-grade">
+        <option value="">학년을 선택해 주세요</option>
+        <option>초등 3~4학년</option>
+        <option>초등 5~6학년</option>
+        <option>중학교 1학년</option>
+        <option>중학교 2학년</option>
+        <option>중학교 3학년</option>
+        <option>고등학교 1학년</option>
+        <option>고등학교 2학년</option>
+        <option>고등학교 3학년</option>
+      </select>
+      <label>현재 문해력 고민</label>
+      <div class="radio-group" id="concerns">
+        <div class="radio-opt" onclick="sel(this)">📖 독해 속도가 느려요</div>
+        <div class="radio-opt" onclick="sel(this)">📝 어휘가 부족해요</div>
+        <div class="radio-opt" onclick="sel(this)">🔍 비문학이 어려워요</div>
+        <div class="radio-opt" onclick="sel(this)">📊 수능 국어가 걱정돼요</div>
+      </div>
+      <label>연락처</label>
+      <input type="tel" id="f-phone" placeholder="010-0000-0000"/>
+      <label>희망 상담 일시</label>
+      <input type="datetime-local" id="f-date"/>
+      <button class="btn-submit" onclick="submit()">맞춤 커리큘럼 상담 예약 →</button>
+      <div class="form-trust">🔒 개인정보 보호 · 스팸 없음 · 언제든 취소 가능</div>
+    </div>
+  </div>
+</section>
+
+<section id="ielts">
+  <div class="sec-head reveal">
+    <span class="tag">IELTS Preparation Program</span>
+    <h2 class="sec-title">IELTS 완전 대비 프로그램</h2>
+    <p class="sec-desc">Reading · Writing · Speaking · Listening 4개 영역 전략 학습 + AI 모의시험 · 밴드 스코어 예측까지. 목표 밴드에 맞는 맞춤 루트로 준비합니다.</p>
+  </div>
+  <div class="ielts-grid">
+    <div class="ielts-card reveal">
+      <span class="ielts-status status-ai">AI 채점</span>
+      <div class="ielts-icon">📖</div>
+      <div class="ielts-sub">Reading</div>
+      <div class="ielts-title">IELTS 리딩 전략</div>
+      <div class="ielts-desc">Academic · General Training 지문 유형별 공략법. Skimming·Scanning·True/False/NG 완전 마스터.</div>
+      <div class="ielts-steps">
+        <div class="ielts-step">지문 구조 분석 훈련</div>
+        <div class="ielts-step">유형별 문제 전략 40가지</div>
+        <div class="ielts-step">시간 배분 시뮬레이션</div>
+      </div>
+      <div class="band-scale" style="margin-top:14px">
+        <div class="band">5</div><div class="band">6</div><div class="band hi">7</div><div class="band hi">8</div><div class="band">9</div>
+      </div>
+    </div>
+    <div class="ielts-card reveal">
+      <span class="ielts-status status-ai">AI 채점</span>
+      <div class="ielts-icon">✍️</div>
+      <div class="ielts-sub">Writing</div>
+      <div class="ielts-title">IELTS 라이팅 완성</div>
+      <div class="ielts-desc">Task 1 그래프 묘사부터 Task 2 논술까지. AI 피드백 + 교사 첨삭 2-트랙 시스템으로 밴드 향상.</div>
+      <div class="ielts-steps">
+        <div class="ielts-step">Task 1 데이터 묘사 템플릿</div>
+        <div class="ielts-step">Task 2 논리 구조 설계</div>
+        <div class="ielts-step">AI + 교사 이중 첨삭</div>
+      </div>
+      <div class="band-scale" style="margin-top:14px">
+        <div class="band">5</div><div class="band hi">6</div><div class="band hi">7</div><div class="band hi">8</div><div class="band">9</div>
+      </div>
+    </div>
+    <div class="ielts-card reveal">
+      <span class="ielts-status status-ai">AI 시뮬</span>
+      <div class="ielts-icon">🗣️</div>
+      <div class="ielts-sub">Speaking</div>
+      <div class="ielts-title">IELTS 스피킹 클리닉</div>
+      <div class="ielts-desc">Part 1·2·3 단계별 전략. AI 원어민 시험관 시뮬레이션으로 실전 감각을 키우고 발음·유창성 개선.</div>
+      <div class="ielts-steps">
+        <div class="ielts-step">Part 1 일상 주제 응답 훈련</div>
+        <div class="ielts-step">Part 2 2분 스피치 구성법</div>
+        <div class="ielts-step">AI 발음·억양 분석 피드백</div>
+      </div>
+      <div class="band-scale" style="margin-top:14px">
+        <div class="band">5</div><div class="band">6</div><div class="band hi">7</div><div class="band hi">8</div><div class="band hi">9</div>
+      </div>
+    </div>
+    <div class="ielts-card reveal">
+      <span class="ielts-status status-ai">AI 분석</span>
+      <div class="ielts-icon">🎧</div>
+      <div class="ielts-sub">Listening</div>
+      <div class="ielts-title">IELTS 리스닝 특훈</div>
+      <div class="ielts-desc">Section 1~4 유형별 전략. 다양한 영국·호주·미국 억양 집중 청취 훈련 + 받아쓰기 정밀 교정.</div>
+      <div class="ielts-steps">
+        <div class="ielts-step">예측 청취 기술 훈련</div>
+        <div class="ielts-step">Sect 4 모노로그 공략법</div>
+        <div class="ielts-step">다중 억양 집중 청취 세션</div>
+      </div>
+      <div class="band-scale" style="margin-top:14px">
+        <div class="band">5</div><div class="band hi">6</div><div class="band hi">7</div><div class="band hi">8</div><div class="band hi">9</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="debate">
+  <div class="sec-head reveal" style="text-align:center;max-width:660px;margin:0 auto 40px">
+    <span class="tag">English Debate Library</span>
+    <h2 class="sec-title">영어 토론 도서관</h2>
+    <p class="sec-desc" style="max-width:100%">OET Korea Debate Library 계승. 6개 카테고리, 48개 유닛, 어휘→독해→준비→토론→에세이 5단계 시스템.</p>
+  </div>
+  <div class="debate-stats reveal">
+    <div><div class="db-stat-num">6</div><div class="db-stat-lbl">토론 카테고리</div></div>
+    <div><div class="db-stat-num">48</div><div class="db-stat-lbl">토론 유닛</div></div>
+    <div><div class="db-stat-num">384+</div><div class="db-stat-lbl">핵심 어휘</div></div>
+    <div><div class="db-stat-num">B1→C1</div><div class="db-stat-lbl">CEFR 레벨 커버</div></div>
+  </div>
+  <div class="debate-flow reveal">
+    <div class="df-step active"><strong>① 어휘</strong>주제 핵심 단어</div>
+    <div class="df-step"><strong>② 독해</strong>지문 분석</div>
+    <div class="df-step"><strong>③ 준비</strong>논거 구성</div>
+    <div class="df-step active"><strong>④ 토론</strong>실전 디베이트</div>
+    <div class="df-step"><strong>⑤ 에세이</strong>논술 완성</div>
+  </div>
+  <div class="debate-grid">
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 6.0–9.0</div>
+      <div class="dcat-icon">🔬</div>
+      <div class="dcat-name">과학 &amp; 기술</div>
+      <div class="dcat-en">Science &amp; Technology</div>
+      <div class="dcat-desc">과학적 사고와 기술 윤리를 영어로 토론. 현대 과학·기술의 윤리적·사회적 함의를 깊이 있게 탐구합니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 5.5–8.0</div>
+      <div class="dcat-icon">🌍</div>
+      <div class="dcat-name">인간 &amp; 사회</div>
+      <div class="dcat-en">Human &amp; Society</div>
+      <div class="dcat-desc">사회 문제와 인간 관계를 글로벌 관점에서 분석. 다양한 문화·제도에 대한 비판적 시각을 기릅니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 5.0–7.5</div>
+      <div class="dcat-icon">🚀</div>
+      <div class="dcat-name">미래 &amp; 진로</div>
+      <div class="dcat-en">Future &amp; Careers</div>
+      <div class="dcat-desc">미래 직업과 진로를 영어로 탐색. 급변하는 세계에서 스스로의 경력 경로를 설계하는 역량을 키웁니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 4.5–7.0</div>
+      <div class="dcat-icon">📖</div>
+      <div class="dcat-name">문학 &amp; 정체성</div>
+      <div class="dcat-en">Literature &amp; Identity</div>
+      <div class="dcat-desc">문학을 통한 정체성과 감성 탐구. 작품 속 인물과 사건을 분석하며 영어 표현력을 극대화합니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 5.0–7.5</div>
+      <div class="dcat-icon">📐</div>
+      <div class="dcat-name">수학적 사고</div>
+      <div class="dcat-en">Mathematical Thinking</div>
+      <div class="dcat-desc">수학적 논리와 체계적 사고력을 영어로 개발. 논리 구조를 명확히 설명하는 언어 능력을 향상합니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+    <div class="dcat-card reveal" style="position:relative">
+      <div class="dcat-ar">AR 6.0–9.0</div>
+      <div class="dcat-icon">💹</div>
+      <div class="dcat-name">경제 &amp; 세계시민</div>
+      <div class="dcat-en">Economics &amp; Global Citizenship</div>
+      <div class="dcat-desc">경제 원리와 세계시민 의식을 영어로 함양. 글로벌 이슈에 대한 책임감 있는 관점을 형성합니다.</div>
+      <div class="dcat-foot"><span>8개 유닛</span><span>어휘 64개+</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="sec-head reveal">
+    <span class="tag">Parent Reviews</span>
+    <h2 class="sec-title">학부모 후기</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-q">레벨테스트 결과표가 너무 명확해서 아이의 현재 위치를 정확히 알 수 있었어요. 6개월 만에 L3에서 L5로 올라갔습니다.</p><div class="testi-name">정○○ 학부모</div><div class="testi-role">중학교 2학년 자녀</div></div>
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-q">AI 첨삭이 정말 세밀해요. 논리 구조까지 분석해줘서 아이 글쓰기 실력이 눈에 띄게 달라졌습니다.</p><div class="testi-name">김○○ 학부모</div><div class="testi-role">고등학교 1학년 자녀</div></div>
+    <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-q">디지털 도서관에서 매달 추천 도서를 읽고 독후 활동을 하니 자연스럽게 독서 습관이 생겼어요. 굉장히 체계적입니다.</p><div class="testi-name">이○○ 학부모</div><div class="testi-role">초등학교 6학년 자녀</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand">
+    READ MASTER ACADEMY
+    <p>문해력 중심 통합 교육 플랫폼 · The power to read, understand, and create the future.<br/>
+    📍 <strong>춘천 우두동 본점</strong> · 강원도 춘천시 영서로 2790-1 2층 · 2026년 4월 1일 개원<br/>
+    📍 <strong>부천 옥길동 본점</strong> · 경기도 부천시 옥길동 · 2026년 7월 20일 개원<br/>
+    문의: readmaster@academy.kr</p>
+  </div>
+  <div class="ft-links">
+    <a href="#levels">문해력 레벨</a>
+    <a href="#modules">플랫폼</a>
+    <a href="#library">서재</a>
+    <a href="#ielts">IELTS</a>
+    <a href="#debate">영어 토론</a>
+    <a href="#booking">상담 예약</a>
+  </div>
+  <div class="ft-copy">© 2026 Read Master Academy. All rights reserved. · 춘천 우두동 본점 · 부천 옥길동 본점</div>
+</footer>
+
+<script>
+/* ===== Motion Feature Slide Controller ===== */
+(function(){
+  const TOTAL=6,DURATION=5000;
+  let cur=0,timer,fillTimer,fillStart,fillEl=document.getElementById('mfFill');
+  function activateDot(n){
+    document.querySelectorAll('.mf-dot').forEach((d,i)=>{
+      d.classList.toggle('mf-dot-active',i===n);
+    });
+  }
+  function startFill(){
+    if(fillEl){fillEl.style.transition='none';fillEl.style.width='0%';}
+    fillStart=Date.now();
+    fillTimer=setInterval(()=>{
+      const pct=Math.min(100,((Date.now()-fillStart)/DURATION)*100);
+      if(fillEl)fillEl.style.width=pct+'%';
+    },80);
+  }
+  function stopFill(){clearInterval(fillTimer);if(fillEl)fillEl.style.width='0%';}
+  window.mfGo=function(n){
+    clearInterval(timer);stopFill();
+    const prev=document.getElementById('mfSlide'+cur);
+    if(prev){prev.classList.remove('mf-slide-active');prev.style.display='none';}
+    cur=(n+TOTAL)%TOTAL;
+    const next=document.getElementById('mfSlide'+cur);
+    if(next){next.style.display='block';setTimeout(()=>next.classList.add('mf-slide-active'),10);}
+    activateDot(cur);
+    startFill();
+    timer=setInterval(()=>mfGo(cur+1),DURATION);
+  };
+  // Init
+  const mfEl=document.getElementById('motion-feature');
+  if(mfEl){
+    mfEl.addEventListener('mouseenter',()=>{clearInterval(timer);stopFill();});
+    mfEl.addEventListener('mouseleave',()=>{startFill();timer=setInterval(()=>mfGo(cur+1),DURATION);});
+  }
+  // Start on first slide
+  const s0=document.getElementById('mfSlide0');
+  if(s0){s0.style.display='block';}
+  activateDot(0);startFill();
+  timer=setInterval(()=>mfGo(cur+1),DURATION);
+})();
+
+/* ===== Announcement Slider ===== */
+(function(){
+  const track=document.getElementById('annTrack');
+  const dotsWrap=document.getElementById('annDots');
+  const slides=track?track.querySelectorAll('.slide'):[];
+  if(!track||!slides.length)return;
+  let cur=0,timer,startX=0;
+  const total=slides.length;
+  // create dots
+  slides.forEach((_,i)=>{
+    const d=document.createElement('button');
+    d.className='slider-dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Slide '+(i+1));
+    d.onclick=()=>go(i);
+    dotsWrap.appendChild(d);
+  });
+  function go(n){
+    cur=(n+total)%total;
+    track.style.transform=`translateX(-${cur*100}%)`;
+    document.querySelectorAll('.slider-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+  }
+  function next(){go(cur+1);}
+  function prev(){go(cur-1);}
+  document.getElementById('annNext')?.addEventListener('click',next);
+  document.getElementById('annPrev')?.addEventListener('click',prev);
+  // auto-play
+  function start(){timer=setInterval(next,6000);}
+  function stop(){clearInterval(timer);}
+  start();
+  const wrap=document.getElementById('annSlider');
+  wrap?.addEventListener('mouseenter',stop);
+  wrap?.addEventListener('mouseleave',start);
+  // touch swipe
+  wrap?.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  wrap?.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-startX;
+    if(Math.abs(dx)>40){dx<0?next():prev();}
+  },{passive:true});
+})();
+
+const obs=new IntersectionObserver(e=>e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('vis');obs.unobserve(n.target)}}),{threshold:.1,rootMargin:'0 0 -30px 0'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+document.querySelectorAll('.filt').forEach(b=>b.addEventListener('click',function(){
+  document.querySelectorAll('.filt').forEach(x=>x.classList.remove('active'));
+  this.classList.add('active');
+}));
+
+function sel(el){
+  document.querySelectorAll('.radio-opt').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function submit(){
+  const name=document.getElementById('f-name').value;
+  const grade=document.getElementById('f-grade').value;
+  const phone=document.getElementById('f-phone').value;
+  const date=document.getElementById('f-date').value;
+  const concern=document.querySelector('.radio-opt.sel')?.textContent;
+  if(!name||!grade||!phone||!date){alert('모든 항목을 입력해 주세요.');return;}
+  alert(`${name}님의 상담 예약이 접수되었습니다!\n${date}\n담당 선생님이 곧 연락드리겠습니다.`);
+}
+
+window.addEventListener('scroll',()=>{
+  const s=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.nav-links a');
+  let cur='';
+  s.forEach(sec=>{if(window.scrollY>=sec.offsetTop-100)cur=sec.id});
+  links.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--gold)':''});
+});
+</script>
+</body>
+</html>
