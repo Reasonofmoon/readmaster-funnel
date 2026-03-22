@@ -446,6 +446,17 @@ body{
 </div>
 
 <script>
+const RM_CONFIG = window.READMASTER_CONFIG || {};
+
+function getRuntimeConfig() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    endpoint: params.get('endpoint') || RM_CONFIG.endpoint || 'https://script.google.com/macros/s/AKfycbz3zGFysL_iZIFNlueElY7lBIqlBs8fIWVoQZLhjFqS70XO91CiLl1VabAHh7QZXJY5/exec',
+    branch: params.get('branch') || RM_CONFIG.branch || '춘천 우두동',
+    source: params.get('source') || RM_CONFIG.source || '상담 예약 페이지'
+  };
+}
+
 // ── Phone auto-format ──
 document.getElementById('phone').addEventListener('input', function(e) {
   let v = e.target.value.replace(/\D/g, '');
@@ -464,6 +475,7 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
   const btn = document.getElementById('submitBtn');
   btn.classList.add('loading');
   btn.disabled = true;
+  const runtime = getRuntimeConfig();
 
   const formData = {
     parentName: document.getElementById('parentName').value.trim(),
@@ -471,16 +483,18 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
     grade: document.getElementById('grade').value,
     session: document.querySelector('input[name="session"]:checked').value,
     timestamp: new Date().toISOString(),
-    branch: '춘천 우두동'
+    branch: runtime.branch,
+    source: runtime.source
   };
 
-  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbz3zGFysL_iZIFNlueElY7lBIqlBs8fIWVoQZLhjFqS70XO91CiLl1VabAHh7QZXJY5/exec';
-
-  fetch(ENDPOINT, {
+  fetch(runtime.endpoint, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    mode: 'no-cors',
     body: JSON.stringify(formData)
+  })
+  .then(r => {
+    if (!r.ok) throw new Error('Server error');
+    return r.json().catch(() => ({ status: 'ok' }));
   })
   .then(() => showSuccess())
   .catch(() => showSuccess());

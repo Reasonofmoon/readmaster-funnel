@@ -58,3 +58,23 @@ const ENDPOINT = 'https://script.google.com/macros/s/YOUR_DEPLOY_ID/exec';
 - **예약 접수 확인**: Google Sheets → "📋 설명회 예약" 시트
 - **대시보드**: Apps Script 에디터에서 웹앱 URL 또는 메뉴 → "대시보드 열기"
 - **이메일 알림**: `Code.gs`의 `CONFIG.NOTIFY_EMAIL`에 이메일 주소 입력
+
+## 통합 운영 권장
+
+현재는 별도 `gas-backend`를 둘 수도 있지만, `Project-ParentReportGAS`의 통합 Apps Script 웹앱에 바로 연결하는 방식도 가능합니다.
+
+- `funnel.html`
+  설명회 리드 수집
+- `book.html`
+  상담 예약 리드 수집
+- `ParentReportGAS`
+  Leads / Students / Reports 허브
+
+이 경우 같은 웹앱 URL을 아래처럼 같이 씁니다.
+
+- `POST /exec`
+  설명회/상담 리드 intake
+- `GET /exec?token=...`
+  학부모 리포트 조회
+- `GET /exec?mode=intake-guide`
+  sample payload 확인

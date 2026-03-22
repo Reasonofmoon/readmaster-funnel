@@ -696,6 +696,17 @@ footer .footer-brand{
 </footer>
 
 <script>
+const RM_CONFIG = window.READMASTER_CONFIG || {};
+
+function getRuntimeConfig() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    endpoint: params.get('endpoint') || RM_CONFIG.endpoint || 'https://script.google.com/macros/s/AKfycbz3zGFysL_iZIFNlueElY7lBIqlBs8fIWVoQZLhjFqS70XO91CiLl1VabAHh7QZXJY5/exec',
+    branch: params.get('branch') || RM_CONFIG.branch || '춘천 우두동',
+    source: params.get('source') || RM_CONFIG.source || '설명회 퍼널'
+  };
+}
+
 // ===== Floating CTA show/hide on scroll =====
 (function(){
   const floatCta = document.getElementById('floatCta');
@@ -728,6 +739,7 @@ document.getElementById('briefingForm').addEventListener('submit', function(e){
   const btn = document.getElementById('submitBtn');
   btn.textContent = '예약 처리 중...';
   btn.disabled = true;
+  const runtime = getRuntimeConfig();
 
   const formData = {
     parentName: document.getElementById('parentName').value.trim(),
@@ -735,19 +747,12 @@ document.getElementById('briefingForm').addEventListener('submit', function(e){
     grade: document.getElementById('grade').value,
     session: document.querySelector('input[name="session"]:checked')?.value || '',
     timestamp: new Date().toISOString(),
-    branch: '춘천 우두동'
+    branch: runtime.branch,
+    source: runtime.source
   };
 
-  // ==========================================
-  // 🔧 BACKEND ENDPOINT — 아래 URL을 실제 엔드포인트로 교체하세요
-  //    Option A: Google Apps Script Web App URL
-  //    Option B: Firebase Cloud Function URL
-  //    Option C: Formspree endpoint
-  // ==========================================
-  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbz3zGFysL_iZIFNlueElY7lBIqlBs8fIWVoQZLhjFqS70XO91CiLl1VabAHh7QZXJY5/exec';
-
-  if(ENDPOINT){
-    fetch(ENDPOINT, {
+  if(runtime.endpoint){
+    fetch(runtime.endpoint, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify(formData)
@@ -762,9 +767,8 @@ document.getElementById('briefingForm').addEventListener('submit', function(e){
       showSuccess();
     });
   } else {
-    // No endpoint configured — simulate success & log to console
     console.log('📋 설명회 예약 데이터:', formData);
-    console.log('⚠️ 백엔드 엔드포인트가 설정되지 않았습니다. ENDPOINT 변수를 설정하세요.');
+    console.log('⚠️ 백엔드 엔드포인트가 설정되지 않았습니다. endpoint 파라미터 또는 READMASTER_CONFIG.endpoint를 설정하세요.');
     setTimeout(showSuccess, 800);
   }
 });
