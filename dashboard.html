@@ -125,19 +125,19 @@ body{min-height:100vh}
   <div class="dash-section-title">📊 나의 학습 현황</div>
   <div class="dash-grid dash-grid-4">
     <div class="card card-accent">
-      <div class="card-stat">L4</div>
+      <div class="card-stat" id="s-level">—</div>
       <div class="card-stat-label">현재 읽기 레벨</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">23</div>
+      <div class="card-stat" id="s-books">—</div>
       <div class="card-stat-label">이번 달 독서량 (권)</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">87%</div>
+      <div class="card-stat" id="s-attendance">—</div>
       <div class="card-stat-label">이번 주 출석률</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">5</div>
+      <div class="card-stat" id="s-assignments">—</div>
       <div class="card-stat-label">제출 대기 과제</div>
     </div>
   </div>
@@ -173,19 +173,19 @@ body{min-height:100vh}
   <div class="dash-section-title">👧 자녀 학습 요약</div>
   <div class="dash-grid dash-grid-4">
     <div class="card card-accent">
-      <div class="card-stat">L4</div>
+      <div class="card-stat" id="p-level">—</div>
       <div class="card-stat-label">현재 레벨</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">92%</div>
+      <div class="card-stat" id="p-attendance">—</div>
       <div class="card-stat-label">출석률</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">18</div>
+      <div class="card-stat" id="p-books">—</div>
       <div class="card-stat-label">이번 달 독서 (권)</div>
     </div>
     <div class="card card-accent">
-      <div class="card-stat">B+</div>
+      <div class="card-stat" id="p-grade">—</div>
       <div class="card-stat-label">평균 과제 등급</div>
     </div>
   </div>
@@ -276,19 +276,19 @@ body{min-height:100vh}
   <div class="dash-section-title">📊 KPI Overview</div>
   <div class="dash-grid dash-grid-4">
     <div class="card card-dark">
-      <div class="card-stat">127</div>
+      <div class="card-stat" id="d-students">—</div>
       <div class="card-stat-label" style="color:rgba(255,255,255,.5)">총 재원생 수</div>
     </div>
     <div class="card card-dark">
-      <div class="card-stat">94%</div>
+      <div class="card-stat" id="d-attendance">—</div>
       <div class="card-stat-label" style="color:rgba(255,255,255,.5)">평균 출석률</div>
     </div>
     <div class="card card-dark">
-      <div class="card-stat">₩12.4M</div>
+      <div class="card-stat" id="d-revenue">—</div>
       <div class="card-stat-label" style="color:rgba(255,255,255,.5)">이번 달 매출</div>
     </div>
     <div class="card card-dark">
-      <div class="card-stat">8</div>
+      <div class="card-stat" id="d-consults">—</div>
       <div class="card-stat-label" style="color:rgba(255,255,255,.5)">신규 상담 대기</div>
     </div>
   </div>
@@ -417,7 +417,67 @@ firebase.auth().onAuthStateChanged(async (user) => {
   } else {
     document.getElementById('dash-parent').style.display = 'block';
   }
+
+  // Load Firestore data for the role
+  loadDashboardData(user, role, branchId);
 });
+
+// ===== Firestore Data Loader =====
+async function loadDashboardData(user, role, branchId) {
+  const db = firebase.firestore();
+  const uid = user.uid;
+
+  try {
+    if (role === 'student') {
+      // Student: own progress
+      const [progressSnap, booksSnap, subsSnap] = await Promise.all([
+        db.collection('user_progress').where('userId', '==', uid).limit(1).get(),
+        db.collection('reading_progress').where('userId', '==', uid).get(),
+        db.collection('submissions').where('userId', '==', uid).where('status', '==', 'pending').get(),
+      ]);
+      const p = progressSnap.docs[0]?.data();
+      setText('s-level', p?.level ? `L${p.level}` : 'L1');
+      setText('s-books', booksSnap.size);
+      setText('s-attendance', p?.attendanceRate ? `${p.attendanceRate}%` : '—');
+      setText('s-assignments', subsSnap.size);
+
+    } else if (role === 'parent') {
+      // Parent: child's progress (linked via parentId or same branchId)
+      const childSnap = await db.collection('users')
+        .where('parentId', '==', uid).limit(1).get();
+      const childUid = childSnap.docs[0]?.id || uid;
+      const [progressSnap, booksSnap] = await Promise.all([
+        db.collection('user_progress').where('userId', '==', childUid).limit(1).get(),
+        db.collection('reading_progress').where('userId', '==', childUid).get(),
+      ]);
+      const p = progressSnap.docs[0]?.data();
+      setText('p-level', p?.level ? `L${p.level}` : '—');
+      setText('p-attendance', p?.attendanceRate ? `${p.attendanceRate}%` : '—');
+      setText('p-books', booksSnap.size);
+      setText('p-grade', p?.avgGrade || '—');
+
+    } else if (role === 'director' || role === 'franchise_admin') {
+      // Director/Admin: branch-wide or global stats
+      let usersQuery = db.collection('users');
+      if (role === 'director' && branchId) {
+        usersQuery = usersQuery.where('branchId', '==', branchId);
+      }
+      const usersSnap = await usersQuery.get();
+      const students = usersSnap.docs.filter(d => d.data().role === 'student');
+      setText('d-students', students.length);
+      setText('d-attendance', '—');  // Requires aggregation
+      setText('d-revenue', '—');     // Requires orders collection
+      setText('d-consults', '—');    // Requires consults collection
+    }
+  } catch (e) {
+    console.warn('Dashboard data load failed (some collections may not exist yet):', e.message);
+  }
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
 </script>
 </body>
 </html>
