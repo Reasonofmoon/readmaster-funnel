@@ -6,26 +6,20 @@
 <title>리드마스터 설명회 상담 예약</title>
 <meta name="description" content="리드마스터 영어 학원 설명회 상담 예약 — 간편 접수"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+/* ===== book.html — RM Theme Override ===== */
 :root{
-  --green:#062016;
-  --green-light:#0a3525;
-  --gold:#c9a94d;
-  --gold-light:#d4b96a;
-  --cream:#faf8f2;
-  --card:#ffffff;
-  --text:#1e293b;
-  --muted:#64748b;
-  --radius:16px;
+  --green:var(--g);
+  --green-light:var(--g2);
+  --cream:var(--iv);
+  --card:var(--w);
+  --text:var(--ch);
+  --muted:var(--dim);
   --shadow:0 4px 24px rgba(6,32,22,0.10);
 }
-html{font-size:16px}
 body{
-  font-family:'Noto Sans KR',sans-serif;
-  background:var(--cream);
-  color:var(--text);
   min-height:100vh;
   display:flex;
   flex-direction:column;

@@ -4,13 +4,12 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ReadMaster Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
-:root{--g:#062016;--g2:#0d2a1c;--gold:#c9a94d;--iv:#f9f7f2;--iv2:#f3f0e8;--w:#fff;--dim:#8a8472;--ch:#2c2c2c;--br:#e0ddd5}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--iv);color:var(--ch);min-height:100vh}
+body{min-height:100vh}
 
 /* ===== Top Bar ===== */
 .top-bar{background:var(--g);color:#fff;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;position:sticky;top:0;z-index:100}
@@ -362,22 +361,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--iv);color:var(--ch);
   </div>
 </div>
 
+<script src="shared-auth.js"></script>
 <script>
-firebase.initializeApp({
-  apiKey: 'AIzaSyAc7cbhmuGGDatPZk0K_E41YGeXt0Zh1E8',
-  authDomain: 'oet-korea-platform.firebaseapp.com',
-  projectId: 'oet-korea-platform',
-  storageBucket: 'oet-korea-platform.firebasestorage.app',
-  messagingSenderId: '370408346842',
-  appId: '1:370408346842:web:0214ae1e3fb496066601e3',
-});
-
-const ROLE_LABELS = {
-  student: '학생', parent: '학부모', teacher: '강사',
-  director: '원장', franchise_admin: '본부',
-};
-
-const BRANCH_NAMES = { okgil: '부천 옥길동 본원', udu: '춘천 우두동점' };
+const BRANCH_NAMES_FULL = { okgil: '부천 옥길동 본원', udu: '춘천 우두동점' };
 
 firebase.auth().onAuthStateChanged(async (user) => {
   document.getElementById('loadingState').style.display = 'none';
@@ -398,7 +384,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
     }
   } catch (e) {}
 
-  const branchName = branchId ? (BRANCH_NAMES[branchId] || branchId) : '';
+  const branchName = branchId ? (BRANCH_NAMES_FULL[branchId] || branchId) : '';
   const displayName = user.displayName || user.email?.split('@')[0] || '사용자';
 
   // Top bar

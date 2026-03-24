@@ -6,31 +6,29 @@
 <title>리드마스터 학부모 설명회 — 선착순 20명 무료 레벨테스트 + 특별 선물</title>
 <meta name="description" content="리드마스터 학부모 설명회에 초대합니다. 참석자 자녀 무료 레벨 테스트 + 특별 선물 증정. 영어·국어 문해력으로 국내외 명문대 가는 법."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* ===== funnel.html — RM Theme Override ===== */
 :root{
-  --blue:#0f2167;
-  --blue-deep:#0a1740;
-  --blue-light:#1e3a8a;
-  --gold:#fbbf24;
-  --gold-dark:#d4a017;
-  --gold-light:#fcd34d;
-  --white:#fff;
-  --gray-50:#f9fafb;
-  --gray-100:#f3f4f6;
-  --gray-200:#e5e7eb;
-  --gray-500:#6b7280;
-  --gray-700:#374151;
+  /* Remap funnel-specific vars to RM brand */
+  --blue:var(--g);
+  --blue-deep:#041a0e;
+  --blue-light:var(--g2);
+  --gold:#c9a94d;
+  --gold-dark:var(--gold2);
+  --gold-light:#d9bd6a;
+  --white:var(--w);
+  --gray-50:var(--iv);
+  --gray-100:var(--iv2);
+  --gray-200:var(--br);
+  --gray-500:var(--dim);
+  --gray-700:var(--ch);
   --gray-900:#111827;
-  --radius:14px;
-  --shadow-card:0 8px 32px rgba(15,33,103,0.10);
-  --shadow-glow:0 0 40px rgba(251,191,36,0.25);
+  --shadow-card:0 8px 32px rgba(6,32,22,0.10);
+  --shadow-glow:0 0 40px rgba(201,169,77,0.25);
 }
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
+body{background:var(--iv)}
 
 /* ===== Floating CTA Button (Mobile) ===== */
 .float-cta{

@@ -6,42 +6,10 @@
 <meta name="description" content="Read Master 본사 및 전 가맹점의 교육 품질 표준 매뉴얼"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --g:#062016;--g2:#0a2d1e;--g3:#e8f0ec;
-  --iv:#f9f7f2;--iv2:#fefcf8;
-  --gold:#c9a94d;--gold2:#a8893a;
-  --burgundy:#3a1010;
-  --ch:#1c2928;--dim:#5a6b65;
-  --w:#fff;--card:#fff;
-  --br:rgba(6,32,22,0.12);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--iv);color:var(--ch);line-height:1.7;overflow-x:hidden}
-h1,h2,h3,h4,h5,.serif{font-family:'Cormorant Garamond',serif}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
-
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;background:var(--g);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
-.nav-logo svg{max-height:42px;width:auto}
-.nav-logo em{color:var(--gold);font-style:normal}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.7);font-size:.85rem;font-weight:500;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--gold)}
-.nav-cta{background:var(--gold);color:#fff;font-size:.85rem;font-weight:700;border:none;border-radius:8px;padding:10px 22px;cursor:pointer;transition:background .2s}
-.nav-cta:hover{background:var(--gold2)}
-
-/* Footer */
-footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:32px;margin-top:80px}
-.ft-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:#fff}
-.ft-brand p{font-size:.8rem;color:rgba(255,255,255,0.5);font-family:'Noto Sans KR',sans-serif;font-weight:300;margin-top:6px;line-height:1.8}
-.ft-links{display:flex;gap:20px;flex-wrap:wrap}
-.ft-links a{font-size:.8rem;color:rgba(255,255,255,0.5);transition:color .2s}
-.ft-links a:hover{color:var(--gold)}
-.ft-copy{font-size:.75rem;color:rgba(255,255,255,0.35);align-self:flex-end}
+/* Nav override: top:0 (no eco bar on this page) */
+nav{top:0}
 
 /* Curriculum Page Layout */
 .curr-header {
@@ -120,8 +88,11 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
     <li><a href="index.html#modules">프로그램</a></li>
     <li><a href="index.html#booking">상담 예약</a></li>
   </ul>
-  <span id="navGuest"><a href="index.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">🔐 로그인</a></span>
-  <span id="navAuth" style="display:none"><a href="dashboard.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px"><span class="na-name"></span> MY</a></span>
+  <button class="nav-hamburger" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
+  <span id="navGuest"><a href="index.html" class="nav-cta">🔐 로그인</a></span>
+  <span id="navAuth" style="display:none"><a href="dashboard.html" class="nav-cta"><span class="na-name"></span> MY</a></span>
 </nav>
 
 <header class="curr-header">
@@ -589,26 +560,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<!-- Firebase Auth (shared with index.html) -->
+<!-- Shared Auth -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script>
-firebase.initializeApp({
-  apiKey:'AIzaSyAc7cbhmuGGDatPZk0K_E41YGeXt0Zh1E8',
-  authDomain:'oet-korea-platform.firebaseapp.com',
-  projectId:'oet-korea-platform',
-});
-firebase.auth().onAuthStateChanged(u => {
-  const g = document.getElementById('navGuest');
-  const a = document.getElementById('navAuth');
-  if (u) {
-    if (g) g.style.display = 'none';
-    if (a) { a.style.display = ''; a.querySelector('.na-name').textContent = u.displayName || u.email?.split('@')[0] || ''; }
-  } else {
-    if (g) g.style.display = '';
-    if (a) a.style.display = 'none';
-  }
-});
-</script>
+<script src="shared-auth.js"></script>
 </body>
 </html>
