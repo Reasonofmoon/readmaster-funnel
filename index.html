@@ -453,19 +453,12 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
   </span>
   <!-- Logged-in state (hidden by default) -->
   <span id="ecoUser" style="display:none">
-    <a href="#level-test" style="color:#E8A838">레벨테스트</a>
-    <span class="eco-sep">|</span>
-    <a href="https://read-master-academy.vercel.app" target="_blank">학습하기</a>
-    <span class="eco-sep">|</span>
-    <a href="curriculum.html">커리큘럼</a>
-    <span class="eco-sep eco-hide-mobile">|</span>
-    <a href="https://oet-korea.com" target="_blank" class="eco-hide-mobile">OET</a>
-    <span class="eco-sep eco-hide-mobile">|</span>
-    <a href="#booking" class="eco-hide-mobile">상담</a>
+    <span id="ecoLinks"></span>
     <span class="eco-sep">|</span>
     <span class="eco-user">
       <img id="ecoAvatar" class="eco-avatar" src="" alt="" />
       <span id="ecoName" class="eco-name"></span>
+      <span id="ecoRole" style="color:var(--gold);font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase"></span>
       <button class="eco-logout" onclick="rmAuth.logout()" title="로그아웃">✕</button>
     </span>
   </span>
@@ -1387,9 +1380,8 @@ window.addEventListener('scroll',()=>{
 });
 </script>
 
-<!-- ReadMaster Auth System — Firebase (shared with OET Korea) -->
+<!-- ReadMaster Auth System — Firebase + RBAC (shared with OET Korea) -->
 <script>
-// ─── Firebase Init (same project as OET Korea) ───
 firebase.initializeApp({
   apiKey: 'AIzaSyAc7cbhmuGGDatPZk0K_E41YGeXt0Zh1E8',
   authDomain: 'oet-korea-platform.firebaseapp.com',
@@ -1401,19 +1393,73 @@ firebase.initializeApp({
 const fbAuth = firebase.auth();
 const fbDB = firebase.firestore();
 
+// ─── Role-Based Menu Config ───
+const ROLE_MENUS = {
+  student: [
+    { label: '학습하기', href: 'https://read-master-academy.vercel.app', ext: true },
+    { label: '레벨테스트', href: '#level-test', gold: true },
+    { label: '도서관', href: '#library' },
+    { label: '과제함', href: 'https://read-master-academy.vercel.app/assignments', ext: true },
+  ],
+  parent: [
+    { label: '자녀현황', href: 'https://read-master-academy.vercel.app/parent', ext: true },
+    { label: '리포트', href: 'https://readmaster-parent-report.vercel.app', ext: true },
+    { label: '상담예약', href: '#booking' },
+    { label: '도서관', href: '#library' },
+  ],
+  teacher: [
+    { label: '반관리', href: 'https://read-master-academy.vercel.app/teacher', ext: true },
+    { label: 'AI 첨삭', href: 'https://oet-korea.com/writing', ext: true },
+    { label: '학생관리', href: 'https://read-master-academy.vercel.app/students', ext: true },
+    { label: '리포트', href: 'https://readmaster-parent-report.vercel.app', ext: true },
+  ],
+  director: [
+    { label: '대시보드', href: 'https://readmaster-hq.vercel.app', ext: true, gold: true },
+    { label: '강사관리', href: 'https://readmaster-hq.vercel.app/staff', ext: true },
+    { label: 'CRM', href: 'https://readmaster-hq.vercel.app/crm', ext: true },
+    { label: '매출', href: 'https://readmaster-hq.vercel.app/revenue', ext: true },
+  ],
+  franchise_admin: [
+    { label: '지점관리', href: 'https://readmaster-hq.vercel.app/franchise', ext: true, gold: true },
+    { label: '비교분석', href: 'https://readmaster-hq.vercel.app/analytics', ext: true },
+    { label: '전체설정', href: 'https://readmaster-hq.vercel.app/settings', ext: true },
+  ],
+};
+
+const ROLE_LABELS = {
+  student: '학생',
+  parent: '학부모',
+  teacher: '강사',
+  director: '원장',
+  franchise_admin: '본부',
+};
+
 const rmAuth = {
   isSignUp: false,
+  currentRole: 'parent',
 
   init() {
-    fbAuth.onAuthStateChanged((user) => {
+    fbAuth.onAuthStateChanged(async (user) => {
       if (user) {
+        // Read role from Firestore
+        let role = 'parent';
+        try {
+          const doc = await fbDB.collection('users').doc(user.uid).get();
+          if (doc.exists && doc.data().role) {
+            role = doc.data().role;
+          }
+        } catch (e) { /* default parent */ }
+
+        this.currentRole = role;
         this.setLoggedIn({
           name: user.displayName || user.email?.split('@')[0] || '사용자',
           email: user.email,
           picture: user.photoURL || '',
           uid: user.uid,
+          role: role,
         });
-        // Sync to Firestore (same as OET Korea)
+
+        // Sync to Firestore (merge: preserve existing role)
         fbDB.collection('users').doc(user.uid).set({
           uid: user.uid,
           email: user.email,
@@ -1431,18 +1477,14 @@ const rmAuth = {
     document.getElementById('authOverlay').classList.add('show');
     this.clearError();
   },
-
   hideModal() {
     document.getElementById('authOverlay').classList.remove('show');
     this.clearError();
   },
-
   showError(msg) {
     const el = document.getElementById('authError');
-    el.textContent = msg;
-    el.style.display = 'block';
+    el.textContent = msg; el.style.display = 'block';
   },
-
   clearError() {
     const el = document.getElementById('authError');
     if (el) { el.style.display = 'none'; el.textContent = ''; }
@@ -1462,75 +1504,82 @@ const rmAuth = {
     this.clearError();
   },
 
+  renderEcoLinks(role) {
+    const container = document.getElementById('ecoLinks');
+    const items = ROLE_MENUS[role] || ROLE_MENUS.parent;
+    container.innerHTML = items.map((item, i) => {
+      const style = item.gold ? ' style="color:#E8A838"' : '';
+      const target = item.ext ? ' target="_blank"' : '';
+      const sep = i < items.length - 1 ? '<span class="eco-sep">|</span>' : '';
+      return `<a href="${item.href}"${target}${style}>${item.label}</a>${sep}`;
+    }).join('');
+  },
+
   setLoggedIn(user) {
     document.getElementById('ecoGuest').style.display = 'none';
     document.getElementById('ecoUser').style.display = '';
     const avatar = document.getElementById('ecoAvatar');
     const nameEl = document.getElementById('ecoName');
+    const roleEl = document.getElementById('ecoRole');
     if (user.picture) {
-      avatar.src = user.picture;
-      avatar.style.display = '';
+      avatar.src = user.picture; avatar.style.display = '';
     } else {
       avatar.style.display = 'none';
     }
     nameEl.textContent = user.name;
+    roleEl.textContent = ROLE_LABELS[user.role] || '학부모';
+    this.renderEcoLinks(user.role);
     this.hideModal();
   },
 
   setLoggedOut() {
     document.getElementById('ecoGuest').style.display = '';
     document.getElementById('ecoUser').style.display = 'none';
+    this.currentRole = 'parent';
   },
 
-  // Google Sign-In via Firebase
   async googleSignIn() {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
       await fbAuth.signInWithPopup(provider);
-      // onAuthStateChanged handles the rest
     } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user') {
-        this.showError(this.errorMsg(err.code));
-      }
+      if (err.code !== 'auth/popup-closed-by-user') this.showError(this.errorMsg(err.code));
     }
   },
 
-  // Email/Password Sign-In or Sign-Up
   async emailSignIn() {
     const email = document.getElementById('authEmail').value.trim();
     const password = document.getElementById('authPassword').value;
-    if (!email || !password) {
-      this.showError('이메일과 비밀번호를 입력해 주세요.');
-      return;
-    }
+    if (!email || !password) { this.showError('이메일과 비밀번호를 입력해 주세요.'); return; }
     try {
       if (this.isSignUp) {
-        await fbAuth.createUserWithEmailAndPassword(email, password);
+        const cred = await fbAuth.createUserWithEmailAndPassword(email, password);
+        // Set default role for new users
+        await fbDB.collection('users').doc(cred.user.uid).set({
+          uid: cred.user.uid,
+          email: cred.user.email,
+          role: 'parent',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
       } else {
         await fbAuth.signInWithEmailAndPassword(email, password);
       }
-    } catch (err) {
-      this.showError(this.errorMsg(err.code));
-    }
+    } catch (err) { this.showError(this.errorMsg(err.code)); }
   },
 
-  async logout() {
-    await fbAuth.signOut();
-  },
+  async logout() { await fbAuth.signOut(); },
 
-  // Korean error messages (same as OET Korea AuthContext)
   errorMsg(code) {
-    const map = {
+    return ({
       'auth/user-not-found': '등록되지 않은 이메일입니다.',
       'auth/wrong-password': '비밀번호가 올바르지 않습니다.',
       'auth/invalid-credential': '비밀번호가 올바르지 않습니다.',
       'auth/email-already-in-use': '이미 등록된 이메일입니다.',
       'auth/weak-password': '비밀번호는 6자 이상이어야 합니다.',
       'auth/invalid-email': '올바른 이메일 형식이 아닙니다.',
-      'auth/too-many-requests': '너무 많은 시도입니다. 잠시 후 다시 시도하세요.',
-      'auth/network-request-failed': '네트워크 오류. 인터넷 연결을 확인하세요.',
-    };
-    return map[code] || '로그인에 실패했습니다. 다시 시도해주세요.';
+      'auth/too-many-requests': '너무 많은 시도입니다. 잠시 후 다시.',
+      'auth/network-request-failed': '네트워크 오류. 인터넷 연결 확인.',
+    })[code] || '로그인 실패. 다시 시도해주세요.';
   },
 };
 
