@@ -377,6 +377,8 @@ const ROLE_LABELS = {
   director: '원장', franchise_admin: '본부',
 };
 
+const BRANCH_NAMES = { okgil: '부천 옥길동 본원', udu: '춘천 우두동점' };
+
 firebase.auth().onAuthStateChanged(async (user) => {
   document.getElementById('loadingState').style.display = 'none';
 
@@ -385,18 +387,26 @@ firebase.auth().onAuthStateChanged(async (user) => {
     return;
   }
 
-  // Read role
+  // Read role + branchId
   let role = 'parent';
+  let branchId = null;
   try {
     const doc = await firebase.firestore().collection('users').doc(user.uid).get();
-    if (doc.exists && doc.data().role) role = doc.data().role;
+    if (doc.exists) {
+      if (doc.data().role) role = doc.data().role;
+      if (doc.data().branchId) branchId = doc.data().branchId;
+    }
   } catch (e) {}
+
+  const branchName = branchId ? (BRANCH_NAMES[branchId] || branchId) : '';
+  const displayName = user.displayName || user.email?.split('@')[0] || '사용자';
 
   // Top bar
   const topBar = document.getElementById('topBar');
   topBar.style.display = 'flex';
-  document.getElementById('tbName').textContent = user.displayName || user.email?.split('@')[0] || '사용자';
-  document.getElementById('tbRole').textContent = ROLE_LABELS[role] || '학부모';
+  document.getElementById('tbName').textContent = displayName;
+  document.getElementById('tbRole').textContent =
+    (ROLE_LABELS[role] || '학부모') + (branchName ? ' · ' + branchName : '');
   const avatar = document.getElementById('tbAvatar');
   if (user.photoURL) { avatar.src = user.photoURL; avatar.style.display = ''; }
 
@@ -405,15 +415,18 @@ firebase.auth().onAuthStateChanged(async (user) => {
   if (dash) {
     dash.style.display = 'block';
     const greet = document.getElementById('greet-' + role);
+    const sub = dash.querySelector('.dash-sub');
     if (greet && (role === 'student' || role === 'parent')) {
-      greet.textContent = `${user.displayName || user.email?.split('@')[0]}님, 안녕하세요! 👋`;
+      greet.textContent = `${displayName}님, 안녕하세요! 👋`;
+      if (sub && branchName) sub.textContent += ` (${branchName})`;
     } else if (greet && role === 'teacher') {
-      greet.textContent = `${user.displayName || '선생'}님, 안녕하세요! 👩‍🏫`;
+      greet.textContent = `${displayName} 선생님, 안녕하세요! 👩‍🏫`;
+      if (sub && branchName) sub.textContent += ` — ${branchName}`;
     } else if (greet && role === 'director') {
-      greet.textContent = `${user.displayName || '원장'}님, 안녕하세요! 🏢`;
+      greet.textContent = `${displayName} 원장님, 안녕하세요! 🏢`;
+      if (sub && branchName) sub.textContent = `${branchName} 운영 현황입니다.`;
     }
   } else {
-    // Fallback: show parent
     document.getElementById('dash-parent').style.display = 'block';
   }
 });

@@ -428,6 +428,9 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
 .auth-toggle{text-align:center;font-size:.78rem;color:var(--dim);margin-top:10px}
 .auth-toggle a{color:var(--gold);font-weight:600;cursor:pointer;text-decoration:underline}
 .auth-error{background:rgba(220,50,50,0.08);border:1px solid rgba(220,50,50,0.2);border-radius:8px;padding:8px 12px;font-size:.78rem;color:#c33;display:none;margin-bottom:10px}
+.auth-branch-select{display:none;margin-bottom:2px}
+.auth-branch-select select{width:100%;padding:12px 14px;font-size:.88rem;border:1px solid var(--br);border-radius:8px;background:var(--w);color:var(--ch);font-family:'Noto Sans KR',sans-serif;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238a8472' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.auth-branch-select label{font-size:.72rem;color:var(--dim);margin-bottom:4px;display:block}
 .auth-note{text-align:center;font-size:.72rem;color:var(--dim);margin-top:14px;line-height:1.6}
 /* Eco bar user state */
 .eco-user{display:flex;align-items:center;gap:6px}
@@ -458,6 +461,7 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
     <span class="eco-user">
       <img id="ecoAvatar" class="eco-avatar" src="" alt="" />
       <span id="ecoName" class="eco-name"></span>
+      <span id="ecoBranch" style="color:rgba(255,255,255,0.45);font-size:.6rem;font-weight:400"></span>
       <span id="ecoRole" style="color:var(--gold);font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase"></span>
       <button class="eco-logout" onclick="rmAuth.logout()" title="로그아웃">✕</button>
     </span>
@@ -479,6 +483,13 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
     <div class="auth-email-form" id="emailForm">
       <input type="email" id="authEmail" placeholder="이메일" autocomplete="email" />
       <input type="password" id="authPassword" placeholder="비밀번호 (6자 이상)" autocomplete="current-password" />
+      <div class="auth-branch-select" id="branchSelect">
+        <label>🏢 소속 지점</label>
+        <select id="authBranch">
+          <option value="okgil">부천 옥길동 본원</option>
+          <option value="udu">춘천 우두동점</option>
+        </select>
+      </div>
       <button class="btn-submit" id="authSubmitBtn" onclick="rmAuth.emailSignIn()">로그인</button>
     </div>
     <div class="auth-toggle" id="authToggle">아직 계정이 없으신가요? <a onclick="rmAuth.toggleMode()">회원가입</a></div>
@@ -1444,20 +1455,24 @@ const rmAuth = {
       if (user) {
         // Read role from Firestore
         let role = 'parent';
+        let branchId = null;
         try {
           const doc = await fbDB.collection('users').doc(user.uid).get();
-          if (doc.exists && doc.data().role) {
-            role = doc.data().role;
+          if (doc.exists) {
+            if (doc.data().role) role = doc.data().role;
+            if (doc.data().branchId) branchId = doc.data().branchId;
           }
-        } catch (e) { /* default parent */ }
+        } catch (e) {}
 
         this.currentRole = role;
+        this.currentBranch = branchId;
         this.setLoggedIn({
           name: user.displayName || user.email?.split('@')[0] || '사용자',
           email: user.email,
           picture: user.photoURL || '',
           uid: user.uid,
           role: role,
+          branchId: branchId,
         });
 
         // Sync to Firestore (merge: preserve existing role)
@@ -1495,12 +1510,15 @@ const rmAuth = {
     this.isSignUp = !this.isSignUp;
     const btn = document.getElementById('authSubmitBtn');
     const toggle = document.getElementById('authToggle');
+    const branchSelect = document.getElementById('branchSelect');
     if (this.isSignUp) {
       btn.textContent = '회원가입';
       toggle.innerHTML = '이미 계정이 있으신가요? <a onclick="rmAuth.toggleMode()">로그인</a>';
+      branchSelect.style.display = 'block';
     } else {
       btn.textContent = '로그인';
       toggle.innerHTML = '아직 계정이 없으신가요? <a onclick="rmAuth.toggleMode()">회원가입</a>';
+      branchSelect.style.display = 'none';
     }
     this.clearError();
   },
@@ -1522,6 +1540,7 @@ const rmAuth = {
     const avatar = document.getElementById('ecoAvatar');
     const nameEl = document.getElementById('ecoName');
     const roleEl = document.getElementById('ecoRole');
+    const branchEl = document.getElementById('ecoBranch');
     if (user.picture) {
       avatar.src = user.picture; avatar.style.display = '';
     } else {
@@ -1529,6 +1548,9 @@ const rmAuth = {
     }
     nameEl.textContent = user.name;
     roleEl.textContent = ROLE_LABELS[user.role] || '학부모';
+    // Show branch name
+    const BRANCH_NAMES = { okgil: '옥길동', udu: '우두동' };
+    branchEl.textContent = user.branchId ? (BRANCH_NAMES[user.branchId] || user.branchId) : '';
     this.renderEcoLinks(user.role);
     this.hideModal();
   },
@@ -1554,12 +1576,13 @@ const rmAuth = {
     if (!email || !password) { this.showError('이메일과 비밀번호를 입력해 주세요.'); return; }
     try {
       if (this.isSignUp) {
+        const branchId = document.getElementById('authBranch').value;
         const cred = await fbAuth.createUserWithEmailAndPassword(email, password);
-        // Set default role for new users
         await fbDB.collection('users').doc(cred.user.uid).set({
           uid: cred.user.uid,
           email: cred.user.email,
           role: 'parent',
+          branchId: branchId,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
       } else {
