@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ReadMaster 관리자 패널</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+body{min-height:100vh}
+
+/* ===== Top Bar ===== */
+.top-bar{background:var(--g);color:#fff;padding:8px 24px;display:flex;align-items:center;justify-content:space-between;font-size:.78rem;position:sticky;top:0;z-index:100}
+.top-bar a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.top-bar a:hover{color:#fff}
+.tb-brand{font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:6px}
+.tb-right{display:flex;align-items:center;gap:12px}
+.tb-name{font-weight:600;color:rgba(255,255,255,.85)}
+.tb-role{color:var(--gold);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.tb-logout{background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:.7rem;padding:4px 12px;border-radius:6px;cursor:pointer;transition:all .2s}
+.tb-logout:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Loading */
+.loading{display:flex;align-items:center;justify-content:center;min-height:80vh;flex-direction:column;gap:16px}
+.spinner{width:36px;height:36px;border:3px solid var(--br);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:.88rem;color:var(--dim)}
+.access-denied{display:none;text-align:center;padding:120px 24px;min-height:80vh}
+.access-denied h2{font-family:var(--font-serif);font-size:2rem;color:#c33;margin-bottom:8px}
+.access-denied p{color:var(--dim);margin-bottom:24px}
+.access-denied a{background:var(--g);color:var(--gold);font-size:.88rem;font-weight:700;padding:14px 36px;border-radius:10px;text-decoration:none;display:inline-block}
+
+/* Admin Panel */
+.admin{display:none;max-width:1200px;margin:0 auto;padding:32px 24px 60px}
+.admin-header{margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.admin-title{font-family:var(--font-serif);font-size:1.8rem;color:var(--g)}
+.admin-subtitle{font-size:.85rem;color:var(--dim)}
+
+/* Stats Row */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:32px}
+.stat-card{background:var(--w);border:1px solid var(--br);border-radius:12px;padding:18px 20px;text-align:center;transition:all .25s}
+.stat-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(6,32,22,0.06)}
+.stat-num{font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--g)}
+.stat-label{font-size:.72rem;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+
+/* Filters */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;align-items:center}
+.filter-select{padding:8px 14px;border:1px solid var(--br);border-radius:8px;font-size:.82rem;font-family:var(--font-body);color:var(--ch);background:var(--w);cursor:pointer;min-width:140px}
+.filter-select:focus{border-color:var(--gold);outline:none}
+.filter-search{padding:8px 14px;border:1px solid var(--br);border-radius:8px;font-size:.82rem;font-family:var(--font-body);color:var(--ch);background:var(--w);flex:1;min-width:200px}
+.filter-search:focus{border-color:var(--gold);outline:none}
+.filter-count{font-size:.78rem;color:var(--dim);margin-left:auto}
+
+/* User Table */
+.user-table-wrap{background:var(--w);border:1px solid var(--br);border-radius:16px;overflow:hidden}
+.user-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.user-table thead{background:var(--g);color:#fff}
+.user-table th{padding:12px 16px;text-align:left;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.user-table td{padding:12px 16px;border-bottom:1px solid var(--br);vertical-align:middle}
+.user-table tr:last-child td{border-bottom:none}
+.user-table tr:hover{background:rgba(201,169,77,0.04)}
+.user-name{font-weight:600;color:var(--g)}
+.user-email{font-size:.75rem;color:var(--dim)}
+.user-avatar{width:28px;height:28px;border-radius:50%;border:2px solid var(--br);object-fit:cover;vertical-align:middle;margin-right:8px}
+.role-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em}
+.role-student{background:rgba(52,211,153,0.1);color:#059669;border:1px solid rgba(52,211,153,0.25)}
+.role-parent{background:rgba(96,165,250,0.1);color:#2563eb;border:1px solid rgba(96,165,250,0.25)}
+.role-teacher{background:rgba(192,132,252,0.1);color:#7c3aed;border:1px solid rgba(192,132,252,0.25)}
+.role-director{background:rgba(251,191,36,0.1);color:#b45309;border:1px solid rgba(251,191,36,0.25)}
+.role-franchise_admin{background:rgba(220,50,50,0.1);color:#c33;border:1px solid rgba(220,50,50,0.25)}
+.branch-badge{display:inline-block;font-size:.68rem;font-weight:600;padding:3px 10px;border-radius:100px;background:var(--g3);color:var(--g);border:1px solid var(--br)}
+
+/* Action Buttons */
+.action-select{padding:4px 8px;font-size:.75rem;border:1px solid var(--br);border-radius:6px;background:var(--w);color:var(--ch);cursor:pointer;font-family:var(--font-body)}
+.action-select:focus{border-color:var(--gold);outline:none}
+.btn-save{background:var(--g);color:var(--gold);font-size:.72rem;font-weight:700;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;transition:all .2s;margin-left:4px}
+.btn-save:hover{background:var(--g2)}
+.btn-save:disabled{opacity:.4;cursor:not-allowed}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;z-index:999;background:var(--g);color:#fff;padding:14px 24px;border-radius:12px;font-size:.85rem;font-weight:600;box-shadow:0 8px 32px rgba(6,32,22,0.2);transform:translateY(100px);opacity:0;transition:all .3s ease;display:flex;align-items:center;gap:8px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.error{background:#c33}
+
+/* Empty State */
+.empty-state{text-align:center;padding:48px 24px;color:var(--dim)}
+.empty-state .icon{font-size:2.4rem;margin-bottom:12px}
+
+/* Responsive */
+@media(max-width:768px){
+  .admin{padding:20px 16px 40px}
+  .admin-title{font-size:1.4rem}
+  .user-table-wrap{overflow-x:auto}
+  .user-table{min-width:600px}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .filters{flex-direction:column}
+  .filter-search{min-width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar" id="topBar" style="display:none">
+  <a href="index.html" class="tb-brand">📖 ReadMaster 관리자</a>
+  <div class="tb-right">
+    <span id="tbName" class="tb-name"></span>
+    <span id="tbRole" class="tb-role"></span>
+    <a href="dashboard.html" style="color:var(--gold);font-weight:600">대시보드</a>
+    <button class="tb-logout" onclick="firebase.auth().signOut()">로그아웃</button>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="loading" id="loadingState">
+  <div class="spinner"></div>
+  <span class="loading-text">권한 확인 중...</span>
+</div>
+
+<!-- Access Denied -->
+<div class="access-denied" id="accessDenied">
+  <h2>⛔ 접근 권한 없음</h2>
+  <p>이 페이지는 원장 또는 본부 관리자만 접근할 수 있습니다.</p>
+  <a href="dashboard.html">대시보드로 돌아가기</a>
+</div>
+
+<!-- Admin Panel -->
+<div class="admin" id="adminPanel">
+  <div class="admin-header">
+    <div>
+      <div class="admin-title">사용자 관리</div>
+      <div class="admin-subtitle" id="branchLabel">전체 지점</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-card">
+      <div class="stat-num" id="statTotal">-</div>
+      <div class="stat-label">전체 사용자</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statStudents">-</div>
+      <div class="stat-label">학생</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statParents">-</div>
+      <div class="stat-label">학부모</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="statTeachers">-</div>
+      <div class="stat-label">강사</div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <select class="filter-select" id="filterBranch">
+      <option value="">전체 지점</option>
+    </select>
+    <select class="filter-select" id="filterRole">
+      <option value="">전체 역할</option>
+      <option value="student">학생</option>
+      <option value="parent">학부모</option>
+      <option value="teacher">강사</option>
+      <option value="director">원장</option>
+      <option value="franchise_admin">본부</option>
+    </select>
+    <input class="filter-search" id="filterSearch" placeholder="🔍 이름 또는 이메일 검색..." />
+    <span class="filter-count" id="filterCount"></span>
+  </div>
+
+  <!-- User Table -->
+  <div class="user-table-wrap">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>사용자</th>
+          <th>역할</th>
+          <th>지점</th>
+          <th>가입일</th>
+          <th>관리</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody">
+        <tr><td colspan="5" class="empty-state"><div class="icon">📋</div>사용자 로딩 중...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="shared-auth.js"></script>
+<script>
+const BRANCH_LABELS = { okgil: '부천 옥길동', udu: '춘천 우두동' };
+const ROLE_KR = { student:'학생', parent:'학부모', teacher:'강사', director:'원장', franchise_admin:'본부' };
+const ALLOWED_ROLES = ['director', 'franchise_admin'];
+
+let allUsers = [];
+let currentUserRole = '';
+let currentUserBranch = '';
+
+// ===== Toast =====
+function showToast(msg, error = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (error ? ' error' : '');
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+// ===== Auth Gate =====
+fbAuth.onAuthStateChanged(async (user) => {
+  document.getElementById('loadingState').style.display = 'none';
+
+  if (!user) {
+    document.getElementById('accessDenied').style.display = 'block';
+    return;
+  }
+
+  // Check role from Firestore
+  try {
+    const doc = await fbDB.collection('users').doc(user.uid).get();
+    const data = doc.data() || {};
+    currentUserRole = data.role || 'student';
+    currentUserBranch = data.branchId || '';
+
+    if (!ALLOWED_ROLES.includes(currentUserRole)) {
+      document.getElementById('accessDenied').style.display = 'block';
+      return;
+    }
+
+    // Show admin panel
+    document.getElementById('topBar').style.display = 'flex';
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('tbName').textContent = user.displayName || user.email?.split('@')[0] || '';
+    document.getElementById('tbRole').textContent = ROLE_KR[currentUserRole] || currentUserRole;
+
+    // If director, limit to their branch
+    if (currentUserRole === 'director' && currentUserBranch) {
+      document.getElementById('branchLabel').textContent = BRANCH_LABELS[currentUserBranch] || currentUserBranch;
+    }
+
+    await loadBranches();
+    await loadUsers();
+  } catch (e) {
+    console.error('Role check failed:', e);
+    document.getElementById('accessDenied').style.display = 'block';
+  }
+});
+
+// ===== Load Branches =====
+async function loadBranches() {
+  const select = document.getElementById('filterBranch');
+  try {
+    const snap = await fbDB.collection('branches').get();
+    snap.forEach(doc => {
+      const d = doc.data();
+      const opt = document.createElement('option');
+      opt.value = doc.id;
+      opt.textContent = d.name || doc.id;
+      select.appendChild(opt);
+    });
+  } catch (e) {
+    // Fallback to hardcoded
+    Object.entries(BRANCH_LABELS).forEach(([id, name]) => {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = name;
+      select.appendChild(opt);
+    });
+  }
+
+  // If director, force their branch
+  if (currentUserRole === 'director' && currentUserBranch) {
+    select.value = currentUserBranch;
+    select.disabled = true;
+  }
+}
+
+// ===== Load Users =====
+async function loadUsers() {
+  try {
+    let query = fbDB.collection('users');
+    
+    // Director can only see their branch users
+    if (currentUserRole === 'director' && currentUserBranch) {
+      query = query.where('branchId', '==', currentUserBranch);
+    }
+
+    const snap = await query.get();
+    allUsers = [];
+    snap.forEach(doc => {
+      allUsers.push({ uid: doc.id, ...doc.data() });
+    });
+
+    updateStats();
+    renderUsers();
+  } catch (e) {
+    console.error('Failed to load users:', e);
+    showToast('사용자 로딩 실패: ' + e.message, true);
+  }
+}
+
+// ===== Stats =====
+function updateStats() {
+  const filtered = getFilteredUsers();
+  document.getElementById('statTotal').textContent = filtered.length;
+  document.getElementById('statStudents').textContent = filtered.filter(u => u.role === 'student').length;
+  document.getElementById('statParents').textContent = filtered.filter(u => u.role === 'parent').length;
+  document.getElementById('statTeachers').textContent = filtered.filter(u => u.role === 'teacher').length;
+}
+
+// ===== Filter + Search =====
+function getFilteredUsers() {
+  const branch = document.getElementById('filterBranch').value;
+  const role = document.getElementById('filterRole').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase().trim();
+
+  return allUsers.filter(u => {
+    if (branch && u.branchId !== branch) return false;
+    if (role && u.role !== role) return false;
+    if (search) {
+      const name = (u.displayName || '').toLowerCase();
+      const email = (u.email || '').toLowerCase();
+      if (!name.includes(search) && !email.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+// ===== Render Users =====
+function renderUsers() {
+  const users = getFilteredUsers();
+  const tbody = document.getElementById('userTableBody');
+  document.getElementById('filterCount').textContent = `${users.length}명`;
+
+  if (users.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><div class="icon">🔍</div>조건에 맞는 사용자가 없습니다.</td></tr>';
+    updateStats();
+    return;
+  }
+
+  tbody.innerHTML = users.map(u => {
+    const name = u.displayName || u.email?.split('@')[0] || '(이름 없음)';
+    const email = u.email || '-';
+    const role = u.role || 'parent';
+    const branch = u.branchId || '-';
+    const created = u.createdAt ? new Date(u.createdAt.seconds ? u.createdAt.seconds * 1000 : u.createdAt).toLocaleDateString('ko') : '-';
+    const photo = u.photoURL ? `<img class="user-avatar" src="${u.photoURL}" alt=""/>` : '';
+
+    // Role options — directors can't assign director/franchise_admin
+    const roleOptions = Object.entries(ROLE_KR)
+      .filter(([r]) => currentUserRole === 'franchise_admin' || !['director','franchise_admin'].includes(r))
+      .map(([r, kr]) => `<option value="${r}"${r === role ? ' selected' : ''}>${kr}</option>`)
+      .join('');
+
+    // Branch options
+    const branchOptions = Object.entries(BRANCH_LABELS)
+      .map(([b, bname]) => `<option value="${b}"${b === branch ? ' selected' : ''}>${bname}</option>`)
+      .join('');
+
+    return `<tr data-uid="${u.uid}">
+      <td>${photo}<span class="user-name">${name}</span><br><span class="user-email">${email}</span></td>
+      <td><span class="role-badge role-${role}">${ROLE_KR[role] || role}</span></td>
+      <td><span class="branch-badge">${BRANCH_LABELS[branch] || branch}</span></td>
+      <td style="font-size:.75rem;color:var(--dim)">${created}</td>
+      <td>
+        <select class="action-select role-action" data-uid="${u.uid}" data-field="role">${roleOptions}</select>
+        <select class="action-select branch-action" data-uid="${u.uid}" data-field="branchId">${branchOptions}</select>
+        <button class="btn-save" data-uid="${u.uid}" disabled>저장</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Bind change events
+  tbody.querySelectorAll('.action-select').forEach(sel => {
+    sel.addEventListener('change', () => {
+      const uid = sel.dataset.uid;
+      const btn = tbody.querySelector(`.btn-save[data-uid="${uid}"]`);
+      if (btn) btn.disabled = false;
+    });
+  });
+
+  // Bind save buttons
+  tbody.querySelectorAll('.btn-save').forEach(btn => {
+    btn.addEventListener('click', () => saveUser(btn.dataset.uid));
+  });
+
+  updateStats();
+}
+
+// ===== Save User Changes =====
+async function saveUser(uid) {
+  const row = document.querySelector(`tr[data-uid="${uid}"]`);
+  if (!row) return;
+
+  const newRole = row.querySelector('.role-action')?.value;
+  const newBranch = row.querySelector('.branch-action')?.value;
+  const btn = row.querySelector('.btn-save');
+
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+
+  try {
+    const updateData = {};
+    if (newRole) updateData.role = newRole;
+    if (newBranch) updateData.branchId = newBranch;
+
+    await fbDB.collection('users').doc(uid).update(updateData);
+
+    // Update local data
+    const user = allUsers.find(u => u.uid === uid);
+    if (user) {
+      if (newRole) user.role = newRole;
+      if (newBranch) user.branchId = newBranch;
+    }
+
+    showToast('✅ 저장 완료');
+    renderUsers();
+  } catch (e) {
+    console.error('Save failed:', e);
+    showToast('❌ 저장 실패: ' + e.message, true);
+    if (btn) { btn.disabled = false; btn.textContent = '저장'; }
+  }
+}
+
+// ===== Filter Event Listeners =====
+document.getElementById('filterBranch').addEventListener('change', renderUsers);
+document.getElementById('filterRole').addEventListener('change', renderUsers);
+document.getElementById('filterSearch').addEventListener('input', renderUsers);
+</script>
+</body>
+</html>
