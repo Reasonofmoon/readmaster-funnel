@@ -3,7 +3,7 @@
  * Cache-first strategy for static assets, network-first for API/data.
  */
 
-const CACHE_NAME = 'rm-v1';
+const CACHE_NAME = 'rm-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
