@@ -1382,6 +1382,17 @@ const rmAuth = {
   currentRole: 'parent',
 
   init() {
+    // Handle redirect result (fallback from popup-blocked)
+    fbAuth.getRedirectResult().then(result => {
+      if (result && result.user) {
+        console.log('[RM Auth] Redirect sign-in success:', result.user.email);
+      }
+    }).catch(err => {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        console.warn('[RM Auth] Redirect error:', err.code);
+      }
+    });
+
     fbAuth.onAuthStateChanged(async (user) => {
       if (user) {
         // Read role from Firestore
@@ -1393,7 +1404,7 @@ const rmAuth = {
             if (doc.data().role) role = doc.data().role;
             if (doc.data().branchId) branchId = doc.data().branchId;
           }
-        } catch (e) {}
+        } catch (e) { console.warn('[RM Auth] Firestore read error:', e.message); }
 
         this.currentRole = role;
         this.currentBranch = branchId;
@@ -1506,11 +1517,18 @@ const rmAuth = {
   },
 
   async googleSignIn() {
+    const provider = new firebase.auth.GoogleAuthProvider();
     try {
-      const provider = new firebase.auth.GoogleAuthProvider();
       await fbAuth.signInWithPopup(provider);
     } catch (err) {
-      if (err.code !== 'auth/popup-closed-by-user') this.showError(this.errorMsg(err.code));
+      if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
+        // Popup blocked → redirect fallback
+        console.log('[RM Auth] Popup blocked, using redirect...');
+        await fbAuth.signInWithRedirect(provider);
+      } else if (err.code !== 'auth/popup-closed-by-user') {
+        console.warn('[RM Auth] Google sign-in error:', err.code);
+        this.showError(this.errorMsg(err.code));
+      }
     }
   },
 
