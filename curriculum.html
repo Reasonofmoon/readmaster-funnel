@@ -120,6 +120,8 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
     <li><a href="index.html#modules">프로그램</a></li>
     <li><a href="index.html#booking">상담 예약</a></li>
   </ul>
+  <span id="navGuest"><a href="index.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">🔐 로그인</a></span>
+  <span id="navAuth" style="display:none"><a href="dashboard.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px"><span class="na-name"></span> MY</a></span>
 </nav>
 
 <header class="curr-header">
@@ -584,6 +586,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { rootMargin: "-120px 0px -60% 0px", threshold: 0.1 });
 
   sections.forEach(sec => observer.observe(sec));
+});
+</script>
+
+<!-- Firebase Auth (shared with index.html) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey:'AIzaSyAc7cbhmuGGDatPZk0K_E41YGeXt0Zh1E8',
+  authDomain:'oet-korea-platform.firebaseapp.com',
+  projectId:'oet-korea-platform',
+});
+firebase.auth().onAuthStateChanged(u => {
+  const g = document.getElementById('navGuest');
+  const a = document.getElementById('navAuth');
+  if (u) {
+    if (g) g.style.display = 'none';
+    if (a) { a.style.display = ''; a.querySelector('.na-name').textContent = u.displayName || u.email?.split('@')[0] || ''; }
+  } else {
+    if (g) g.style.display = '';
+    if (a) a.style.display = 'none';
+  }
 });
 </script>
 </body>

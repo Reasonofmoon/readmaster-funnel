@@ -521,7 +521,15 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
     <li><a href="#debate">영어 토론</a></li>
     <li><a href="#booking">상담 예약</a></li>
   </ul>
-  <a href="#booking" class="nav-cta">무료 레벨 테스트</a>
+  <span id="navGuest2">
+    <a href="#" onclick="rmAuth.showModal();return false;" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px">🔐 로그인</a>
+  </span>
+  <span id="navUser2" style="display:none">
+    <a href="dashboard.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:6px;background:var(--green);color:var(--gold)">
+      <img id="navAvatar2" src="" alt="" style="width:22px;height:22px;border-radius:50%;border:2px solid var(--gold);display:none"/>
+      <span id="navName2"></span> MY
+    </a>
+  </span>
 </nav>
 
 <!-- 우두동 설명회 배너 슬라이더 -->
@@ -1548,10 +1556,18 @@ const rmAuth = {
     }
     nameEl.textContent = user.name;
     roleEl.textContent = ROLE_LABELS[user.role] || '학부모';
-    // Show branch name
     const BRANCH_NAMES = { okgil: '옥길동', udu: '우두동' };
     branchEl.textContent = user.branchId ? (BRANCH_NAMES[user.branchId] || user.branchId) : '';
     this.renderEcoLinks(user.role);
+    // Sync main nav
+    const ng = document.getElementById('navGuest2');
+    const nu = document.getElementById('navUser2');
+    const na = document.getElementById('navAvatar2');
+    const nn = document.getElementById('navName2');
+    if (ng) ng.style.display = 'none';
+    if (nu) nu.style.display = '';
+    if (nn) nn.textContent = user.name;
+    if (na && user.picture) { na.src = user.picture; na.style.display = ''; }
     this.hideModal();
   },
 
@@ -1559,6 +1575,11 @@ const rmAuth = {
     document.getElementById('ecoGuest').style.display = '';
     document.getElementById('ecoUser').style.display = 'none';
     this.currentRole = 'parent';
+    // Sync main nav
+    const ng = document.getElementById('navGuest2');
+    const nu = document.getElementById('navUser2');
+    if (ng) ng.style.display = '';
+    if (nu) nu.style.display = 'none';
   },
 
   async googleSignIn() {
