@@ -75,3 +75,37 @@ function rmSyncNavAuth(user) {
 if (typeof window.rmAuth === 'undefined') {
   fbAuth.onAuthStateChanged(user => rmSyncNavAuth(user));
 }
+
+// ===== PWA — Service Worker Registration =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
+// ===== Branch Theme Loader =====
+// Reads `branches/{branchId}` from Firestore and applies theme overrides.
+// Expected fields: theme.primary, theme.accent, theme.background
+async function rmApplyBranchTheme(branchId) {
+  if (!branchId || !fbDB) return;
+  try {
+    const doc = await fbDB.collection('branches').doc(branchId).get();
+    if (!doc.exists) return;
+    const theme = doc.data().theme;
+    if (!theme) return;
+
+    const root = document.documentElement.style;
+    if (theme.primary)    root.setProperty('--g', theme.primary);
+    if (theme.primaryAlt) root.setProperty('--g2', theme.primaryAlt);
+    if (theme.accent)     root.setProperty('--gold', theme.accent);
+    if (theme.accentAlt)  root.setProperty('--gold2', theme.accentAlt);
+    if (theme.background) root.setProperty('--iv', theme.background);
+    if (theme.card)       root.setProperty('--card', theme.card);
+
+    // Update meta theme-color for mobile
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta && theme.primary) meta.content = theme.primary;
+  } catch (e) {
+    // Silent — theme loading is non-critical
+  }
+}

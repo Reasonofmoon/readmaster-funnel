@@ -1,0 +1,27 @@
+{
+  "name": "ReadMaster Academy",
+  "short_name": "ReadMaster",
+  "description": "문해력 전문 교육원 — AI 기반 읽기·쓰기·토론 프로그램",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#062016",
+  "theme_color": "#062016",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "books"],
+  "lang": "ko",
+  "dir": "ltr"
+}
