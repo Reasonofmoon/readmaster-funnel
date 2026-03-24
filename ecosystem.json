@@ -1,0 +1,134 @@
+{
+  "ecosystem": "ReadMaster Franchise Ecosystem",
+  "version": "2.0.0",
+  "updated": "2026-03-24",
+  "description": "8개 레포지토리를 유기적으로 연결하여 학원 프랜차이즈 운영의 전 생애주기를 커버하는 통합 플랫폼",
+  "layers": {
+    "public": {
+      "label": "PUBLIC FACING — 고객 접점",
+      "sites": {
+        "franchise": {
+          "name": "ReadMaster",
+          "shortName": "메인 포털",
+          "url": "https://readmaster-franchise.vercel.app",
+          "domain": "readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/readmaster-franchise",
+          "icon": "🏠",
+          "role": "메인 포털 · Hub",
+          "description": "에코시스템의 중심 허브. 프랜차이즈 브랜드 소개, 지점 안내, 커리큘럼 미리보기, 통합 네비게이션",
+          "tech": ["Next.js", "Vercel", "통합 Auth", "Global Nav"],
+          "status": "active"
+        },
+        "funnel": {
+          "name": "ReadMaster 퍼널",
+          "shortName": "마케팅 퍼널",
+          "url": "https://readmaster-funnel.vercel.app",
+          "domain": "go.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/readmaster-funnel",
+          "icon": "📢",
+          "role": "마케팅 · Acquisition",
+          "description": "설명회 예약, 상담 신청, 커리큘럼 소개. GAS 백엔드 연동 리드 수집 및 CRM 자동 등록",
+          "tech": ["HTML/JS", "Vercel", "GAS Backend", "CRM 연동"],
+          "status": "planned"
+        },
+        "chatbot": {
+          "name": "AI 상담 챗봇",
+          "shortName": "AI 상담",
+          "url": "https://chat-bot-hakwon.vercel.app",
+          "domain": "chat.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/chat-bot-hakwon",
+          "icon": "🤖",
+          "role": "AI 상담 · Engagement",
+          "description": "24시간 학부모 문의 응대, 커리큘럼 안내, FAQ 자동 답변, 상담 예약 연결 AI 챗봇",
+          "tech": ["Chatbot Framework", "AI/LLM", "Widget 임베드"],
+          "status": "planned"
+        }
+      }
+    },
+    "service": {
+      "label": "SERVICE LAYER — 교육 서비스",
+      "sites": {
+        "academy": {
+          "name": "Read Master Academy",
+          "shortName": "학습 플랫폼",
+          "url": "https://read-master-academy.vercel.app",
+          "domain": "app.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/read-master-academy",
+          "icon": "🎓",
+          "role": "학습 플랫폼 · LMS",
+          "description": "학생/학부모용 메인 웹 애플리케이션. 수업 관리, 학습 진도, 레벨테스트 응시, 교재 열람",
+          "tech": ["Next.js 16", "React 19", "TypeScript", "TailwindCSS 4"],
+          "status": "active"
+        },
+        "parentReport": {
+          "name": "학부모 리포트",
+          "shortName": "리포트",
+          "url": "https://readmaster-parent-report.vercel.app",
+          "domain": "report.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/ReadMaster-parent-report-gas",
+          "icon": "📊",
+          "role": "학부모 리포트 · Retention",
+          "description": "GAS 기반 학생별 학습 진행도, 레벨 변화, 독서량, 추천 도서 자동 리포트",
+          "tech": ["Google Apps Script", "Google Sheets", "자동 리포트", "Token 인증"],
+          "status": "planned"
+        },
+        "librainy": {
+          "name": "Librainy Platform",
+          "shortName": "AI 독서 엔진",
+          "url": "https://librainy-platform.vercel.app",
+          "domain": "api.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/librainy-platform",
+          "icon": "🧠",
+          "role": "AI 엔진 · Core Tech",
+          "description": "AI 독서 추천 & 분석 엔진. 맞춤형 도서 추천, 읽기 난이도 분석, 학습 경로 최적화",
+          "tech": ["AI/ML Engine", "추천 알고리즘", "IRT 분석", "API 서비스"],
+          "status": "planned"
+        },
+        "oet": {
+          "name": "OET Korea",
+          "shortName": "OET",
+          "url": "https://oet-korea.com",
+          "domain": "oet.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/oet-korea",
+          "icon": "🏥",
+          "role": "특수 프로그램 · Vertical",
+          "description": "OET(Occupational English Test) 한국 대비 플랫폼. 의료/간호 영어 시험 대비 버티컬 서비스",
+          "tech": ["Next.js 16", "Firebase", "Gemini AI", "Stripe"],
+          "status": "active"
+        }
+      }
+    },
+    "management": {
+      "label": "MANAGEMENT — 운영 백엔드",
+      "sites": {
+        "hq": {
+          "name": "ReadMaster HQ",
+          "shortName": "HQ",
+          "url": "https://readmaster-hq.vercel.app",
+          "domain": "hq.readmaster.kr",
+          "repo": "https://github.com/Reasonofmoon/readmaster-hq",
+          "icon": "🖥️",
+          "role": "운영 본부 · Admin",
+          "description": "9-에이전트 오케스트레이션, Academy OS 대시보드, 프랜차이즈 전 영역 관리 백오피스",
+          "tech": ["Static HTML/JS", "Paperclip Agent", "Google Apps Script", "9 AI Agents"],
+          "status": "active"
+        }
+      }
+    }
+  },
+  "navigation": {
+    "global": [
+      {"label": "홈", "target": "franchise", "url": "readmaster.kr", "auth": "public"},
+      {"label": "커리큘럼", "target": "funnel", "url": "go.readmaster.kr/curriculum", "auth": "public"},
+      {"label": "무료 레벨테스트", "target": "franchise", "url": "readmaster.kr/level-test", "auth": "public", "highlight": true},
+      {"label": "학습하기", "target": "academy", "url": "app.readmaster.kr", "auth": "login"},
+      {"label": "OET Korea", "target": "oet", "url": "oet.readmaster.kr", "auth": "public"},
+      {"label": "고객센터", "target": "franchise", "url": "readmaster.kr/support", "auth": "public"}
+    ]
+  },
+  "contact": {
+    "dante": "010-8460-1764",
+    "baekmin": "010-9595-3225",
+    "email": "readmaster@academy.kr"
+  }
+}
