@@ -1396,31 +1396,32 @@ const fbDB = firebase.firestore();
 // ─── Role-Based Menu Config ───
 const ROLE_MENUS = {
   student: [
+    { label: 'MY', href: 'dashboard.html', gold: true },
     { label: '학습하기', href: 'https://read-master-academy.vercel.app', ext: true },
-    { label: '레벨테스트', href: '#level-test', gold: true },
+    { label: '레벨테스트', href: '#level-test' },
     { label: '도서관', href: '#library' },
-    { label: '과제함', href: 'https://read-master-academy.vercel.app/assignments', ext: true },
   ],
   parent: [
+    { label: 'MY', href: 'dashboard.html', gold: true },
     { label: '자녀현황', href: 'https://read-master-academy.vercel.app/parent', ext: true },
     { label: '리포트', href: 'https://readmaster-parent-report.vercel.app', ext: true },
     { label: '상담예약', href: '#booking' },
-    { label: '도서관', href: '#library' },
   ],
   teacher: [
+    { label: 'MY', href: 'dashboard.html', gold: true },
     { label: '반관리', href: 'https://read-master-academy.vercel.app/teacher', ext: true },
     { label: 'AI 첨삭', href: 'https://oet-korea.com/writing', ext: true },
     { label: '학생관리', href: 'https://read-master-academy.vercel.app/students', ext: true },
-    { label: '리포트', href: 'https://readmaster-parent-report.vercel.app', ext: true },
   ],
   director: [
-    { label: '대시보드', href: 'https://readmaster-hq.vercel.app', ext: true, gold: true },
+    { label: 'MY', href: 'dashboard.html', gold: true },
     { label: '강사관리', href: 'https://readmaster-hq.vercel.app/staff', ext: true },
     { label: 'CRM', href: 'https://readmaster-hq.vercel.app/crm', ext: true },
     { label: '매출', href: 'https://readmaster-hq.vercel.app/revenue', ext: true },
   ],
   franchise_admin: [
-    { label: '지점관리', href: 'https://readmaster-hq.vercel.app/franchise', ext: true, gold: true },
+    { label: 'MY', href: 'dashboard.html', gold: true },
+    { label: '지점관리', href: 'https://readmaster-hq.vercel.app/franchise', ext: true },
     { label: '비교분석', href: 'https://readmaster-hq.vercel.app/analytics', ext: true },
     { label: '전체설정', href: 'https://readmaster-hq.vercel.app/settings', ext: true },
   ],
