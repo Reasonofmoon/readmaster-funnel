@@ -76,10 +76,10 @@ if (typeof window.rmAuth === 'undefined') {
   fbAuth.onAuthStateChanged(user => rmSyncNavAuth(user));
 }
 
-// ===== PWA — Service Worker Registration =====
+// ===== PWA — Unregister broken Service Worker =====
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(r => r.unregister());
   });
 }
 
