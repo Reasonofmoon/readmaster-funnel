@@ -6,7 +6,9 @@
 <meta name="description" content="읽는 힘이 모든 학습의 시작입니다. AI 기반 문해력 레벨테스트 · LMS · 디지털 도서관 · 상담 예약."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 /* ===== ReadMaster Ecosystem Top Bar ===== */
@@ -420,6 +422,12 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
 .auth-phone-form{display:flex;flex-direction:column;gap:10px}
 .auth-phone-form input{margin-bottom:0;font-size:.88rem;padding:12px 14px}
 .auth-phone-form .btn-submit{padding:12px;font-size:.88rem}
+.auth-email-form{display:flex;flex-direction:column;gap:10px}
+.auth-email-form input{margin-bottom:0;font-size:.88rem;padding:12px 14px}
+.auth-email-form .btn-submit{padding:12px;font-size:.88rem}
+.auth-toggle{text-align:center;font-size:.78rem;color:var(--dim);margin-top:10px}
+.auth-toggle a{color:var(--gold);font-weight:600;cursor:pointer;text-decoration:underline}
+.auth-error{background:rgba(220,50,50,0.08);border:1px solid rgba(220,50,50,0.2);border-radius:8px;padding:8px 12px;font-size:.78rem;color:#c33;display:none;margin-bottom:10px}
 .auth-note{text-align:center;font-size:.72rem;color:var(--dim);margin-top:14px;line-height:1.6}
 /* Eco bar user state */
 .eco-user{display:flex;align-items:center;gap:6px}
@@ -464,21 +472,24 @@ footer{background:var(--g);padding:48px 5vw;display:flex;align-items:flex-start;
 </div>
 
 <!-- Login Modal -->
-<div class="auth-overlay" id="authOverlay">
+<div class="auth-overlay" id="authOverlay" onclick="if(event.target===this)rmAuth.hideModal()">
   <div class="auth-modal">
     <button class="auth-modal-close" onclick="rmAuth.hideModal()" aria-label="닫기">✕</button>
     <h3>📖 ReadMaster 로그인</h3>
     <p>로그인하면 학습하기, 리포트, 레벨 이력 등<br/>모든 서비스를 이용할 수 있습니다.</p>
+    <div class="auth-error" id="authError"></div>
     <button class="auth-google-btn" onclick="rmAuth.googleSignIn()">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/><path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.997 8.997 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/></svg>
       Google로 계속하기
     </button>
-    <div class="auth-divider">또는</div>
-    <div class="auth-phone-form" id="phoneForm">
-      <input type="tel" id="authPhone" placeholder="전화번호 (010-0000-0000)" />
-      <button class="btn-submit" onclick="rmAuth.phoneSignIn()">전화번호로 로그인</button>
+    <div class="auth-divider">또는 이메일로</div>
+    <div class="auth-email-form" id="emailForm">
+      <input type="email" id="authEmail" placeholder="이메일" autocomplete="email" />
+      <input type="password" id="authPassword" placeholder="비밀번호 (6자 이상)" autocomplete="current-password" />
+      <button class="btn-submit" id="authSubmitBtn" onclick="rmAuth.emailSignIn()">로그인</button>
     </div>
-    <div class="auth-note">로그인 시 ReadMaster의 서비스 이용약관에 동의합니다.<br/>학부모·학생·교사 계정을 지원합니다.</div>
+    <div class="auth-toggle" id="authToggle">아직 계정이 없으신가요? <a onclick="rmAuth.toggleMode()">회원가입</a></div>
+    <div class="auth-note">OET Korea와 동일한 계정으로 로그인됩니다.<br/>학부모·학생·교사 계정 지원</div>
   </div>
 </div>
 
@@ -1367,57 +1378,93 @@ window.addEventListener('scroll',()=>{
 });
 </script>
 
-<!-- ReadMaster Auth System -->
+<!-- ReadMaster Auth System — Firebase (shared with OET Korea) -->
 <script>
+// ─── Firebase Init (same project as OET Korea) ───
+firebase.initializeApp({
+  apiKey: 'AIzaSyAc7cbhmuGGDatPZk0K_E41YGeXt0Zh1E8',
+  authDomain: 'oet-korea-platform.firebaseapp.com',
+  projectId: 'oet-korea-platform',
+  storageBucket: 'oet-korea-platform.firebasestorage.app',
+  messagingSenderId: '370408346842',
+  appId: '1:370408346842:web:0214ae1e3fb496066601e3',
+});
+const fbAuth = firebase.auth();
+const fbDB = firebase.firestore();
+
 const rmAuth = {
-  SESSION_KEY: 'rm_session',
+  isSignUp: false,
 
   init() {
-    const session = this.getSession();
-    if (session) this.setLoggedIn(session);
-  },
-
-  getSession() {
-    try {
-      const raw = localStorage.getItem(this.SESSION_KEY);
-      if (!raw) return null;
-      const s = JSON.parse(raw);
-      // Expire after 7 days
-      if (Date.now() - s.loginAt > 7 * 24 * 60 * 60 * 1000) {
-        localStorage.removeItem(this.SESSION_KEY);
-        return null;
+    fbAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setLoggedIn({
+          name: user.displayName || user.email?.split('@')[0] || '사용자',
+          email: user.email,
+          picture: user.photoURL || '',
+          uid: user.uid,
+        });
+        // Sync to Firestore (same as OET Korea)
+        fbDB.collection('users').doc(user.uid).set({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true }).catch(() => {});
+      } else {
+        this.setLoggedOut();
       }
-      return s;
-    } catch { return null; }
-  },
-
-  saveSession(user) {
-    localStorage.setItem(this.SESSION_KEY, JSON.stringify({
-      ...user,
-      loginAt: Date.now(),
-    }));
+    });
   },
 
   showModal() {
     document.getElementById('authOverlay').classList.add('show');
+    this.clearError();
   },
 
   hideModal() {
     document.getElementById('authOverlay').classList.remove('show');
+    this.clearError();
+  },
+
+  showError(msg) {
+    const el = document.getElementById('authError');
+    el.textContent = msg;
+    el.style.display = 'block';
+  },
+
+  clearError() {
+    const el = document.getElementById('authError');
+    if (el) { el.style.display = 'none'; el.textContent = ''; }
+  },
+
+  toggleMode() {
+    this.isSignUp = !this.isSignUp;
+    const btn = document.getElementById('authSubmitBtn');
+    const toggle = document.getElementById('authToggle');
+    if (this.isSignUp) {
+      btn.textContent = '회원가입';
+      toggle.innerHTML = '이미 계정이 있으신가요? <a onclick="rmAuth.toggleMode()">로그인</a>';
+    } else {
+      btn.textContent = '로그인';
+      toggle.innerHTML = '아직 계정이 없으신가요? <a onclick="rmAuth.toggleMode()">회원가입</a>';
+    }
+    this.clearError();
   },
 
   setLoggedIn(user) {
     document.getElementById('ecoGuest').style.display = 'none';
     document.getElementById('ecoUser').style.display = '';
     const avatar = document.getElementById('ecoAvatar');
-    const name = document.getElementById('ecoName');
+    const nameEl = document.getElementById('ecoName');
     if (user.picture) {
       avatar.src = user.picture;
       avatar.style.display = '';
     } else {
       avatar.style.display = 'none';
     }
-    name.textContent = user.name || user.phone || '사용자';
+    nameEl.textContent = user.name;
     this.hideModal();
   },
 
@@ -1426,73 +1473,58 @@ const rmAuth = {
     document.getElementById('ecoUser').style.display = 'none';
   },
 
-  // Google Sign-In
-  googleSignIn() {
-    if (typeof google === 'undefined' || !google.accounts) {
-      // Fallback: demo mode
-      const user = {
-        name: 'Google 사용자',
-        email: 'parent@readmaster.kr',
-        picture: '',
-        role: 'parent',
-        method: 'google',
-      };
-      this.saveSession(user);
-      this.setLoggedIn(user);
-      return;
+  // Google Sign-In via Firebase
+  async googleSignIn() {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await fbAuth.signInWithPopup(provider);
+      // onAuthStateChanged handles the rest
+    } catch (err) {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        this.showError(this.errorMsg(err.code));
+      }
     }
-    google.accounts.id.initialize({
-      client_id: '000000000000-placeholder.apps.googleusercontent.com',
-      callback: (response) => {
-        // Decode JWT id_token
-        const payload = JSON.parse(atob(response.credential.split('.')[1]));
-        const user = {
-          name: payload.name,
-          email: payload.email,
-          picture: payload.picture,
-          role: 'parent',
-          method: 'google',
-          googleId: payload.sub,
-        };
-        this.saveSession(user);
-        this.setLoggedIn(user);
-      },
-      auto_select: false,
-    });
-    google.accounts.id.prompt();
   },
 
-  // Phone Sign-In (simplified — needs GAS backend verification in production)
-  phoneSignIn() {
-    const phone = document.getElementById('authPhone').value.trim();
-    if (!phone || phone.length < 10) {
-      alert('올바른 전화번호를 입력해 주세요.');
+  // Email/Password Sign-In or Sign-Up
+  async emailSignIn() {
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+    if (!email || !password) {
+      this.showError('이메일과 비밀번호를 입력해 주세요.');
       return;
     }
-    // In production: send verification code via GAS
-    // For now: simple phone-based login
-    const user = {
-      name: phone.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3'),
-      phone: phone,
-      picture: '',
-      role: 'parent',
-      method: 'phone',
+    try {
+      if (this.isSignUp) {
+        await fbAuth.createUserWithEmailAndPassword(email, password);
+      } else {
+        await fbAuth.signInWithEmailAndPassword(email, password);
+      }
+    } catch (err) {
+      this.showError(this.errorMsg(err.code));
+    }
+  },
+
+  async logout() {
+    await fbAuth.signOut();
+  },
+
+  // Korean error messages (same as OET Korea AuthContext)
+  errorMsg(code) {
+    const map = {
+      'auth/user-not-found': '등록되지 않은 이메일입니다.',
+      'auth/wrong-password': '비밀번호가 올바르지 않습니다.',
+      'auth/invalid-credential': '비밀번호가 올바르지 않습니다.',
+      'auth/email-already-in-use': '이미 등록된 이메일입니다.',
+      'auth/weak-password': '비밀번호는 6자 이상이어야 합니다.',
+      'auth/invalid-email': '올바른 이메일 형식이 아닙니다.',
+      'auth/too-many-requests': '너무 많은 시도입니다. 잠시 후 다시 시도하세요.',
+      'auth/network-request-failed': '네트워크 오류. 인터넷 연결을 확인하세요.',
     };
-    this.saveSession(user);
-    this.setLoggedIn(user);
-  },
-
-  logout() {
-    localStorage.removeItem(this.SESSION_KEY);
-    this.setLoggedOut();
-    // Revoke Google session if applicable
-    if (typeof google !== 'undefined' && google.accounts) {
-      google.accounts.id.disableAutoSelect();
-    }
+    return map[code] || '로그인에 실패했습니다. 다시 시도해주세요.';
   },
 };
 
-// Initialize on load
 rmAuth.init();
 </script>
 </body>
