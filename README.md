@@ -224,6 +224,29 @@ vercel --prod
 
 ---
 
+## 🌐 도메인 & 배포 · 404 대응
+
+ReadMaster 에코시스템은 레이어별 Vercel 앱으로 나뉩니다(상세 맵은 `ecosystem.json`).
+
+| 레이어 | 주소 |
+|--------|------|
+| 퍼널 (this repo) | `readmaster-funnel.vercel.app` |
+| 학습 앱 | `read-master-academy.vercel.app` |
+| 학부모 리포트 | `readmaster-parent-report.vercel.app` |
+| HQ (운영) | `readmaster-hq.vercel.app` |
+| 프랜차이즈 허브 | `readmaster-franchise.vercel.app` |
+
+- **배포:** 이 저장소는 Vercel에 연결되어 `main` 푸시 시 `readmaster-funnel.vercel.app`이 자동 재배포됩니다. (`vercel.json` → `cleanUrls: true`)
+- **커스텀 도메인:** 운영 앱은 별도 커스텀 도메인 연결을 검토 중이며, 연결 시 `*.vercel.app`도 병행 유지합니다.
+
+### 404 트러블슈팅
+- `*.vercel.app` → **`DEPLOYMENT_NOT_FOUND`**: 프로젝트에 **Ready 상태 Production 배포가 없거나** 주소가 실제 프로젝트와 다름. → Vercel → 프로젝트 → **Deployments**에서 Promote to Production / 재배포 후 **Visit** 주소 재확인.
+- 커스텀 서브도메인 → **`Forbidden` (Apache/WP 403)**: 서브도메인이 Vercel이 아닌 **기존 웹호스트로 연결**됨. → DNS에 **CNAME(→Vercel)** 추가 + 충돌 와일드카드/A 레코드 제거.
+
+> ⚠️ **법정 표시:** 각 페이지 footer의 학원 법정표시(학원등록번호·교습과정·교습비·대표자)는 **지점별로 교육지원청 등록 후 실제 값으로 교체**해야 합니다. 부천 옥길동은 개원·등록 완료 후 기입하세요.
+
+---
+
 ## ⚙️ Customization Priority
 
 | 우선순위 | 파일 | 변경 사항 |
