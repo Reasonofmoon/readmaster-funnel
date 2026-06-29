@@ -960,39 +960,6 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
   </div>
 </section>
 
-<section id="roadmap">
-  <div class="sec-head reveal" style="text-align:center;max-width:600px;margin:0 auto 52px">
-    <span class="tag">Development Roadmap</span>
-    <h2 class="sec-title">개원 로드맵</h2>
-    <p class="sec-desc" style="max-width:100%">Academy OS 모듈을 계승하여 2026년 7월 개원까지 4단계로 점진 개발합니다.</p>
-  </div>
-  <div class="rm-grid">
-    <div class="rm-card reveal">
-      <div class="rm-phase">Phase 0</div>
-      <div class="rm-period">2026년 3~4월 · 8주</div>
-      <div class="rm-title">Foundation</div>
-      <ul class="rm-items"><li>Firebase 프로젝트 세팅</li><li>Academy OS DB 마이그레이션</li><li>인증 시스템 (Firebase Auth)</li><li>디자인 시스템 구축</li></ul>
-    </div>
-    <div class="rm-card reveal">
-      <div class="rm-phase">Phase 1</div>
-      <div class="rm-period">2026년 5~6월 · 8주</div>
-      <div class="rm-title">MVP</div>
-      <ul class="rm-items"><li>퍼널 상담 예약 + CRM</li><li>통합 문해력 진단 (RMLI) MVP</li><li>LMS 코어 (반·수업·출결)</li><li>블로그 CMS</li></ul>
-    </div>
-    <div class="rm-card reveal">
-      <div class="rm-phase">Phase 2</div>
-      <div class="rm-period">2026년 7월 · 4주</div>
-      <div class="rm-title">Launch 🎉</div>
-      <ul class="rm-items"><li>개원 및 실학생 온보딩</li><li>운영 안정화·버그 수정</li><li>학부모 포털 오픈</li><li>카카오 알림 연동</li></ul>
-    </div>
-    <div class="rm-card reveal">
-      <div class="rm-phase">Phase 3~4</div>
-      <div class="rm-period">2026년 8~12월</div>
-      <div class="rm-title">Growth</div>
-      <ul class="rm-items"><li>AI 추천 도서관 확장</li><li>AI 글쓰기 첨삭 (Claude)</li><li>결제 연동 (TossPayments)</li><li>분석 대시보드 고도화</li></ul>
-    </div>
-  </div>
-</section>
 
 <section id="booking">
   <div class="booking-wrap">
@@ -1097,8 +1064,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
     </div>
     <div class="ielts-card reveal">
       <span class="ielts-status status-ai">AI 분석</span>
-        <div class="ielts-step">Sect 4 모노로그 공략법</div>
+      <div class="ielts-icon">🎧</div>
+      <div class="ielts-sub">Listening</div>
+      <div class="ielts-title">IELTS 리스닝 마스터</div>
+      <div class="ielts-desc">Section 1–4 유형별 청취 전략. 다양한 억양·속도에 대응하고 AI 받아쓰기 분석으로 약점을 교정합니다.</div>
+      <div class="ielts-steps">
+        <div class="ielts-step">받아쓰기·노트테이킹 훈련</div>
         <div class="ielts-step">다중 억양 집중 청취 세션</div>
+        <div class="ielts-step">Sect 4 모노로그 공략법</div>
       </div>
       <div class="band-scale" style="margin-top:14px">
         <div class="band">5</div><div class="band hi">6</div><div class="band hi">7</div><div class="band hi">8</div><div class="band hi">9</div>
@@ -1368,14 +1341,6 @@ const ROLE_MENUS = {
     { label: '비교분석', href: 'https://readmaster-hq.vercel.app/analytics', ext: true },
     { label: '전체설정', href: 'https://readmaster-hq.vercel.app/settings', ext: true },
   ],
-};
-
-const ROLE_LABELS = {
-  student: '학생',
-  parent: '학부모',
-  teacher: '강사',
-  director: '원장',
-  franchise_admin: '본부',
 };
 
 const rmAuth = {
