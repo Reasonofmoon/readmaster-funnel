@@ -1,7 +1,7 @@
 {
   "name": "ReadMaster Academy",
   "short_name": "ReadMaster",
-  "description": "문해력 전문 교육원 — AI 기반 읽기·쓰기·토론 프로그램",
+  "description": "문해력 전문 교육원 — 문해력 기반 읽기·쓰기·토론 프로그램",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#062016",
