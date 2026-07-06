@@ -63,6 +63,7 @@
         "knot": {
           "name": "Knot",
           "shortName": "학습 노트",
+          "url": "https://knot-ebon.vercel.app/",
           "repo": "https://github.com/Reasonofmoon/knot",
           "icon": "🪢",
           "role": "재원생 학습 노트 · 개인 지식 관리",
