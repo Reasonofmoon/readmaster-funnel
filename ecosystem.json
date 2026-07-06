@@ -132,6 +132,16 @@
           "description": "Academy OS에서 교사와 본부가 성적 리포트 제작 흐름에 참고하는 생성 도구",
           "tech": ["Report Automation"],
           "status": "linked"
+        },
+        "academyAssessment": {
+          "name": "Academy Assessment",
+          "shortName": "영어 학력 진단",
+          "repo": "https://github.com/Reasonofmoon/academy-assessment",
+          "icon": "🧪",
+          "role": "영어 학력 진단 · 교사용 평가 도구",
+          "description": "학생 정보와 평가 영역을 입력해 영어 문제를 생성하고 채점 리포트를 출력하는 교사용 진단 앱",
+          "tech": ["Next.js", "Gemini API", "Zod", "TailwindCSS"],
+          "status": "linked"
         }
       }
     }
