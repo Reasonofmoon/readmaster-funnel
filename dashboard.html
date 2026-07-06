@@ -18,6 +18,7 @@ body{min-height:100vh}
 .top-bar a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
 .top-bar a:hover{color:#fff}
 .tb-brand{font-weight:700;font-size:.85rem;display:flex;align-items:center;gap:6px}
+.tb-brand img{width:28px;height:28px;display:block}
 .tb-right{display:flex;align-items:center;gap:12px}
 .tb-avatar{width:24px;height:24px;border-radius:50%;border:2px solid var(--gold);object-fit:cover}
 .tb-name{font-weight:600;color:rgba(255,255,255,.85)}
@@ -89,7 +90,7 @@ body{min-height:100vh}
 
 <!-- Top Bar -->
 <div class="top-bar" id="topBar" style="display:none">
-  <a href="index.html" class="tb-brand">📖 ReadMaster</a>
+  <a href="index.html" class="tb-brand"><img src="assets/readmaster-logo.svg" alt="" aria-hidden="true">ReadMaster</a>
   <div class="tb-right">
     <img id="tbAvatar" class="tb-avatar" src="" alt="" style="display:none"/>
     <span id="tbName" class="tb-name"></span>
