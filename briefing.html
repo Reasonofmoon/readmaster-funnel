@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>리드마스터 영어도서관 간담회</title>
+  <meta name="description" content="리드마스터 부천 옥길동 본원 학부모 간담회 예약 페이지. 영어원서독서 8단계, 문해력, 국어논술, 내신·수능 연계 커리큘럼 안내.">
+  <style>
+    :root {
+      --ink-900: #14162a;
+      --ink-700: #263047;
+      --ink-500: #4f5870;
+      --paper-50: #fbf8f0;
+      --paper-100: #f4efe3;
+      --paper-200: #e8deca;
+      --paper-300: #d8cab0;
+      --brass-300: #d8b873;
+      --brass-500: #bf9647;
+      --brass-600: #a67b32;
+      --brass-700: #7b5a21;
+      --sage-700: #435c3f;
+      --dusk-700: #3c5273;
+      --rust-700: #7f3527;
+      --plum-600: #6a527a;
+      --border-input: #8f8465;
+      --text-primary: var(--ink-900);
+      --text-secondary: var(--ink-500);
+      --text-accent: var(--brass-700);
+      --surface-page: var(--paper-100);
+      --surface-card: var(--paper-50);
+      --surface-inverse: var(--ink-900);
+      --accent: var(--brass-500);
+      --accent-hover: var(--brass-300);
+      --accent-pressed: var(--brass-600);
+      --focus: var(--brass-700);
+      --shadow-1: 0 1px 2px rgba(20, 22, 42, .06);
+      --shadow-2: 0 2px 8px rgba(20, 22, 42, .08);
+      --shadow-3: 0 6px 20px rgba(20, 22, 42, .12);
+      --shadow-4: 0 12px 40px rgba(20, 22, 42, .18);
+      --radius: 8px;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--surface-page);
+      color: var(--text-primary);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .skip {
+      position: fixed;
+      left: 12px;
+      top: 12px;
+      z-index: 50;
+      transform: translateY(-120%);
+      background: var(--surface-card);
+      border: 1px solid var(--border-input);
+      padding: 8px 12px;
+      border-radius: var(--radius);
+    }
+    .skip:focus { transform: translateY(0); }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px clamp(18px, 4vw, 52px);
+      background: rgba(251, 248, 240, .92);
+      border-bottom: 1px solid var(--paper-300);
+      backdrop-filter: blur(12px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      display: block;
+      flex: 0 0 auto;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: .92rem;
+      color: var(--text-secondary);
+    }
+    .nav-links a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .btn {
+      min-height: 44px;
+      border: 0;
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      background: var(--accent);
+      color: var(--ink-900);
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-1);
+      transition: background 160ms var(--ease), transform 160ms var(--ease), box-shadow 160ms var(--ease);
+    }
+    .btn:hover { background: var(--accent-hover); box-shadow: var(--shadow-2); transform: translateY(-1px); }
+    .btn:active { background: var(--accent-pressed); transform: translateY(0); }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border-input);
+      color: var(--text-primary);
+      box-shadow: none;
+    }
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 68px);
+      display: grid;
+      grid-template-columns: minmax(280px, 620px);
+      align-content: center;
+      gap: 18px;
+      padding: clamp(34px, 6vw, 72px) clamp(18px, 5vw, 72px);
+      background:
+        linear-gradient(90deg, rgba(20, 22, 42, .74) 0%, rgba(20, 22, 42, .55) 34%, rgba(20, 22, 42, .16) 62%, rgba(20, 22, 42, .04) 100%),
+        url("assets/readmaster-hero-bg.png") center / cover no-repeat;
+      overflow: hidden;
+    }
+    .hero-copy {
+      align-self: center;
+      max-width: 760px;
+      padding: 22px 0;
+      color: var(--paper-50);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--brass-300);
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--brass-300);
+    }
+    h1 {
+      margin: 0 0 18px;
+      max-width: 720px;
+      font-family: "Noto Serif KR", Georgia, serif;
+      font-size: clamp(2.45rem, 7vw, 5.1rem);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+    .lead {
+      max-width: 610px;
+      margin: 0 0 28px;
+      color: rgba(251, 248, 240, .84);
+      font-size: clamp(1.02rem, 2vw, 1.24rem);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+    .proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 690px;
+    }
+    .proof div {
+      min-height: 92px;
+      padding: 14px;
+      background: rgba(251, 248, 240, .9);
+      border: 1px solid rgba(216, 202, 176, .58);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-1);
+    }
+    .proof strong {
+      display: block;
+      font-size: 1.36rem;
+      line-height: 1.2;
+      color: var(--sage-700);
+    }
+    .proof span {
+      display: block;
+      margin-top: 5px;
+      color: var(--text-secondary);
+      font-size: .9rem;
+    }
+    .hero-panel {
+      align-self: start;
+      max-width: 620px;
+      background: rgba(20, 22, 42, .92);
+      color: var(--paper-50);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-4);
+      overflow: hidden;
+    }
+    .panel-top {
+      padding: 24px;
+      border-bottom: 1px solid rgba(251, 248, 240, .14);
+    }
+    .panel-top b {
+      display: block;
+      color: var(--brass-300);
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .panel-top strong {
+      display: block;
+      margin-top: 8px;
+      font-family: "Noto Serif KR", Georgia, serif;
+      font-size: 1.68rem;
+      line-height: 1.25;
+    }
+    .path {
+      display: grid;
+      gap: 1px;
+      background: rgba(251, 248, 240, .14);
+    }
+    .path-row {
+      display: grid;
+      grid-template-columns: 92px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 18px;
+      background: var(--surface-inverse);
+      font-size: .9rem;
+    }
+    .path-row em {
+      font-style: normal;
+      color: var(--brass-300);
+      font-weight: 800;
+    }
+    .path-row span { color: rgba(251, 248, 240, .74); }
+    .path-row i {
+      font-style: normal;
+      color: var(--paper-50);
+      font-size: .78rem;
+    }
+    .panel-note {
+      padding: 18px 24px 24px;
+      color: rgba(251, 248, 240, .74);
+      font-size: .92rem;
+    }
+    main section {
+      padding: clamp(58px, 8vw, 96px) clamp(18px, 5vw, 72px);
+      scroll-margin-top: 84px;
+    }
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-family: "Noto Serif KR", Georgia, serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--paper-300);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-1);
+    }
+    .card b {
+      color: var(--text-accent);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .card h3 {
+      margin: 8px 0 8px;
+      font-size: 1.26rem;
+      line-height: 1.3;
+    }
+    .card p { margin: 0; color: var(--text-secondary); }
+    .levels {
+      background: var(--surface-inverse);
+      color: var(--paper-50);
+    }
+    .levels .section-head p { color: rgba(251, 248, 240, .72); }
+    .grade-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 6px;
+      border: 1px solid rgba(216, 184, 115, .34);
+      border-radius: var(--radius);
+      background: rgba(251, 248, 240, .055);
+    }
+    .grade-tab {
+      min-height: 46px;
+      border: 0;
+      border-radius: calc(var(--radius) - 2px);
+      background: transparent;
+      color: rgba(251, 248, 240, .72);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .grade-tab[aria-selected="true"] {
+      background: var(--brass-300);
+      color: var(--ink-900);
+    }
+    .grade-panel[hidden] { display: none; }
+    .grade-panel {
+      display: grid;
+      gap: 18px;
+    }
+    .grade-panel h3 {
+      margin: 0;
+      font-family: "Noto Serif KR", Georgia, serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+    .grade-panel > p {
+      max-width: 820px;
+      margin: -8px 0 0;
+      color: rgba(251, 248, 240, .72);
+    }
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .level {
+      min-height: 154px;
+      padding: 16px;
+      border: 1px solid rgba(216, 184, 115, .34);
+      border-radius: var(--radius);
+      background: rgba(251, 248, 240, .055);
+    }
+    .level strong { display: block; color: var(--brass-300); font-size: 1.1rem; }
+    .level span { display: block; margin: 6px 0; color: rgba(251, 248, 240, .9); }
+    .level small { color: rgba(251, 248, 240, .65); }
+    .briefing {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, .72fr);
+      gap: clamp(24px, 5vw, 58px);
+      align-items: start;
+      background: var(--paper-50);
+    }
+    .agenda {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .agenda-row {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      background: var(--surface-card);
+      border: 1px solid var(--paper-300);
+      border-radius: var(--radius);
+    }
+    .agenda-row time {
+      color: var(--dusk-700);
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+    .agenda-row b { display: block; margin-bottom: 3px; }
+    .agenda-row span { color: var(--text-secondary); }
+    .sample-download {
+      margin-top: 18px;
+      padding: 18px;
+      background: var(--surface-card);
+      border: 1px solid var(--paper-300);
+      border-radius: var(--radius);
+    }
+    .sample-download h3 {
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+    }
+    .sample-download p {
+      margin: 0 0 14px;
+      color: var(--text-secondary);
+    }
+    .sample-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .sample-links a {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 10px;
+      border: 1px solid var(--border-input);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      font-weight: 800;
+      text-decoration: none;
+      background: #fffdf8;
+    }
+    .sample-links a:hover { background: var(--paper-100); }
+    .form-card {
+      position: sticky;
+      top: 96px;
+      background: var(--surface-card);
+      border: 1px solid var(--paper-300);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-3);
+      padding: 24px;
+    }
+    .form-card h2 {
+      margin: 0 0 6px;
+      font-size: 1.55rem;
+    }
+    .form-card p {
+      margin: 0 0 18px;
+      color: var(--text-secondary);
+    }
+    .field { margin-bottom: 14px; }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink-700);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1.5px solid var(--border-input);
+      border-radius: var(--radius);
+      background: #fffdf8;
+      color: var(--text-primary);
+      font: inherit;
+      padding: 11px 12px;
+    }
+    textarea { min-height: 94px; resize: vertical; }
+    .consent {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 6px;
+      align-items: start;
+      margin: 8px 0 18px;
+      color: var(--text-secondary);
+      font-size: .9rem;
+    }
+    .consent input {
+      width: 22px;
+      min-height: 22px;
+      margin: 10px auto 0;
+      accent-color: var(--brass-700);
+    }
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid var(--sage-700);
+      border-radius: var(--radius);
+      color: var(--sage-700);
+      background: #f1f6ee;
+      font-weight: 700;
+    }
+    .message.show { display: block; }
+    .footer {
+      padding: 30px clamp(18px, 5vw, 72px) 94px;
+      background: var(--surface-inverse);
+      color: rgba(251, 248, 240, .74);
+      font-size: .9rem;
+    }
+    .footer strong { color: var(--paper-50); }
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      padding: 10px 14px;
+      background: rgba(20, 22, 42, .95);
+      border-top: 1px solid rgba(216, 184, 115, .32);
+    }
+    .mobile-cta .btn { display: block; text-align: center; width: 100%; }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        background-position: 58% center;
+      }
+      .briefing { grid-template-columns: 1fr; }
+      .form-card { position: static; }
+      .cards { grid-template-columns: 1fr; }
+      .level-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .nav-links a:not(.btn) { display: none; }
+      .hero {
+        padding-bottom: 34px;
+        background:
+          linear-gradient(180deg, rgba(20, 22, 42, .82) 0%, rgba(20, 22, 42, .64) 48%, rgba(20, 22, 42, .48) 100%),
+          url("assets/readmaster-hero-bg.png") 54% center / cover no-repeat;
+      }
+      .proof { grid-template-columns: 1fr; }
+      .path-row { grid-template-columns: 78px 1fr; }
+      .path-row i { grid-column: 2; }
+      .grade-tabs { grid-template-columns: 1fr; }
+      .level-grid { grid-template-columns: 1fr; }
+      .sample-links { grid-template-columns: 1fr; }
+      .mobile-cta { display: block; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 80ms !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#reservation">예약 폼으로 이동</a>
+  <nav class="nav" aria-label="주요 메뉴">
+    <a class="brand" href="#top" aria-label="리드마스터 홈">
+      <img class="brand-logo" src="assets/readmaster-logo.svg" alt="">
+      <span>READ MASTER</span>
+    </a>
+    <div class="nav-links">
+      <a href="#system">시스템</a>
+      <a href="#levels">8단계</a>
+      <a href="#briefing">간담회</a>
+      <a class="btn" href="#reservation">무료 레벨테스트 예약</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-copy">
+      <div class="eyebrow">Bucheon Ok-gil Briefing</div>
+      <h1>영어책 읽기에서 내신·수능·AI 리터러시까지.</h1>
+      <p class="lead">리드마스터는 초등 원서읽기, 중등 학교별 내신, 고등 수능 독해와 수행평가 역량을 하나의 문해력 성장 경로로 묶습니다.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#reservation">7월 15일 간담회 예약</a>
+        <a class="btn secondary" href="#levels">커리큘럼 보기</a>
+      </div>
+      <div class="proof" aria-label="핵심 지표">
+        <div><strong>초등</strong><span>AR/Lexile 기반 원서읽기와 Rewrite</span></div>
+        <div><strong>중등</strong><span>학교별 내신 대비와 수능 독해 입문</span></div>
+        <div><strong>고등</strong><span>수능 1등급 루틴과 AI 리터러시 특강</span></div>
+      </div>
+    </div>
+
+    <aside class="hero-panel" aria-label="성장 경로 요약">
+      <div class="panel-top">
+        <b>Reading Growth Path</b>
+        <strong>진단에서 상담까지 이어지는 한 장의 로드맵</strong>
+      </div>
+      <div class="path">
+        <div class="path-row"><em>SEED</em><span>문해력·파닉스·리더스 병행</span><i>초1~2</i></div>
+        <div class="path-row"><em>BRANCH</em><span>챕터북 전환·국어논술·영문법</span><i>초5~6</i></div>
+        <div class="path-row"><em>CANOPY</em><span>장편 원서·통합 토론</span><i>중1~2</i></div>
+        <div class="path-row"><em>SUMMIT</em><span>내신·수능·배경지식 독해</span><i>고1</i></div>
+        <div class="path-row"><em>ZENITH</em><span>수능 심화·문해력·국어논술</span><i>고급</i></div>
+      </div>
+      <p class="panel-note">간담회 참석 학생에게 무료 레벨테스트와 추천도서 목록을 제공합니다.</p>
+    </aside>
+  </header>
+
+  <main>
+    <section id="system" aria-labelledby="system-title">
+      <div class="section-head">
+        <h2 id="system-title">읽기 몰입을 해치지 않는, 필요한 만큼의 개입</h2>
+        <p>방치형 다독과 강제형 진도 사이에서 리드마스터는 추천, 질문, 낭독, 첨삭, 재작성만 표준화합니다.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <b>Diagnosis</b>
+          <h3>학년보다 먼저 읽기 레벨을 봅니다</h3>
+          <p>입학 진단으로 AR/Lexile/RMLI 위치를 잡고, 문해력·국어논술·내신·수능 연계 가능 시점을 함께 안내합니다.</p>
+        </article>
+        <article class="card">
+          <b>Library</b>
+          <h3>자유 독서와 원서수업을 분리합니다</h3>
+          <p>모든 책에 워크시트를 붙이지 않습니다. 몰입 독서는 살리고, 수업에서는 질문과 구조를 다룹니다.</p>
+        </article>
+        <article class="card">
+          <b>Rewrite</b>
+          <h3>북리포트는 제출보다 다시 쓰기가 핵심입니다</h3>
+          <p>초안, 피드백, Rewrite, 포트폴리오 보관으로 읽은 것이 말과 글로 남게 만듭니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="levels" id="levels" aria-labelledby="levels-title">
+      <div class="section-head">
+        <h2 id="levels-title">학년군에 따라 목표와 관리 방식이 달라집니다</h2>
+        <p>초등은 원서 몰입, 중등은 학교별 내신과 수능 입문, 고등은 수능 1등급 독해와 수행평가 역량까지 연결합니다.</p>
+      </div>
+
+      <div class="grade-tabs" role="tablist" aria-label="학년군별 커리큘럼">
+        <button class="grade-tab" id="tab-elementary" type="button" role="tab" aria-selected="true" aria-controls="panel-elementary" data-grade-tab="elementary" data-interest="초등 영어도서관">초등</button>
+        <button class="grade-tab" id="tab-middle" type="button" role="tab" aria-selected="false" aria-controls="panel-middle" data-grade-tab="middle" data-interest="중등 내신·수능입문">중등</button>
+        <button class="grade-tab" id="tab-high" type="button" role="tab" aria-selected="false" aria-controls="panel-high" data-grade-tab="high" data-interest="고등 수능·입시완성">고등</button>
+      </div>
+
+      <div class="grade-panel" id="panel-elementary" role="tabpanel" aria-labelledby="tab-elementary">
+        <h3>초등: 영어책을 읽고 설명하는 아이</h3>
+        <p>SEED부터 BRANCH까지, 자유 독서에 교사의 질문·낭독·첨삭을 더해 읽은 것이 말과 글로 남게 합니다. 감으로 읽지 않고 데이터로 읽으며, 추천도서와 월간 리포트로 성장을 확인합니다.</p>
+        <div class="level-grid">
+          <div class="level"><strong>문해력 리딩</strong><span>SEED · SPROUT · BRANCH</span><small>AR/Lexile 기반 레벨 배정과 문해력 추천도서</small></div>
+          <div class="level"><strong>낭독</strong><span>파닉스 · 리더스 · 쉐도잉</span><small>음성과 문자를 연결하는 낭독 루틴</small></div>
+          <div class="level"><strong>국어논술 연계</strong><span>읽기 · 생각하기 · 쓰기</span><small>챕터북 이후 문해력과 표현력 강화</small></div>
+          <div class="level"><strong>영문법 병행</strong><span>문장 구조 · 어휘 · Rewrite</span><small>챕터북 전환기에 필요한 문법과 쓰기 기초</small></div>
+          <div class="level"><strong>70분 6블록 수업</strong><span>목표설정 · 낭독 · 읽기 · 표현</span><small>자기주도 계획부터 첨삭까지 한 수업 안에서 순환</small></div>
+          <div class="level"><strong>Response & Rewrite</strong><span>Draft · Feedback · Rewrite</span><small>많이 쓰기보다 다시 쓰기로 성장 포트폴리오 누적</small></div>
+          <div class="level"><strong>4주기 평가</strong><span>매일 · 매주 · 매월 · 분기</span><small>낭독, 어휘, 읽기 로그, 레벨 성장을 주기적으로 점검</small></div>
+          <div class="level"><strong>추천도서 리포트</strong><span>읽은 책 · 다음 책 · 보완 전략</span><small>학부모가 월별 성장과 다음 목표를 확인</small></div>
+        </div>
+      </div>
+
+      <div class="grade-panel" id="panel-middle" role="tabpanel" aria-labelledby="tab-middle" hidden>
+        <h3>중등: 내신을 잡고 수능 독해로 넘어가는 시기</h3>
+        <p>학교별 시험대비와 장편 원서·비문학 독해·토론·쓰기 훈련을 병행해 중등 성적과 고등 대비를 함께 설계합니다.</p>
+        <div class="level-grid">
+          <div class="level"><strong>학교별 내신 대비</strong><span>맞춤 교재 · 기출 경향 · 동형모의고사</span><small>시험기간 학교별·학생별 개별지도</small></div>
+          <div class="level"><strong>온오프 관리</strong><span>현장 수업 · 온라인 보충 · 과제 확인</span><small>시험대비 기간 학습계획과 실천 하네스</small></div>
+          <div class="level"><strong>기억법 기반 학습</strong><span>반복학습 · 간격학습 · 어휘 루틴</span><small>암기와 문제풀이를 루틴으로 고정</small></div>
+          <div class="level"><strong>국영 통합 독해</strong><span>비문학 · 토론 · 글쓰기 · 원전 읽기</span><small>수능형 문해력으로 넘어가는 다리</small></div>
+        </div>
+      </div>
+
+      <div class="grade-panel" id="panel-high" role="tabpanel" aria-labelledby="tab-high" hidden>
+        <h3>고등: 수능 1등급과 수행평가 역량을 함께 설계</h3>
+        <p>정통 영문법·구문·독해법 위에 수능 원전, 배경지식, 변형문제, 비문학 토론·글쓰기, AI 활용 학습을 연결합니다.</p>
+        <div class="level-grid">
+          <div class="level"><strong>수능 영어 중심</strong><span>구문 · 독해 · 어휘 · 연계 경향</span><small>정확성과 유창성에 기반한 1등급 루틴</small></div>
+          <div class="level"><strong>비문학 DNA 독해</strong><span>과학적 글 구조 · 원전 · 배경지식</span><small>TED, AI, STEM 지문까지 확장 분석</small></div>
+          <div class="level"><strong>국어/영어 통합</strong><span>비문학 독해 · 토론 · 글쓰기</span><small>수능과 수행평가를 동시에 준비</small></div>
+          <div class="level"><strong>AI 리터러시</strong><span>리서치 · 보고서 · 포트폴리오</span><small>NotebookLM, Obsidian, GitHub, Python/R 특강</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="infrastructure" aria-labelledby="infrastructure-title">
+      <div class="section-head">
+        <h2 id="infrastructure-title">상담과 수업을 데이터로 이어주는 Academy OS</h2>
+        <p>신입생 진단부터 시험지 생성, 학부모 리포트까지 학년군별 관리를 하나의 운영 흐름으로 묶습니다.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <b>Level Test</b>
+          <h3>문해력·영어 신입생 레벨테스트</h3>
+          <p>학년이 아니라 현재 문해력과 영어 독해 위치를 먼저 확인해 초등·중등·고등 로드맵을 제안합니다.</p>
+        </article>
+        <article class="card">
+          <b>Academy OS</b>
+          <h3>원장·교사·학생 대시보드</h3>
+          <p>LMS와 Knot 개인별 학습 플랫폼으로 출결, 과제, 독서, 시험대비 루틴을 한곳에서 관리합니다.</p>
+        </article>
+        <article class="card">
+          <b>Smart Analysis</b>
+          <h3>시험지 생성과 분석 시각화</h3>
+          <p>학교별 기출 경향을 분석하고 동형모의고사를 제작해 학생별 보완 지점을 리포트로 보여줍니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="briefing" id="briefing" aria-labelledby="briefing-title">
+      <div>
+        <div class="section-head">
+          <h2 id="briefing-title">7월 15일, 부천 옥길동 본원 학부모 간담회</h2>
+          <p>초등 원서읽기, 중등 내신, 고등 수능·입시 상담을 학년군별로 나누어 안내합니다. 간담회 참석 학생에게 무료 레벨테스트와 추천도서 목록을 제공합니다.</p>
+        </div>
+        <div class="agenda">
+          <div class="agenda-row"><time>0~8분</time><div><b>학년군별 문해력 로드맵</b><span>초등·중등·고등에서 목표와 관리 방식이 어떻게 달라지는지 봅니다.</span></div></div>
+          <div class="agenda-row"><time>8~18분</time><div><b>중등 내신과 고등 수능 대비</b><span>학교별 시험대비, 기출 경향 분석, 동형모의고사, 수능 독해 루틴을 안내합니다.</span></div></div>
+          <div class="agenda-row"><time>18~25분</time><div><b>AI 리터러시와 수행평가</b><span>자료 리서치, 보고서 작성, NotebookLM, Obsidian, GitHub 포트폴리오 활용법을 소개합니다.</span></div></div>
+          <div class="agenda-row"><time>25~30분</time><div><b>무료 레벨테스트 예약</b><span>학생별 현재 위치와 첫 4주 목표를 잡습니다.</span></div></div>
+        </div>
+        <div class="sample-download">
+          <h3>논술 샘플 자료</h3>
+          <p>자녀 학년에 맞는 국어논술 샘플을 바로 내려받아 확인할 수 있습니다.</p>
+          <div class="sample-links" aria-label="학년별 논술 샘플 다운로드">
+            <a href="downloads/writing-sample-g2-3.pdf" download>초2~3 샘플</a>
+            <a href="downloads/writing-sample-g3-4.docx" download>초3~4 샘플</a>
+            <a href="downloads/writing-sample-g4-5.docx" download>초4~5 샘플</a>
+            <a href="downloads/writing-sample-g5-6.docx" download>초5~6 샘플</a>
+            <a href="downloads/writing-sample-m1.docx" download>중1 샘플</a>
+            <a href="downloads/writing-sample-m2.docx" download>중2 샘플</a>
+            <a href="downloads/writing-sample-m3.docx" download>중3 샘플</a>
+            <a href="downloads/writing-sample-h1.docx" download>고1 샘플</a>
+            <a href="downloads/writing-sample-h2.docx" download>고2 샘플</a>
+            <a href="downloads/writing-sample-h3.docx" download>고3 샘플</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="form-card" id="reservation" aria-labelledby="reservation-title">
+        <h2 id="reservation-title">간담회 예약</h2>
+        <p>7월 15일 수요일 · 부천 옥길동 본원 · 선착순 20명</p>
+        <div class="field">
+          <label for="parentName">학부모 성함</label>
+          <input id="parentName" name="parentName" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="phone">연락처</label>
+          <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required>
+        </div>
+        <div class="field">
+          <label for="grade">자녀 학년</label>
+          <select id="grade" name="grade" required>
+            <option value="">선택해 주세요</option>
+            <option>초1~2</option>
+            <option>초3~4</option>
+            <option>초5~6</option>
+            <option>중1</option>
+            <option>중2</option>
+            <option>중3</option>
+            <option>고1</option>
+            <option>고2</option>
+            <option>고3</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="interest">관심 과정</label>
+          <select id="interest" name="interest" required>
+            <option>초등 영어도서관</option>
+            <option>중등 내신·수능입문</option>
+            <option>고등 수능·입시완성</option>
+            <option>AI 리터러시 특강</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="concern">가장 궁금한 점</label>
+          <textarea id="concern" name="concern" placeholder="예: 영어책은 읽는데 요약을 어려워해요."></textarea>
+        </div>
+        <label class="consent">
+          <input type="checkbox" required>
+          <span>간담회 예약과 안내 연락을 위한 개인정보 수집·이용에 동의합니다. 간담회 종료 후 상담 목적 범위 안에서만 사용합니다.</span>
+        </label>
+        <button class="btn" type="submit">예약 신청하기</button>
+        <div class="message" id="formMessage" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>READ MASTER ACADEMY</strong> · 경기도 부천시 옥길로 113 상림프라자 501호 · 문의 010-3368-7873</p>
+    <p>학원 법정 표시와 교습비는 교육지원청 등록 완료 후 실제 값으로 교체해야 합니다.</p>
+  </footer>
+
+  <div class="mobile-cta" aria-hidden="false">
+    <a class="btn" href="#reservation">무료 레벨테스트 예약</a>
+  </div>
+
+  <script>
+    const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyBG2MdFRt0lHOZd2IChJoAS7Pj9O1TF1Ty0lrX53VqRnXdJNR4SmhhOssMFIOo1aLJ/exec";
+    const form = document.querySelector("#reservation");
+    const message = document.querySelector("#formMessage");
+    const interest = document.querySelector("#interest");
+    const tabs = document.querySelectorAll("[data-grade-tab]");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute("aria-selected", String(selected));
+          document.querySelector(`#${item.getAttribute("aria-controls")}`).hidden = !selected;
+        });
+        interest.value = tab.dataset.interest;
+      });
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const question = `[${data.interest}] ${data.concern || ""}`.trim();
+      const payload = {
+        ...data,
+        question,
+        page: location.href,
+        userAgent: navigator.userAgent,
+        submittedAt: new Date().toISOString()
+      };
+      const saved = JSON.parse(localStorage.getItem("readmaster-reservations") || "[]");
+      saved.push(payload);
+      localStorage.setItem("readmaster-reservations", JSON.stringify(saved));
+
+      if (!GAS_ENDPOINT) {
+        message.textContent = "GAS 공개 접근이 아직 열리지 않아 시트 저장은 비활성화되어 있습니다. 입력 내용은 이 브라우저에 백업 저장되었습니다.";
+        message.classList.add("show");
+        return;
+      }
+
+      try {
+        await fetch(GAS_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+        message.textContent = "예약 신청이 접수되었습니다. 담당자가 확인 후 연락드립니다.";
+        message.classList.add("show");
+        form.reset();
+        interest.value = document.querySelector('[aria-selected="true"][data-grade-tab]').dataset.interest;
+      } catch (error) {
+        message.textContent = "전송 중 문제가 생겼습니다. 입력 내용은 이 브라우저에 백업 저장되었습니다. 010-3368-7873으로 문의해 주세요.";
+        message.classList.add("show");
+      }
+    });
+  </script>
+</body>
+</html>
