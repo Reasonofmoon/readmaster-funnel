@@ -298,7 +298,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
   <ul class="nav-links">
     <li><a href="#programs">초·중·고 과정</a></li>
     <li><a href="#level-test">무료 레벨테스트</a></li>
-    <li><a href="#academy-os">Academy OS</a></li>
+    <li id="academyNavItem" hidden><a href="#academy-os">Academy OS</a></li>
     <li><a href="briefing.html">간담회</a></li>
     <li><a href="#booking">상담 예약</a></li>
   </ul>
@@ -425,7 +425,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">상세 커리큘럼</div>
-      <div class="mod-desc">초·중·고 과정, Academy OS, 학년별 논술 샘플 다운로드를 모았습니다.</div>
+      <div class="mod-desc">초·중·고 과정과 학년별 논술 샘플 다운로드를 모았습니다.</div>
       <div class="mod-pills"><a class="pill" href="briefing-curriculum.html">상세 자료 보기</a></div>
     </article>
     <article class="mod-card reveal">
@@ -435,7 +435,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
     </article>
   </div>
 </section>
-<section id="academy-os">
+<section id="academy-os" hidden>
   <div class="sec-head">
     <span class="tag">Academy OS Hub</span>
     <h2 class="sec-title">상담 이후 운영은 Academy OS로 이어집니다</h2>
@@ -786,6 +786,8 @@ const rmAuth = {
     if (nu) nu.style.display = '';
     if (nn) nn.textContent = user.name;
     if (na && user.picture) { na.src = user.picture; na.style.display = ''; }
+    document.getElementById('academy-os')?.removeAttribute('hidden');
+    document.getElementById('academyNavItem')?.removeAttribute('hidden');
     this.hideModal();
   },
 
@@ -798,21 +800,17 @@ const rmAuth = {
     const nu = document.getElementById('navUser2');
     if (ng) ng.style.display = '';
     if (nu) nu.style.display = 'none';
+    document.getElementById('academy-os')?.setAttribute('hidden', '');
+    document.getElementById('academyNavItem')?.setAttribute('hidden', '');
   },
 
   async googleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     try {
-      await fbAuth.signInWithPopup(provider);
+      await fbAuth.signInWithRedirect(provider);
     } catch (err) {
-      if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
-        // Popup blocked → redirect fallback
-        console.log('[RM Auth] Popup blocked, using redirect...');
-        await fbAuth.signInWithRedirect(provider);
-      } else if (err.code !== 'auth/popup-closed-by-user') {
-        console.warn('[RM Auth] Google sign-in error:', err.code);
-        this.showError(this.errorMsg(err.code));
-      }
+      console.warn('[RM Auth] Google redirect error:', err.code);
+      this.showError(this.errorMsg(err.code));
     }
   },
 
