@@ -70,6 +70,17 @@
           "tech": ["Static HTML", "IRT", "CAT", "CEFR"],
           "status": "prototype"
         },
+        "vocaMonster": {
+          "name": "Voca Monster",
+          "shortName": "어휘 학습",
+          "url": "https://reasonofmoon.github.io/voca-monster",
+          "repo": "https://github.com/Reasonofmoon/voca-monster",
+          "icon": "👾",
+          "role": "AI 어휘 분석 · 학습지 생성",
+          "description": "영어 지문에서 어려운 어휘를 추출하고 단어 설명, 테스트, 학습지를 생성하는 학생용 어휘 학습 도구",
+          "tech": ["React", "Vite", "Gemini API", "GitHub Pages"],
+          "status": "active"
+        },
         "parentReport": {
           "name": "학부모 리포트",
           "shortName": "리포트",
