@@ -60,6 +60,16 @@
           "tech": ["Next.js 16", "React 19", "TypeScript", "TailwindCSS 4"],
           "status": "active"
         },
+        "irtReadingLevelTest": {
+          "name": "IRT Reading Level Test",
+          "shortName": "영어 능력테스트",
+          "repo": "https://github.com/Reasonofmoon/IRT-READING-LEVEL-TEST",
+          "icon": "📊",
+          "role": "영어 독해 능력 진단 · CEFR",
+          "description": "IRT 기반 영어 독해 능력 레벨테스트 프로토타입. CEFR A1-C1 판정과 CAT 검증 앱을 포함",
+          "tech": ["Static HTML", "IRT", "CAT", "CEFR"],
+          "status": "prototype"
+        },
         "parentReport": {
           "name": "학부모 리포트",
           "shortName": "리포트",
