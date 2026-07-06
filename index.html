@@ -82,6 +82,15 @@ h1.hero-title em{font-style:italic;color:var(--gold)}
 .mod-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .pill{background:var(--g3);border:1px solid var(--br);border-radius:100px;padding:3px 12px;font-size:.7rem;color:var(--g)}
 .pill-gold{background:rgba(201,136,58,0.1);border-color:rgba(201,136,58,0.2);color:var(--gold)}
+.os-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:980px;margin:0 auto 28px}
+.os-step{background:var(--g);color:#fff;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-raised)}
+.os-step b{display:block;color:var(--gold);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.os-step span{font-size:.9rem;font-weight:700}
+.hub-card{display:flex;flex-direction:column}
+.hub-card .mod-pills{gap:8px}
+.hub-card .pill{padding:6px 13px;font-size:.76rem;text-decoration:none}
+.hub-primary{display:inline-flex;align-items:center;justify-content:center;background:var(--g);color:#fff;border-radius:var(--radius-sm);padding:11px 16px;font-size:.86rem;font-weight:800;text-decoration:none;margin-top:18px}
+@media(max-width:760px){.os-flow{grid-template-columns:1fr}.hub-primary{width:100%}}
 
 #library{background:var(--iv2)}
 .lib-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
@@ -429,47 +438,49 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
 <section id="academy-os">
   <div class="sec-head">
     <span class="tag">Academy OS Hub</span>
-    <h2 class="sec-title">ReadMaster Academy OS 연결 허브</h2>
-    <p class="sec-desc">학부모·학생·교사·원장용 운영 화면은 별도 Academy OS 도메인에서 연결됩니다. 메인 랜딩은 안내와 예약, Academy OS는 실제 운영과 학습 관리의 중심으로 분리했습니다.</p>
+    <h2 class="sec-title">상담 이후 운영은 Academy OS로 이어집니다</h2>
+    <p class="sec-desc">메인 페이지는 학부모 안내와 예약에 집중하고, 학생 관리와 수업 운영은 Academy OS에서 처리합니다. 원천 저장소는 관리 카드에서 바로 확인할 수 있습니다.</p>
+  </div>
+  <div class="os-flow" aria-label="ReadMaster 운영 연결 흐름">
+    <div class="os-step"><b>Step 1</b><span>메인에서 상담 예약</span></div>
+    <div class="os-step"><b>Step 2</b><span>Academy OS에서 운영</span></div>
+    <div class="os-step"><b>Step 3</b><span>GitHub에서 원천 관리</span></div>
   </div>
   <div class="mod-grid">
-    <article class="mod-card">
-      <div class="mod-title">Public 페이지</div>
-      <div class="mod-desc">외부 방문자와 학부모가 바로 접근할 수 있는 공개 화면입니다.</div>
+    <article class="mod-card hub-card">
+      <div class="mod-title">학부모 공개 동선</div>
+      <div class="mod-desc">처음 방문한 학부모가 설명을 읽고, 테스트와 상담 예약으로 이동하는 경로입니다.</div>
       <div class="mod-pills">
-        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app" target="_blank" rel="noopener">메인 랜딩</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/login" target="_blank" rel="noopener">로그인</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/parent" target="_blank" rel="noopener">학부모 포털</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/rmli-test-v2" target="_blank" rel="noopener">RMLI 테스트</a>
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/rmli-test-v2" target="_blank" rel="noopener">문해력 테스트</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/curriculum" target="_blank" rel="noopener">커리큘럼</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/funnel" target="_blank" rel="noopener">마케팅 퍼널</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/parent" target="_blank" rel="noopener">학부모 포털</a>
       </div>
+      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약으로 이동</a>
     </article>
-    <article class="mod-card">
-      <div class="mod-title">Auth 필요 페이지</div>
-      <div class="mod-desc">로그인 후 학생 관리, 출결, 과제, 글쓰기 지도, 도서관, 수납과 리포트를 운영합니다.</div>
+    <article class="mod-card hub-card">
+      <div class="mod-title">원장·교사 운영 동선</div>
+      <div class="mod-desc">등록 이후 학생, 출결, 과제, 도서관, 수납, 리포트를 한 도메인에서 관리합니다.</div>
       <div class="mod-pills">
-        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">대시보드</a>
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">운영 대시보드</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/student-register" target="_blank" rel="noopener">학생 관리</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/student-detail" target="_blank" rel="noopener">학생 상세</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/attendance" target="_blank" rel="noopener">출결 관리</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/workbook" target="_blank" rel="noopener">과제·워크북</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/workbook" target="_blank" rel="noopener">글쓰기 지도</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/library" target="_blank" rel="noopener">도서관</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/payment" target="_blank" rel="noopener">수납 관리</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/report" target="_blank" rel="noopener">리포트</a>
         <a class="pill" href="https://readmaster-franchise.vercel.app/settings" target="_blank" rel="noopener">설정</a>
       </div>
+      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">운영 대시보드 열기</a>
     </article>
-    <article class="mod-card">
-      <div class="mod-title">관리/API</div>
-      <div class="mod-desc">초기 관리자 설정, 운영 API, GitHub 저장소를 한 곳에서 확인합니다.</div>
+    <article class="mod-card hub-card">
+      <div class="mod-title">관리자·개발자 동선</div>
+      <div class="mod-desc">초기 설정과 원천 저장소를 분리해, 운영자와 개발자가 같은 구조를 공유합니다.</div>
       <div class="mod-pills">
         <a class="pill" href="https://readmaster-franchise.vercel.app/setup-admin" target="_blank" rel="noopener">초기 설정</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/setup-admin" target="_blank" rel="noopener">운영 API</a>
-        <a class="pill pill-gold" href="https://github.com/Reasonofmoon/readmaster-hq" target="_blank" rel="noopener">GitHub</a>
+        <a class="pill pill-gold" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener">GitHub</a>
       </div>
+      <a class="hub-primary" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener">readmaster-hq 보기</a>
     </article>
   </div>
 </section>
