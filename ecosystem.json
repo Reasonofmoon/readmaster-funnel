@@ -60,6 +60,16 @@
           "tech": ["Next.js 16", "React 19", "TypeScript", "TailwindCSS 4"],
           "status": "active"
         },
+        "knot": {
+          "name": "Knot",
+          "shortName": "학습 노트",
+          "repo": "https://github.com/Reasonofmoon/knot",
+          "icon": "🪢",
+          "role": "재원생 학습 노트 · 개인 지식 관리",
+          "description": "재원생이 수업 노트, 복습 기록, 플래시카드, AI 튜터, 학습 맵을 관리하는 개인 학습 노트앱",
+          "tech": ["Next.js", "Firebase", "Gemini API", "Obsidian", "Firestore"],
+          "status": "linked"
+        },
         "irtReadingLevelTest": {
           "name": "IRT Reading Level Test",
           "shortName": "영어 능력테스트",
