@@ -289,6 +289,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
   <ul class="nav-links">
     <li><a href="#programs">초·중·고 과정</a></li>
     <li><a href="#level-test">무료 레벨테스트</a></li>
+    <li><a href="#academy-os">Academy OS</a></li>
     <li><a href="briefing.html">간담회</a></li>
     <li><a href="#booking">상담 예약</a></li>
   </ul>
@@ -422,6 +423,53 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
       <div class="mod-title">표준 커리큘럼 문서</div>
       <div class="mod-desc">프레임워크와 운영 기준을 길게 확인해야 하는 분을 위한 문서형 페이지입니다.</div>
       <div class="mod-pills"><a class="pill" href="curriculum.html">문서 보기</a></div>
+    </article>
+  </div>
+</section>
+<section id="academy-os">
+  <div class="sec-head">
+    <span class="tag">Academy OS Hub</span>
+    <h2 class="sec-title">ReadMaster Academy OS 연결 허브</h2>
+    <p class="sec-desc">학부모·학생·교사·원장용 운영 화면은 별도 Academy OS 도메인에서 연결됩니다. 메인 랜딩은 안내와 예약, Academy OS는 실제 운영과 학습 관리의 중심으로 분리했습니다.</p>
+  </div>
+  <div class="mod-grid">
+    <article class="mod-card">
+      <div class="mod-title">Public 페이지</div>
+      <div class="mod-desc">외부 방문자와 학부모가 바로 접근할 수 있는 공개 화면입니다.</div>
+      <div class="mod-pills">
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app" target="_blank" rel="noopener">메인 랜딩</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/login" target="_blank" rel="noopener">로그인</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/parent" target="_blank" rel="noopener">학부모 포털</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/rmli-test-v2" target="_blank" rel="noopener">RMLI 테스트</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/curriculum" target="_blank" rel="noopener">커리큘럼</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/funnel" target="_blank" rel="noopener">마케팅 퍼널</a>
+      </div>
+    </article>
+    <article class="mod-card">
+      <div class="mod-title">Auth 필요 페이지</div>
+      <div class="mod-desc">로그인 후 학생 관리, 출결, 과제, 첨삭, 도서관, 수납과 리포트를 운영합니다.</div>
+      <div class="mod-pills">
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">대시보드</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/student-register" target="_blank" rel="noopener">학생 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/student-detail" target="_blank" rel="noopener">학생 상세</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/attendance" target="_blank" rel="noopener">출결 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/workbook" target="_blank" rel="noopener">과제·워크북</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/ai-scoring" target="_blank" rel="noopener">AI 첨삭</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/library" target="_blank" rel="noopener">도서관</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/payment" target="_blank" rel="noopener">수납 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/report" target="_blank" rel="noopener">리포트</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/settings" target="_blank" rel="noopener">설정</a>
+      </div>
+    </article>
+    <article class="mod-card">
+      <div class="mod-title">관리/API</div>
+      <div class="mod-desc">초기 관리자 설정, AI 채점 API, GitHub 저장소를 한 곳에서 확인합니다.</div>
+      <div class="mod-pills">
+        <a class="pill" href="https://readmaster-franchise.vercel.app/setup-admin" target="_blank" rel="noopener">초기 설정</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/api/ai-score" target="_blank" rel="noopener">AI 채점 API</a>
+        <a class="pill pill-gold" href="https://github.com/Reasonofmoon/readmaster-hq" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </article>
   </div>
 </section>
@@ -568,36 +616,37 @@ window.addEventListener('scroll',()=>{
 <script>
 
 // ─── Role-Based Menu Config ───
+const ACADEMY_OS_URL = 'https://readmaster-franchise.vercel.app';
 const ROLE_MENUS = {
   student: [
     { label: 'MY', href: 'dashboard.html', gold: true },
-    { label: '학습하기', href: 'https://read-master-academy.vercel.app', ext: true },
-    { label: '레벨테스트', href: '#level-test' },
-    { label: '상세자료', href: 'briefing-curriculum.html' },
+    { label: '학습하기', href: `${ACADEMY_OS_URL}/academy-os`, ext: true },
+    { label: '레벨테스트', href: `${ACADEMY_OS_URL}/rmli-test-v2`, ext: true },
+    { label: '도서관', href: `${ACADEMY_OS_URL}/library`, ext: true },
   ],
   parent: [
     { label: 'MY', href: 'dashboard.html', gold: true },
-    { label: '자녀현황', href: 'https://read-master-academy.vercel.app/parent', ext: true },
-    { label: '리포트', href: 'https://readmaster-parent-report.vercel.app', ext: true },
-    { label: '상담예약', href: '#booking' },
+    { label: '자녀현황', href: `${ACADEMY_OS_URL}/parent`, ext: true },
+    { label: '리포트', href: `${ACADEMY_OS_URL}/report`, ext: true },
+    { label: '상담예약', href: `${ACADEMY_OS_URL}/book`, ext: true },
   ],
   teacher: [
     { label: 'MY', href: 'dashboard.html', gold: true },
-    { label: '반관리', href: 'https://read-master-academy.vercel.app/teacher', ext: true },
-    { label: 'AI 첨삭', href: 'https://oet-korea.com/writing', ext: true },
-    { label: '학생관리', href: 'https://read-master-academy.vercel.app/students', ext: true },
+    { label: '반관리', href: `${ACADEMY_OS_URL}/academy-os`, ext: true },
+    { label: 'AI 첨삭', href: `${ACADEMY_OS_URL}/ai-scoring`, ext: true },
+    { label: '학생관리', href: `${ACADEMY_OS_URL}/student-register`, ext: true },
   ],
   director: [
     { label: 'MY', href: 'dashboard.html', gold: true },
-    { label: '강사관리', href: 'https://readmaster-hq.vercel.app/staff', ext: true },
-    { label: 'CRM', href: 'https://readmaster-hq.vercel.app/crm', ext: true },
-    { label: '매출', href: 'https://readmaster-hq.vercel.app/revenue', ext: true },
+    { label: '운영대시보드', href: `${ACADEMY_OS_URL}/academy-os`, ext: true },
+    { label: '상담예약', href: `${ACADEMY_OS_URL}/book`, ext: true },
+    { label: '수납', href: `${ACADEMY_OS_URL}/payment`, ext: true },
   ],
   franchise_admin: [
     { label: 'MY', href: 'dashboard.html', gold: true },
-    { label: '지점관리', href: 'https://readmaster-hq.vercel.app/franchise', ext: true },
-    { label: '비교분석', href: 'https://readmaster-hq.vercel.app/analytics', ext: true },
-    { label: '전체설정', href: 'https://readmaster-hq.vercel.app/settings', ext: true },
+    { label: '지점관리', href: `${ACADEMY_OS_URL}/academy-os`, ext: true },
+    { label: '리포트', href: `${ACADEMY_OS_URL}/report`, ext: true },
+    { label: '전체설정', href: `${ACADEMY_OS_URL}/settings`, ext: true },
   ],
 };
 
