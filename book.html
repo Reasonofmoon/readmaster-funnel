@@ -6,9 +6,9 @@
 <title>리드마스터 설명회 상담 예약</title>
 <meta name="description" content="리드마스터 영어 학원 설명회 상담 예약 — 간편 접수"/>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#062016"/>
+<meta name="theme-color" content="#122E1C"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css"/>
 <style>
 /* ===== book.html — RM Theme Override ===== */
@@ -19,7 +19,7 @@
   --card:var(--w);
   --text:var(--ch);
   --muted:var(--dim);
-  --shadow:0 4px 24px rgba(6,32,22,0.10);
+  --shadow:var(--shadow-raised);
 }
 body{
   min-height:100vh;
@@ -44,7 +44,7 @@ body{
   bottom:-1px;left:0;right:0;
   height:30px;
   background:var(--cream);
-  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  border-radius:var(--radius-xl) var(--radius-xl) 0 0;
 }
 /* RM Seal */
 .rm-seal{width:72px;height:72px;display:block;margin:0 auto 14px}
@@ -110,12 +110,12 @@ body{
 .form-group select{
   width:100%;
   padding:12px 14px;
-  border:1.5px solid #e2e8f0;
-  border-radius:10px;
+  border:1px solid var(--border-input);
+  border-radius:var(--radius-xs);
   font-size:1rem;
   font-family:inherit;
   color:var(--text);
-  background:#f8faf8;
+  background:var(--w);
   transition:border 0.2s,box-shadow 0.2s;
   -webkit-appearance:none;
   appearance:none;
@@ -129,12 +129,12 @@ body{
 .form-group input:focus,
 .form-group select:focus{
   outline:none;
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(6,32,22,0.06);
-  background:#fff;
+  border-color:var(--border-focused);
+  box-shadow:0 0 0 2px rgba(201,162,39,0.18);
+  background:var(--w);
 }
 .form-group input::placeholder{
-  color:#cbd5e1;
+  color:var(--text-subtlest);
 }
 
 /* ── Sessions ── */
@@ -148,16 +148,16 @@ body{
   align-items:center;
   gap:12px;
   padding:12px 14px;
-  border:1.5px solid #e2e8f0;
-  border-radius:10px;
+  border:1px solid var(--border-input);
+  border-radius:var(--radius-sm);
   cursor:pointer;
   transition:all 0.25s ease;
-  background:#f8faf8;
+  background:var(--w);
   position:relative;
 }
 .session-option:hover{
   border-color:var(--green-light);
-  background:#f0f5f0;
+  background:var(--surface-subtle-hover);
 }
 .session-option input[type="radio"]{
   display:none;
@@ -166,11 +166,11 @@ body{
 .check-circle{
   width:24px;height:24px;
   min-width:24px;
-  border:2px solid #cbd5e1;
+  border:2px solid var(--border-bold);
   border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   transition:all 0.25s ease;
-  background:#fff;
+  background:var(--w);
 }
 .check-circle svg{
   width:14px;height:14px;
@@ -182,9 +182,9 @@ body{
 /* Checked state */
 .session-option:has(input:checked){
   border-color:var(--green);
-  background:linear-gradient(135deg,#f0f5f0,#e8f0e8);
+  background:var(--brand-subtle);
   border-left:4px solid var(--gold);
-  box-shadow:0 2px 12px rgba(6,32,22,0.06);
+  box-shadow:var(--shadow-raised);
 }
 .session-option:has(input:checked) .check-circle{
   background:var(--green);
@@ -234,9 +234,9 @@ body{
   width:100%;
   padding:14px;
   background:var(--green);
-  color:var(--gold);
+  color:var(--text-inverse);
   border:none;
-  border-radius:100px;
+  border-radius:var(--radius-sm);
   font-size:1.05rem;
   font-weight:700;
   font-family:inherit;
@@ -249,14 +249,14 @@ body{
 .submit-btn:hover{
   background:var(--green-light);
   transform:translateY(-1px);
-  box-shadow:0 6px 20px rgba(6,32,22,0.25);
+  box-shadow:var(--shadow-raised);
 }
 .submit-btn:active{transform:translateY(0)}
 .submit-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none}
 .submit-btn .spinner{
   display:none;
   width:20px;height:20px;
-  border:3px solid rgba(201,169,77,0.3);
+  border:3px solid rgba(255,255,255,0.35);
   border-top-color:var(--gold);
   border-radius:50%;
   animation:spin 0.6s linear infinite;

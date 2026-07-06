@@ -5,9 +5,9 @@
 <title>READ MASTER ACADEMY — 문해력 전문 교육원 · 부천 옥길동 본원 · 춘천 우두동점</title>
 <meta name="description" content="읽는 힘이 모든 학습의 시작입니다. AI 기반 문해력 레벨테스트 · LMS · 디지털 도서관 · 상담 예약."/>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#062016"/>
+<meta name="theme-color" content="#122E1C"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="shared.css"/>
 <style>
 /* ===== index.html — page-specific styles ===== */
@@ -21,22 +21,22 @@ h1.hero-title{font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.12;color:var(--g)
 h1.hero-title em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:1rem;color:var(--dim);max-width:480px;margin-bottom:36px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-g{background:var(--g);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:10px;padding:15px 34px;cursor:pointer;transition:background .2s}
+.btn-g{background:var(--g);color:var(--text-inverse);font-size:1rem;font-weight:700;border:none;border-radius:var(--radius-sm);padding:15px 34px;cursor:pointer;transition:background .2s}
 .btn-g:hover{background:var(--g2)}
-.btn-out{background:transparent;color:var(--g);font-size:1rem;font-weight:500;border:2px solid var(--br);border-radius:10px;padding:15px 34px;cursor:pointer;transition:border-color .2s,color .2s}
+.btn-out{background:transparent;color:var(--g);font-size:1rem;font-weight:500;border:1px solid var(--br);border-radius:var(--radius-sm);padding:15px 34px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
 .btn-out:hover{border-color:var(--g);color:var(--g)}
 .hero-stats{display:flex;gap:36px;margin-top:52px;flex-wrap:wrap}
 .stat{text-align:left}
 .stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--g)}
 .stat-lbl{font-size:.8rem;color:var(--dim)}
 
-.hero-card{background:var(--g);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(26,58,46,0.25)}
-.hc-top{background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;margin-bottom:16px}
+.hero-card{background:var(--g);border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-overlay)}
+.hc-top{background:rgba(255,255,255,0.08);border-radius:var(--radius);padding:16px;margin-bottom:16px}
 .hc-label{font-size:.75rem;color:rgba(255,255,255,0.5);margin-bottom:4px}
 .hc-val{font-family:'Inter',sans-serif;font-size:1.4rem;font-weight:600;color:#fff}
-.hc-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.7rem;font-weight:700;border-radius:100px;padding:3px 10px;margin-top:6px}
+.hc-badge{display:inline-block;background:var(--gold-subtle);color:var(--gold-hover);font-size:.7rem;font-weight:700;border-radius:100px;padding:3px 10px;margin-top:6px}
 .hc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-.hc-mini{background:rgba(255,255,255,0.06);border-radius:10px;padding:12px}
+.hc-mini{background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:12px}
 .hc-mini-lbl{font-size:.7rem;color:rgba(255,255,255,0.45);margin-bottom:3px}
 .hc-mini-val{font-size:1rem;font-weight:600;color:#fff}
 .hc-progress{display:flex;flex-direction:column;gap:8px}
@@ -72,8 +72,8 @@ h1.hero-title em{font-style:italic;color:var(--gold)}
 
 #modules{background:var(--iv)}
 .mod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
-.mod-card{background:var(--w);border:1px solid var(--br);border-radius:18px;padding:30px;transition:border-color .25s,transform .25s,box-shadow .25s}
-.mod-card:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:0 12px 36px rgba(26,58,46,0.1)}
+.mod-card{background:var(--w);border:1px solid var(--br);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-raised);transition:border-color .25s,transform .25s,box-shadow .25s}
+.mod-card:hover{border-color:var(--g);transform:translateY(-3px);box-shadow:var(--shadow-overlay)}
 .mod-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px}
 .mi-g{background:var(--g3)}
 .mi-gd{background:rgba(201,136,58,0.12)}
@@ -122,23 +122,23 @@ h1.hero-title em{font-style:italic;color:var(--gold)}
 .bk-step-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--g);color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .bk-step-body h4{font-size:.95rem;font-weight:700;color:var(--g);margin-bottom:3px}
 .bk-step-body p{font-size:.82rem;color:var(--dim)}
-.form-card{background:var(--w);border:1px solid var(--br);border-radius:20px;padding:36px;box-shadow:0 8px 40px rgba(26,58,46,0.08)}
+.form-card{background:var(--w);border:1px solid var(--br);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-raised)}
 .form-steps{display:flex;gap:0;margin-bottom:28px}
 .fs{flex:1;text-align:center;font-size:.72rem;font-weight:600;color:var(--dim);padding:8px 4px;border-bottom:2px solid var(--g3);transition:all .2s}
 .fs.active{color:var(--g);border-bottom-color:var(--g)}
 label{display:block;font-size:.82rem;font-weight:600;color:var(--g);margin-bottom:6px}
-input,select,textarea{width:100%;border:1px solid var(--br);border-radius:10px;padding:12px 16px;font-size:.9rem;font-family:'Noto Sans KR',sans-serif;color:var(--ch);background:var(--iv2);outline:none;transition:border-color .2s;margin-bottom:20px}
-input:focus,select:focus,textarea:focus{border-color:var(--g)}
+input,select,textarea{width:100%;border:1px solid var(--border-input);border-radius:var(--radius-xs);padding:12px 16px;font-size:.9rem;font-family:var(--font-body);color:var(--ch);background:var(--w);outline:none;transition:border-color .2s,box-shadow .2s;margin-bottom:20px}
+input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-shadow:0 0 0 2px rgba(201,162,39,.18)}
 .radio-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
-.radio-opt{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--br);border-radius:10px;cursor:pointer;font-size:.82rem;color:var(--dim);transition:all .2s}
+.radio-opt{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--br);border-radius:var(--radius-sm);cursor:pointer;font-size:.82rem;color:var(--dim);transition:all .2s}
 .radio-opt:hover,.radio-opt.sel{border-color:var(--g);background:var(--g3);color:var(--g)}
-.btn-submit{width:100%;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;border:none;border-radius:12px;padding:16px;cursor:pointer;transition:background .2s}
-.btn-submit:hover{background:var(--gold2)}
+.btn-submit{width:100%;background:var(--g);color:var(--text-inverse);font-size:1rem;font-weight:700;border:none;border-radius:var(--radius-sm);padding:16px;cursor:pointer;transition:background .2s}
+.btn-submit:hover{background:var(--g2)}
 .form-trust{text-align:center;font-size:.75rem;color:var(--dim);margin-top:14px}
 
 #testimonials{background:var(--iv2)}
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-.testi-card{background:var(--w);border:1px solid var(--br);border-radius:18px;padding:26px;transition:border-color .25s}
+.testi-card{background:var(--w);border:1px solid var(--br);border-radius:var(--radius);padding:26px;transition:border-color .25s}
 .testi-card:hover{border-color:var(--g)}
 .testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:12px}
 .testi-q{font-size:.9rem;color:var(--dim);line-height:1.75;font-style:italic;margin-bottom:18px}
@@ -169,12 +169,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
   min-height:clamp(200px,28vw,360px);
 }
 .slide-1{background:linear-gradient(135deg,var(--g) 0%,#0d3526 100%)}
-.slide-2{background:linear-gradient(135deg,#b8970b 0%,#c9a94d 60%,#e0c870 100%)}
-.slide-3{background:linear-gradient(135deg,var(--g) 0%,#1a3a2a 100%)}
+.slide-2{background:linear-gradient(135deg,#b8970b 0%,#C9A227 60%,#e0c870 100%)}
+.slide-3{background:linear-gradient(135deg,var(--g) 0%,#122E1C 100%)}
 .slide-4{background:linear-gradient(135deg,var(--burgundy) 0%,#5a1e1e 100%)}
 .sl-label{display:inline-block;font-size:clamp(.55rem,.9vw,.7rem);font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:clamp(8px,1.5vw,14px)}
 .sl-1-label{background:var(--gold);color:var(--g)}
-.sl-2-label{background:var(--g);color:var(--gold)}
+.sl-2-label{background:var(--g);color:var(--text-inverse)}
 .sl-3-label{background:rgba(255,255,255,.15);color:rgba(255,255,255,.85)}
 .sl-4-label{background:var(--gold);color:var(--g)}
 .sl-heading{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.15;margin:0 0 clamp(6px,1vw,12px);white-space:normal;word-break:keep-all}
@@ -236,7 +236,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
     <span class="eco-sep">|</span>
     <a href="briefing.html">간담회 상세</a>
     <span class="eco-sep">|</span>
-    <a href="#" onclick="rmAuth.showModal();return false;" style="background:rgba(201,169,77,0.15);color:#c9a94d;border-radius:100px;padding:3px 14px;font-weight:700">로그인</a>
+    <a href="#" onclick="rmAuth.showModal();return false;" style="background:rgba(201,169,77,0.15);color:#C9A227;border-radius:100px;padding:3px 14px;font-weight:700">로그인</a>
   </span>
   <!-- Logged-in state (hidden by default) -->
   <span id="ecoUser" style="display:none">
@@ -381,7 +381,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
   </div>
   <div class="mod-grid">
     <article class="mod-card reveal">
-      <div class="mod-icon" style="background:#e8f0ec">🌱</div>
+      <div class="mod-icon" style="background:#E8F0EA">🌱</div>
       <div class="mod-title">초등: 원서읽기와 문해력 기초</div>
       <div class="mod-desc">문해력, 파닉스, 리더스, 챕터북 전환, 국어논술과 영문법을 함께 설계합니다.</div>
     </article>
@@ -445,7 +445,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--g)}
         <div class="mod-desc">초등·중등·고등 과정 중 어떤 루트가 맞는지 상담에서 정리합니다.</div>
       </article>
     </div>
-    <a href="#booking" class="btn-g" style="background:var(--gold);color:var(--g);font-size:1rem;padding:16px 40px;border-radius:10px;display:inline-block;font-weight:800">무료 레벨테스트 예약 →</a>
+    <a href="#booking" class="btn-g" style="font-size:1rem;padding:16px 40px;display:inline-block;font-weight:800">무료 레벨테스트 예약 →</a>
   </div>
 </section>
 <section id="booking">

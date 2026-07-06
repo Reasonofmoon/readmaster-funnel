@@ -6,29 +6,29 @@
 <title>리드마스터 학부모 간담회 — 7/15(수) 부천 옥길동 · 무료 레벨테스트 + 특별 선물</title>
 <meta name="description" content="리드마스터 부천 옥길동 학부모 간담회(7월 15일 수)에 초대합니다. 참석자 자녀 무료 레벨테스트 + 특별 선물 증정. 영어·국어 문해력 + AI로 국내외 명문대 가는 법."/>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#062016"/>
+<meta name="theme-color" content="#122E1C"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="shared.css"/>
 <style>
 /* ===== funnel.html — RM Theme Override ===== */
 :root{
   /* Remap funnel-specific vars to RM brand */
   --blue:var(--g);
-  --blue-deep:#041a0e;
+  --blue-deep:var(--brand-pressed);
   --blue-light:var(--g2);
-  --gold:#c9a94d;
+  --gold:#C9A227;
   --gold-dark:var(--gold2);
-  --gold-light:#d9bd6a;
+  --gold-light:var(--gold-subtler);
   --white:var(--w);
   --gray-50:var(--iv);
   --gray-100:var(--iv2);
   --gray-200:var(--br);
   --gray-500:var(--dim);
   --gray-700:var(--ch);
-  --gray-900:#111827;
-  --shadow-card:0 8px 32px rgba(6,32,22,0.10);
-  --shadow-glow:0 0 40px rgba(201,169,77,0.25);
+  --gray-900:var(--text);
+  --shadow-card:var(--shadow-raised);
+  --shadow-glow:var(--shadow-overlay);
 }
 body{background:var(--iv)}
 
@@ -42,7 +42,7 @@ body{background:var(--iv)}
   display:block;width:100%;text-align:center;
   background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
   color:var(--blue-deep);font-weight:800;font-size:1.05rem;
-  padding:16px;border-radius:12px;
+  padding:16px;border-radius:var(--radius-sm);
   box-shadow:var(--shadow-glow);
   transition:transform .2s,box-shadow .2s;
 }
@@ -61,18 +61,18 @@ body{background:var(--iv)}
 .hero::before{
   content:'';position:absolute;top:-80px;right:-80px;
   width:300px;height:300px;border-radius:50%;
-  background:radial-gradient(circle,rgba(251,191,36,0.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(201,162,39,0.12) 0%,transparent 70%);
   pointer-events:none;
 }
 .hero::after{
   content:'';position:absolute;bottom:-60px;left:-60px;
   width:240px;height:240px;border-radius:50%;
-  background:radial-gradient(circle,rgba(251,191,36,0.08) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(201,162,39,0.08) 0%,transparent 70%);
   pointer-events:none;
 }
 .hero-badge{
   display:inline-flex;align-items:center;gap:6px;
-  background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);
+  background:var(--gold-subtle);border:1px solid var(--gold);
   border-radius:100px;padding:6px 16px;font-size:.75rem;font-weight:600;
   color:var(--gold);margin-bottom:20px;
   animation:pulse-badge 2s ease-in-out infinite;
@@ -96,8 +96,8 @@ body{background:var(--iv)}
   background:linear-gradient(135deg,var(--gold) 0%,var(--gold-dark) 100%);
   color:var(--blue-deep);
   font-weight:800;font-size:clamp(1rem,3vw,1.3rem);
-  padding:16px 28px;border-radius:14px;
-  box-shadow:0 8px 32px rgba(251,191,36,0.3);
+  padding:16px 28px;border-radius:var(--radius);
+  box-shadow:var(--shadow-raised);
   margin-bottom:16px;
   animation:float-card 3s ease-in-out infinite;
 }
@@ -278,7 +278,7 @@ body{background:var(--iv)}
 }
 .form-wrap{
   max-width:480px;margin:0 auto;
-  background:var(--white);border-radius:20px;
+  background:var(--white);border-radius:var(--radius-lg);
   padding:36px 28px;
   box-shadow:0 20px 60px rgba(15,33,103,0.3);
   position:relative;z-index:2;
@@ -304,7 +304,7 @@ body{background:var(--iv)}
 .form-group label .required{color:#dc2626;margin-left:2px}
 .form-group input,.form-group select{
   width:100%;border:1.5px solid var(--gray-200);
-  border-radius:10px;padding:13px 16px;
+  border-radius:var(--radius-sm);padding:13px 16px;
   font-size:.92rem;font-family:'Noto Sans KR',sans-serif;
   color:var(--gray-900);background:var(--gray-50);
   outline:none;transition:border-color .2s,background .2s;
@@ -329,7 +329,7 @@ body{background:var(--iv)}
 .schedule-select label{
   display:flex;align-items:center;gap:6px;
   padding:12px 14px;border:1.5px solid var(--gray-200);
-  border-radius:10px;cursor:pointer;
+  border-radius:var(--radius-sm);cursor:pointer;
   font-size:.78rem;color:var(--gray-700);font-weight:500;
   transition:all .2s;background:var(--gray-50);
 }
@@ -438,22 +438,22 @@ footer .footer-brand{
 </section>
 
 <!-- ===== 간담회 KEY VISUAL (video) ===== -->
-<section style="position:relative;overflow:hidden;background:#062016">
+<section style="position:relative;overflow:hidden;background:#122E1C">
   <video autoplay muted loop playsinline preload="metadata" poster="icons/icon-512.png"
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45">
     <source src="assets/promo_motion.mp4" type="video/mp4"/>
   </video>
-  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,32,22,.78),rgba(6,32,22,.93))"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,46,28,.78),rgba(18,46,28,.93))"></div>
   <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;padding:56px 20px;text-align:center;color:#fff">
-    <span style="display:inline-block;background:#c9a94d;color:#062016;font-weight:800;font-size:.7rem;letter-spacing:.12em;padding:5px 16px;border-radius:100px">PARENTS BRIEFING</span>
-    <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.25;margin:16px 0 6px">7월 15일 <span style="color:#c9a94d">(수)</span> 학부모 간담회</div>
+    <span style="display:inline-block;background:#C9A227;color:#122E1C;font-weight:800;font-size:.7rem;letter-spacing:.12em;padding:5px 16px;border-radius:100px">PARENTS BRIEFING</span>
+    <div style="font-family:'Noto Serif KR',serif;font-weight:900;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.25;margin:16px 0 6px">7월 15일 <span style="color:#C9A227">(수)</span> 학부모 간담회</div>
     <div style="font-size:clamp(1rem,2.5vw,1.2rem);opacity:.9">부천 옥길동 본원 · 통합 1회 · 소규모 운영</div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-size:.82rem">
       <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:7px 16px">🕐 [오후 □시 — 확정 후 안내]</span>
       <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:7px 16px">🎁 자녀 무료 레벨테스트</span>
       <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:7px 16px">👥 선착순 20명</span>
     </div>
-    <a href="#apply" style="display:inline-block;margin-top:24px;background:linear-gradient(135deg,#c9a94d,#b8970b);color:#062016;font-weight:800;font-size:1.02rem;padding:15px 38px;border-radius:12px;box-shadow:0 8px 32px rgba(201,169,77,.35)">간담회 예약하기 →</a>
+    <a href="#apply" style="display:inline-block;margin-top:24px;background:linear-gradient(135deg,#C9A227,#b8970b);color:#122E1C;font-weight:800;font-size:1.02rem;padding:15px 38px;border-radius:12px;box-shadow:0 8px 32px rgba(201,169,77,.35)">간담회 예약하기 →</a>
     <a href="briefing.html#levels" style="display:inline-block;margin-top:12px;margin-left:8px;color:#fff;font-weight:800;text-decoration:underline;text-underline-offset:4px">상세페이지 보기</a>
   </div>
 </section>

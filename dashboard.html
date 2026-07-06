@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>ReadMaster Dashboard</title>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#062016"/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<meta name="theme-color" content="#122E1C"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="shared.css"/>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
@@ -36,7 +36,7 @@ body{min-height:100vh}
 .login-required{display:none;text-align:center;padding:120px 24px;min-height:80vh}
 .login-required h2{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--g);margin-bottom:8px}
 .login-required p{color:var(--dim);margin-bottom:24px}
-.login-required a{background:var(--g);color:var(--gold);font-size:.88rem;font-weight:700;padding:14px 36px;border-radius:10px;text-decoration:none;display:inline-block;transition:opacity .2s}
+.login-required a{background:var(--g);color:var(--text-inverse);font-size:.88rem;font-weight:700;padding:14px 36px;border-radius:var(--radius-sm);text-decoration:none;display:inline-block;transition:opacity .2s}
 
 /* ===== Dashboard Layout ===== */
 .dash{display:none;max-width:1200px;margin:0 auto;padding:32px 24px 60px}
@@ -50,7 +50,7 @@ body{min-height:100vh}
 
 /* ===== Cards ===== */
 .card{background:var(--w);border:1px solid var(--br);border-radius:16px;padding:24px;transition:all .25s;position:relative;overflow:hidden}
-.card:hover{border-color:var(--gold);box-shadow:0 8px 32px rgba(6,32,22,0.06);transform:translateY(-2px)}
+.card:hover{border-color:var(--gold);box-shadow:var(--shadow-raised);transform:translateY(-2px)}
 .card-icon{font-size:1.6rem;margin-bottom:12px}
 .card-title{font-weight:700;font-size:.95rem;color:var(--g);margin-bottom:6px}
 .card-desc{font-size:.8rem;color:var(--dim);line-height:1.6;margin-bottom:16px}
@@ -67,9 +67,9 @@ body{min-height:100vh}
 
 /* ===== Quick Actions ===== */
 .quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
-.qa-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;font-size:.8rem;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid var(--br);background:var(--w);color:var(--ch)}
+.qa-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:var(--radius-sm);font-size:.8rem;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid var(--br);background:var(--w);color:var(--ch)}
 .qa-btn:hover{border-color:var(--gold);background:rgba(201,169,77,0.06)}
-.qa-btn-primary{background:var(--g);color:var(--gold);border-color:var(--g)}
+.qa-btn-primary{background:var(--g);color:var(--text-inverse);border-color:var(--g)}
 .qa-btn-primary:hover{background:var(--g2)}
 
 /* ===== Section ===== */
