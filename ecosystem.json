@@ -153,6 +153,16 @@
           "description": "학생 정보와 평가 영역을 입력해 영어 문제를 생성하고 채점 리포트를 출력하는 교사용 진단 앱",
           "tech": ["Next.js", "Gemini API", "Zod", "TailwindCSS"],
           "status": "linked"
+        },
+        "csatQuestionEval": {
+          "name": "CSAT Question Eval",
+          "shortName": "수능 문항 분석",
+          "repo": "https://github.com/Reasonofmoon/csat-question-eval",
+          "icon": "🎓",
+          "role": "수능 영어 문항 분석 · 교사용 콘텐츠 검수",
+          "description": "수능 영어 문항을 이원목적분류표, 블룸 분류학, 선택지 설계, 타당도와 변별도 기준으로 분석하는 교사용 도구",
+          "tech": ["Static HTML", "TypeScript", "Claude API", "Gemini API", "OpenAI API"],
+          "status": "linked"
         }
       }
     }
