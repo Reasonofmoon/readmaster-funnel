@@ -112,6 +112,16 @@
           "description": "9-에이전트 오케스트레이션, Academy OS 대시보드, 프랜차이즈 전 영역 관리 백오피스",
           "tech": ["Static HTML/JS", "Paperclip Agent", "Google Apps Script", "9 AI Agents"],
           "status": "active"
+        },
+        "gradeReportGenerator": {
+          "name": "Grade Report Generator",
+          "shortName": "성적 리포트",
+          "repo": "https://github.com/Reasonofmoon/grade-report-generator",
+          "icon": "📈",
+          "role": "성적 리포트 생성 · Academy OS 도구",
+          "description": "Academy OS에서 교사와 본부가 성적 리포트 제작 흐름에 참고하는 생성 도구",
+          "tech": ["Report Automation"],
+          "status": "linked"
         }
       }
     }
