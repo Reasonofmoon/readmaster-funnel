@@ -713,17 +713,15 @@ document.getElementById('orientationForm').addEventListener('submit', function(e
   if(runtime.endpoint){
     fetch(runtime.endpoint, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      mode: 'no-cors',
+      headers: {'Content-Type':'text/plain;charset=utf-8'},
       body: JSON.stringify(formData)
     })
-    .then(r => {
-      if(!r.ok) throw new Error('Server error');
-      showSuccess();
-    })
+    .then(showSuccess)
     .catch(err => {
       console.error('Submit error:', err);
-      // Still show success for UX, log the error
-      showSuccess();
+      btn.textContent = '예약 신청에 실패했습니다. 다시 시도해 주세요.';
+      btn.disabled = false;
     });
   } else {
     console.log('📋 설명회 예약 데이터:', formData);
