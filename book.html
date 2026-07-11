@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>리드마스터 설명회 상담 예약</title>
-<meta name="description" content="리드마스터 영어 학원 설명회 상담 예약 — 간편 접수"/>
+<title>리드마스터 교육상담 예약</title>
+<meta name="description" content="리드마스터 영어 학원 교육상담 예약 — 수시 신청"/>
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#122E1C"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -334,7 +334,7 @@ body{
   <img class="rm-seal" src="assets/readmaster-logo.svg" alt="Read Master">
   <div class="brand-name">Read Master</div>
   <div class="brand-sub">Academy</div>
-  <h1 class="hero-title">설명회 상담 예약</h1>
+  <h1 class="hero-title">교육상담 예약</h1>
   <p class="hero-desc">아래 정보를 입력하시면 빠르게 연락드리겠습니다</p>
 </div>
 
@@ -364,48 +364,48 @@ body{
     </div>
 
     <div class="form-group">
-      <label class="field-label">희망 설명회 일정 <span class="req">*</span></label>
+      <label class="field-label">희망 상담 분야 <span class="req">*</span></label>
       <div class="sessions">
         <label class="session-option">
-          <input type="radio" name="session" value="3/21(토) 11:00 초·중등" required/>
+          <input type="radio" name="session" value="수시 초·중등 교육상담" required/>
           <span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>
-          <span class="session-label">초·중등 정보 설명회</span>
-          <span class="session-date">3/21(토) 11:00</span>
+          <span class="session-label">초·중등 교육상담</span>
+          <span class="session-date">수시</span>
         </label>
         <label class="session-option">
-          <input type="radio" name="session" value="3/22(일) 14:00 초·중등"/>
+          <input type="radio" name="session" value="수시 초·중등 리딩 상담"/>
           <span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>
-          <span class="session-label">초·중등 리딩 설명회</span>
-          <span class="session-date">3/22(일) 14:00</span>
+          <span class="session-label">초·중등 리딩 상담</span>
+          <span class="session-date">수시</span>
         </label>
         <label class="session-option">
-          <input type="radio" name="session" value="3/28(토) 11:00 고등"/>
+          <input type="radio" name="session" value="수시 고등 입시 상담"/>
           <span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>
-          <span class="session-label">고등 입시 설명회</span>
-          <span class="session-date">3/28(토) 11:00</span>
+          <span class="session-label">고등 입시 상담</span>
+          <span class="session-date">수시</span>
         </label>
         <label class="session-option">
-          <input type="radio" name="session" value="3/29(일) 14:00 초·중등"/>
+          <input type="radio" name="session" value="수시 초·중등 종합 상담"/>
           <span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>
-          <span class="session-label">초·중등 전체 설명회</span>
-          <span class="session-date">3/29(일) 14:00</span>
+          <span class="session-label">초·중등 종합 상담</span>
+          <span class="session-date">수시</span>
         </label>
         <label class="session-option">
-          <input type="radio" name="session" value="4/5(토) 11:00 전체"/>
+          <input type="radio" name="session" value="수시 전체 교육상담"/>
           <span class="check-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg></span>
-          <span class="session-label">전체 종합 설명회</span>
-          <span class="session-date">4/5(토) 11:00</span>
+          <span class="session-label">전체 교육상담</span>
+          <span class="session-date">수시</span>
         </label>
       </div>
     </div>
 
     <div class="privacy">
       <input type="checkbox" id="privacyAgree" required/>
-      <label for="privacyAgree">개인정보 수집·이용에 동의합니다. (성함, 연락처는 상담 목적으로만 사용됩니다)</label>
+      <label for="privacyAgree">개인정보 수집·이용에 동의합니다. (성함, 연락처는 교육상담 목적으로만 사용됩니다)</label>
     </div>
 
     <button type="submit" class="submit-btn" id="submitBtn">
-      <span class="btn-text">예약 신청하기</span>
+      <span class="btn-text">교육상담 신청하기</span>
       <div class="spinner"></div>
     </button>
   </form>
@@ -435,7 +435,7 @@ function getRuntimeConfig() {
   return {
     endpoint: params.get('endpoint') || RM_CONFIG.endpoint || 'https://script.google.com/macros/s/AKfycbz3zGFysL_iZIFNlueElY7lBIqlBs8fIWVoQZLhjFqS70XO91CiLl1VabAHh7QZXJY5/exec',
     branch: params.get('branch') || RM_CONFIG.branch || '춘천 우두동',
-    source: params.get('source') || RM_CONFIG.source || '설명회 상담 예약 페이지'
+    source: params.get('source') || RM_CONFIG.source || '교육상담 예약 페이지'
   };
 }
 
