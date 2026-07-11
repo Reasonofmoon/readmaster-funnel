@@ -1,5 +1,7 @@
 # 리드마스터 설명회 예약 — GAS Backend 설정 가이드
 
+> 이 백엔드는 `funnel.html`과 `book.html`의 **설명회 예약** 전용입니다. `briefing.html`과 `briefing-curriculum.html`의 **간담회 예약**은 별도 Apps Script와 `ReadMaster 간담회 예약` 시트를 사용하므로 이 URL로 연결하지 마세요.
+
 ## 1단계: Google Sheets 생성
 
 1. [Google Sheets](https://sheets.google.com)에서 **새 스프레드시트** 생성
