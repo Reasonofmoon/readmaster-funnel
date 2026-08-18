@@ -16,6 +16,11 @@ body{background:#f3e8dc;min-height:100vh}
 .okgil-kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:#3d6b5e;text-transform:uppercase;margin:0 0 8px}
 .okgil-lead{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#122E1C;margin:0 0 18px}
 nav .nav-links a[href="okgil.html"]{color:var(--gold)}
+.okgil-quote{background:#3d6b5e;color:#fff8ee;padding:16px 18px 14px;border-radius:14px;margin:0 0 18px}
+.okgil-quote p{margin:0 0 6px;font-size:18px;font-weight:600;line-height:1.5}
+.okgil-quote small{color:#d9cbb6;font-size:12px}
+.okgil-quote a{color:#f3e0a8}
+.okgil-quote.is-hidden{display:none}
 </style>
 </head>
 <body>
@@ -68,14 +73,25 @@ nav .nav-links a[href="okgil.html"]{color:var(--gold)}
 <main id="okgil-wrap">
   <p class="okgil-kicker">Okgil Edu Hub</p>
   <h1 class="okgil-lead">이번 주, 우리 아이 학교</h1>
+  <div class="okgil-quote" id="okgil-quote">
+    <p>배우고 때로 익히면 또한 기쁘지 아니한가.</p>
+    <small>논어 · 학이 · <a href="https://github.com/Reasonofmoon/quote-cutter" target="_blank" rel="noopener">Quote Cutter</a></small>
+  </div>
   <div id="okgil-slot"></div>
 </main>
 <script type="module">
-  import { mountOkgilEduHub } from "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@ae1c735/src/mount.js";
+  import { mountOkgilEduHub } from "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@bf377f7/src/mount.js";
   mountOkgilEduHub(document.getElementById("okgil-slot"), {
     proxyUrl: "/api/neis",
-    dataUrl: "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@ae1c735/data/neis",
+    dataUrl: "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@bf377f7/data/neis",
   });
+  const hide = () => {
+    if (document.querySelector("#okgil-slot .okh-quote")) {
+      document.getElementById("okgil-quote")?.classList.add("is-hidden");
+    }
+  };
+  setTimeout(hide, 400);
+  setTimeout(hide, 2000);
 </script>
 </body>
 </html>
