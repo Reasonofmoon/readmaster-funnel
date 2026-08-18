@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>교육허브 · READ MASTER ACADEMY</title>
+<meta name="description" content="옥길 학부모를 위한 이번 주 학교 브리핑"/>
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#122E1C"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+body{background:#f3e8dc;min-height:100vh}
+#okgil-wrap{max-width:1120px;margin:0 auto;padding:28px 16px 72px}
+#okgil-slot{min-height:480px}
+.okgil-kicker{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:#3d6b5e;text-transform:uppercase;margin:0 0 8px}
+.okgil-lead{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#122E1C;margin:0 0 18px}
+nav .nav-links a[href="okgil.html"]{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="rm-eco-bar" id="ecoBar">
+  <span class="eco-brand"><img src="assets/readmaster-logo.svg" alt="" aria-hidden="true">ReadMaster</span>
+  <span id="ecoGuest">
+    <a href="index.html#level-test" style="color:#E8A838">무료 레벨테스트</a>
+    <span class="eco-sep">|</span>
+    <a href="index.html#booking">상담예약</a>
+    <span class="eco-sep">|</span>
+    <a href="briefing.html">간담회 상세</a>
+    <span class="eco-sep">|</span>
+    <a href="okgil.html" style="color:#E8A838">교육허브</a>
+    <span class="eco-sep">|</span>
+    <a href="index.html" onclick="if(window.rmAuth){rmAuth.showModal();return false;}">로그인</a>
+  </span>
+  <span id="ecoUser" style="display:none">
+    <span id="ecoLinks"></span>
+    <span class="eco-sep">|</span>
+    <span class="eco-user">
+      <img id="ecoAvatar" class="eco-avatar" src="" alt="" />
+      <span id="ecoName" class="eco-name"></span>
+      <span id="ecoBranch" style="color:rgba(255,255,255,0.45);font-size:.6rem;font-weight:400"></span>
+      <span id="ecoRole" style="color:var(--gold);font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase"></span>
+    </span>
+  </span>
+</div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/readmaster-logo.svg" alt="" aria-hidden="true">
+    READ MASTER <em>ACADEMY</em>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#programs">초·중·고 과정</a></li>
+    <li><a href="index.html#level-test">무료 레벨테스트</a></li>
+    <li><a href="briefing.html">간담회</a></li>
+    <li><a href="okgil.html">교육허브</a></li>
+    <li><a href="index.html#booking">상담 예약</a></li>
+  </ul>
+  <span id="navGuest2">
+    <a href="index.html" class="nav-cta">메인</a>
+  </span>
+  <span id="navUser2" style="display:none">
+    <a href="dashboard.html" class="nav-cta nav-user-cta">
+      <img id="navAvatar2" src="" alt=""/>
+      <span id="navName2"></span> MY
+    </a>
+  </span>
+</nav>
+<main id="okgil-wrap">
+  <p class="okgil-kicker">Okgil Edu Hub</p>
+  <h1 class="okgil-lead">이번 주, 우리 아이 학교</h1>
+  <div id="okgil-slot"></div>
+</main>
+<script type="module">
+  import { mountOkgilEduHub } from "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@main/src/mount.js";
+  mountOkgilEduHub(document.getElementById("okgil-slot"), {
+    proxyUrl: "/api/neis",
+    dataUrl: "https://cdn.jsdelivr.net/gh/Reasonofmoon/okgil-edu-hub@main/data/neis",
+  });
+</script>
+</body>
+</html>
