@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>학부모 간담회 예약 — READ MASTER ACADEMY · 부천 옥길동</title>
 <meta name="description" content="리드마스터 학부모 간담회 예약. 학년군별 문해력 로드맵 안내, 무료 레벨테스트 3종, 추천도서 제공. 부천 옥길동 본원, 저녁 7시-8시."/>
+<link rel="canonical" href="https://readmaster-funnel.vercel.app/briefing"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="shared.css"/>
@@ -266,24 +267,12 @@ textarea{min-height:88px;resize:vertical}
 
 <script>
   /* NOTE: form id changed from #reservation to #reservation-form to avoid
-     duplicate-id collision with the section. The submit handler below is
-     otherwise byte-identical to the original. */
+     duplicate-id collision with the section. Grade tabs are gone; the
+     interest <select> is the source of the course value. */
   const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyBG2MdFRt0lHOZd2IChJoAS7Pj9O1TF1Ty0lrX53VqRnXdJNR4SmhhOssMFIOo1aLJ/exec";
   const form = document.querySelector("#reservation-form");
   const message = document.querySelector("#formMessage");
   const interest = document.querySelector("#interest");
-  const tabs = document.querySelectorAll("[data-grade-tab]");
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      tabs.forEach((item) => {
-        const selected = item === tab;
-        item.setAttribute("aria-selected", String(selected));
-        document.querySelector(`#${item.getAttribute("aria-controls")}`).hidden = !selected;
-      });
-      interest.value = tab.dataset.interest;
-    });
-  });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -321,8 +310,9 @@ textarea{min-height:88px;resize:vertical}
 
     message.textContent = "예약 신청이 접수되었습니다. 담당자가 확인 후 연락드립니다.";
     message.classList.add("show");
+    const chosenInterest = interest.value;
     form.reset();
-    interest.value = document.querySelector('[aria-selected="true"][data-grade-tab]').dataset.interest;
+    if (chosenInterest) interest.value = chosenInterest;
   });
 
   // reveal on scroll

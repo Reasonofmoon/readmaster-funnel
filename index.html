@@ -4,6 +4,8 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>READ MASTER ACADEMY — 문해력 전문 교육원 · 부천 옥길동 본원 · 춘천 우두동점</title>
 <meta name="description" content="문해력 전문 교육원 리드마스터. EBS 문해력·영어·AR 무료 레벨테스트 3종, 정원제 수준별 수업. 부천 옥길동 본원 상담 예약."/>
+<link rel="canonical" href="https://readmaster.moonlang.com/"/>
+<meta name="robots" content="noindex, follow"/>
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#122E1C"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -142,7 +144,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
 .radio-opt{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--br);border-radius:var(--radius-sm);cursor:pointer;font-size:.82rem;color:var(--dim);transition:all .2s}
 .radio-opt:hover,.radio-opt.sel{border-color:var(--g);background:var(--g3);color:var(--g)}
 .btn-submit{width:100%;background:var(--g);color:var(--text-inverse);font-size:1rem;font-weight:700;border:none;border-radius:var(--radius-sm);padding:16px;cursor:pointer;transition:background .2s}
+a.btn-submit{display:block;text-align:center;text-decoration:none;box-sizing:border-box}
 .btn-submit:hover{background:var(--g2)}
+.booking-phone{display:block;text-align:center;margin-top:18px;color:var(--g);font-weight:700;font-size:.98rem;text-decoration:none}
+.booking-phone:hover{color:var(--gold)}
 .form-trust{text-align:center;font-size:.75rem;color:var(--dim);margin-top:14px}
 
 #testimonials{background:var(--iv2)}
@@ -637,11 +642,6 @@ section{scroll-margin-top:70px}
       <span class="tag">Free Consultation</span>
       <h2 class="serif">RMLI 통합 문해력 진단<br/>상담 예약</h2>
       <p>전문 선생님이 직접 5대 문해력(RMLI) 진단 결과를 분석하고 맞춤 커리큘럼을 설계해 드립니다.<br/>부담 없이 신청하세요.</p>
-      <div class="bk-steps">
-        <div class="bk-step"><div class="bk-step-num">1</div><div class="bk-step-body"><h4>학생 정보 입력</h4><p>학년·관심 분야·고민을 알려주세요</p></div></div>
-        <div class="bk-step"><div class="bk-step-num">2</div><div class="bk-step-body"><h4>상담 일시 선택</h4><p>원하는 날짜와 시간을 선택합니다</p></div></div>
-        <div class="bk-step"><div class="bk-step-num">3</div><div class="bk-step-body"><h4>예약 확정 + 알림</h4><p>카카오톡·SMS로 확인 메시지 발송</p></div></div>
-      </div>
       <div class="bk-quote">
         <div class="bk-quote-stars">★★★★★</div>
         <p>"레벨테스트 결과표가 너무 명확해서 아이의 현재 위치를 정확히 알 수 있었어요."</p>
@@ -649,37 +649,8 @@ section{scroll-margin-top:70px}
       </div>
     </div>
     <div class="form-card reveal">
-      <div class="form-steps">
-        <div class="fs active">① 학생 정보</div>
-        <div class="fs">② 고민 선택</div>
-        <div class="fs">③ 예약 확정</div>
-      </div>
-      <label>학생 이름</label>
-      <input type="text" id="f-name" placeholder="홍길동"/>
-      <label>학년</label>
-      <select id="f-grade">
-        <option value="">학년을 선택해 주세요</option>
-        <option>초등 3~4학년</option>
-        <option>초등 5~6학년</option>
-        <option>중학교 1학년</option>
-        <option>중학교 2학년</option>
-        <option>중학교 3학년</option>
-        <option>고등학교 1학년</option>
-        <option>고등학교 2학년</option>
-        <option>고등학교 3학년</option>
-      </select>
-      <label>현재 문해력 고민</label>
-      <div class="radio-group" id="concerns">
-        <div class="radio-opt" onclick="sel(this)">📖 독해 속도가 느려요</div>
-        <div class="radio-opt" onclick="sel(this)">📝 어휘가 부족해요</div>
-        <div class="radio-opt" onclick="sel(this)">🔍 비문학이 어려워요</div>
-        <div class="radio-opt" onclick="sel(this)">📊 수능 국어가 걱정돼요</div>
-      </div>
-      <label>연락처</label>
-      <input type="tel" id="f-phone" placeholder="010-0000-0000"/>
-      <label>희망 상담 일시</label>
-      <input type="datetime-local" id="f-date"/>
-      <button class="btn-submit" onclick="submit()">맞춤 커리큘럼 상담 예약 →</button>
+      <a class="btn-submit" href="https://docs.google.com/forms/d/e/1FAIpQLSeA67I2WULDwAVXb2BO_OdZ9ogxAxJfDfhXcQ3ia-dqLT3hzw/viewform" target="_blank" rel="noopener noreferrer">맞춤 커리큘럼 상담 예약 →</a>
+      <a class="booking-phone" href="tel:01033687873">📞 010-3368-7873 · 전화 상담도 환영합니다</a>
       <div class="form-trust">🔒 개인정보 보호 · 스팸 없음 · 언제든 취소 가능</div>
     </div>
   </div>
@@ -728,20 +699,6 @@ section{scroll-margin-top:70px}
 <script>
 const obs=new IntersectionObserver(e=>e.forEach(n=>{if(n.isIntersecting){n.target.classList.add('vis');obs.unobserve(n.target)}}),{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-function sel(el){
-  document.querySelectorAll('.radio-opt').forEach(x=>x.classList.remove('sel'));
-  el.classList.add('sel');
-}
-
-function submit(){
-  const name=document.getElementById('f-name').value;
-  const grade=document.getElementById('f-grade').value;
-  const phone=document.getElementById('f-phone').value;
-  const date=document.getElementById('f-date').value;
-  if(!name||!grade||!phone||!date){alert('모든 항목을 입력해 주세요.');return;}
-  alert(`${name}님의 상담 예약이 접수되었습니다!\n${date}\n담당 선생님이 곧 연락드리겠습니다.`);
-}
 
 window.addEventListener('scroll',()=>{
   const s=document.querySelectorAll('section[id]');
