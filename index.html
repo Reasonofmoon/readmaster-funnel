@@ -239,11 +239,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
   <span class="eco-brand"><img src="assets/readmaster-logo.svg" alt="" aria-hidden="true">ReadMaster</span>
   <!-- Guest state (default) -->
   <span id="ecoGuest">
-    <a href="#level-test" style="color:#E8A838">무료 레벨테스트</a>
+    <a href="#level-test" style="color:#E8A838" data-cta="index-cta-01">무료 레벨테스트</a>
     <span class="eco-sep">|</span>
-    <a href="#booking">상담예약</a>
+    <a href="#booking" data-cta="index-cta-02">상담예약</a>
     <span class="eco-sep">|</span>
-    <a href="briefing.html">간담회 상세</a>
+    <a href="briefing.html" data-cta="index-cta-03">간담회 상세</a>
     <span class="eco-sep">|</span>
     <a href="okgil.html">교육허브</a>
     <span class="eco-sep">|</span>
@@ -299,11 +299,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
   </a>
   <ul class="nav-links">
     <li><a href="#programs">초·중·고 과정</a></li>
-    <li><a href="#level-test">무료 레벨테스트</a></li>
+    <li><a href="#level-test" data-cta="index-cta-04">무료 레벨테스트</a></li>
     <li id="academyNavItem" hidden><a href="#academy-os">Academy OS</a></li>
-    <li><a href="briefing.html">간담회</a></li>
+    <li><a href="briefing.html" data-cta="index-cta-05">간담회</a></li>
     <li><a href="okgil.html">교육허브</a></li>
-    <li><a href="#booking">상담 예약</a></li>
+    <li><a href="#booking" data-cta="index-cta-06">상담 예약</a></li>
   </ul>
   <button class="nav-hamburger" aria-label="메뉴">
     <span></span><span></span><span></span>
@@ -335,7 +335,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
           </div>
         </div>
         <div class="sl-right">
-          <a href="briefing.html#reservation" class="sl-pill sl-pill-gold" style="font-size:1rem;padding:12px 28px">간담회 예약 →</a>
+          <a href="briefing.html#reservation" class="sl-pill sl-pill-gold" style="font-size:1rem;padding:12px 28px" data-cta="index-cta-07">간담회 예약 →</a>
         </div>
       </div>
     </div>
@@ -351,8 +351,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
       <h1 class="hero-title">읽는 힘이<br/><em>모든 학습의</em><br/>시작입니다</h1>
       <p class="hero-sub">The power to read, understand, and create the future.<br/>맞춤 커리큘럼 · 수능 독서 전문 교육</p>
       <div class="hero-btns">
-        <a href="#booking" class="btn-g">무료 레벨 테스트 예약 →</a>
-        <a href="curriculum.html" class="btn-out">전체 커리큘럼 보기</a>
+        <a href="#booking" class="btn-g" data-cta="index-cta-08">무료 레벨 테스트 예약 →</a>
+        <a href="curriculum.html" class="btn-out" data-cta="index-cta-09">전체 커리큘럼 보기</a>
       </div>
       <div class="hero-stats">
         <div class="stat"><div class="stat-num">9단계</div><div class="stat-lbl">문해력 레벨 체계</div></div>
@@ -411,7 +411,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
     </article>
   </div>
   <div style="text-align:center;margin-top:28px">
-    <a href="briefing-curriculum.html" class="btn-g">커리큘럼·샘플 자세히 보기 →</a>
+    <a href="briefing-curriculum.html" class="btn-g" data-cta="index-cta-10">커리큘럼·샘플 자세히 보기 →</a>
   </div>
 </section>
 <section id="details">
@@ -424,32 +424,32 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
     <article class="mod-card reveal">
       <div class="mod-title">간담회 안내</div>
       <div class="mod-desc">7월 15일(수) 저녁 7시-8시 학부모 간담회, 무료 레벨테스트, 추천도서 제공 안내를 확인합니다.</div>
-      <div class="mod-pills"><a class="pill" href="briefing.html">간담회 페이지</a></div>
+      <div class="mod-pills"><a class="pill" href="briefing.html" data-cta="index-cta-11">간담회 페이지</a></div>
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">상세 커리큘럼</div>
       <div class="mod-desc">초·중·고 과정과 학년별 논술 샘플 다운로드를 모았습니다.</div>
-      <div class="mod-pills"><a class="pill" href="briefing-curriculum.html">상세 자료 보기</a></div>
+      <div class="mod-pills"><a class="pill" href="briefing-curriculum.html" data-cta="index-cta-12">상세 자료 보기</a></div>
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">표준 커리큘럼 문서</div>
       <div class="mod-desc">프레임워크와 운영 기준을 길게 확인해야 하는 분을 위한 문서형 페이지입니다.</div>
-      <div class="mod-pills"><a class="pill" href="curriculum.html">문서 보기</a></div>
+      <div class="mod-pills"><a class="pill" href="curriculum.html" data-cta="index-cta-13">문서 보기</a></div>
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">학습 플랫폼 저장소</div>
       <div class="mod-desc">학생 학습 플랫폼의 원천 저장소를 확인합니다.</div>
-      <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/readmaster-study-platform.git" target="_blank" rel="noopener">GitHub 보기</a></div>
+      <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/readmaster-study-platform.git" target="_blank" rel="noopener" data-cta="index-cta-14">GitHub 보기</a></div>
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">성적표 생성 앱</div>
       <div class="mod-desc">상담과 학습 관리에 활용할 성적표 생성 도구의 원천 저장소입니다.</div>
-      <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/grade-report-generator.git" target="_blank" rel="noopener">GitHub 보기</a></div>
+      <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/grade-report-generator.git" target="_blank" rel="noopener" data-cta="index-cta-15">GitHub 보기</a></div>
     </article>
     <article class="mod-card reveal">
       <div class="mod-title">Voca Monster</div>
       <div class="mod-desc">영어 지문에서 어려운 어휘를 찾고, 단어 학습지까지 만드는 AI 어휘 학습 도구입니다.</div>
-      <div class="mod-pills"><a class="pill" href="https://reasonofmoon.github.io/voca-monster" target="_blank" rel="noopener">학습 도구 열기</a></div>
+      <div class="mod-pills"><a class="pill" href="https://reasonofmoon.github.io/voca-monster" target="_blank" rel="noopener" data-cta="index-cta-16">학습 도구 열기</a></div>
     </article>
   </div>
 </section>
@@ -469,45 +469,45 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
       <div class="mod-title">학부모 공개 동선</div>
       <div class="mod-desc">처음 방문한 학부모가 설명을 읽고, 테스트와 상담 예약으로 이동하는 경로입니다.</div>
       <div class="mod-pills">
-        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/rmli-test-v2" target="_blank" rel="noopener">문해력 테스트</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/curriculum" target="_blank" rel="noopener">커리큘럼</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/parent" target="_blank" rel="noopener">학부모 포털</a>
-        <a class="pill" href="https://knot-ebon.vercel.app/" target="_blank" rel="noopener">학습 노트</a>
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener" data-cta="index-cta-17">상담 예약</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/rmli-test-v2" target="_blank" rel="noopener" data-cta="index-cta-18">문해력 테스트</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/curriculum" target="_blank" rel="noopener" data-cta="index-cta-19">커리큘럼</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/parent" target="_blank" rel="noopener" data-cta="index-cta-20">학부모 포털</a>
+        <a class="pill" href="https://knot-ebon.vercel.app/" target="_blank" rel="noopener" data-cta="index-cta-21">학습 노트</a>
       </div>
-      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener">상담 예약으로 이동</a>
+      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/book" target="_blank" rel="noopener" data-cta="index-cta-22">상담 예약으로 이동</a>
     </article>
     <article class="mod-card hub-card">
       <div class="mod-title">원장·교사 운영 동선</div>
       <div class="mod-desc">등록 이후 학생, 출결, 과제, 도서관, 수납, 리포트를 한 도메인에서 관리합니다.</div>
       <div class="mod-pills">
-        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">운영 대시보드</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/student-register" target="_blank" rel="noopener">학생 관리</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/attendance" target="_blank" rel="noopener">출결 관리</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/workbook" target="_blank" rel="noopener">과제·워크북</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/library" target="_blank" rel="noopener">도서관</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/payment" target="_blank" rel="noopener">수납 관리</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/report" target="_blank" rel="noopener">리포트</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/academy-assessment.git" target="_blank" rel="noopener">영어 학력 진단</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/csat-question-eval.git" target="_blank" rel="noopener">수능 문항 분석</a>
-        <a class="pill" href="https://readmaster-franchise.vercel.app/settings" target="_blank" rel="noopener">설정</a>
+        <a class="pill pill-gold" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener" data-cta="index-cta-23">운영 대시보드</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/student-register" target="_blank" rel="noopener" data-cta="index-cta-24">학생 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/attendance" target="_blank" rel="noopener" data-cta="index-cta-25">출결 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/workbook" target="_blank" rel="noopener" data-cta="index-cta-26">과제·워크북</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/library" target="_blank" rel="noopener" data-cta="index-cta-27">도서관</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/payment" target="_blank" rel="noopener" data-cta="index-cta-28">수납 관리</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/report" target="_blank" rel="noopener" data-cta="index-cta-29">리포트</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/academy-assessment.git" target="_blank" rel="noopener" data-cta="index-cta-30">영어 학력 진단</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/csat-question-eval.git" target="_blank" rel="noopener" data-cta="index-cta-31">수능 문항 분석</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/settings" target="_blank" rel="noopener" data-cta="index-cta-32">설정</a>
       </div>
-      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener">운영 대시보드 열기</a>
+      <a class="hub-primary" href="https://readmaster-franchise.vercel.app/academy-os" target="_blank" rel="noopener" data-cta="index-cta-33">운영 대시보드 열기</a>
     </article>
     <article class="mod-card hub-card">
       <div class="mod-title">관리자·개발자 동선</div>
       <div class="mod-desc">초기 설정과 원천 저장소를 분리해, 운영자와 개발자가 같은 구조를 공유합니다.</div>
       <div class="mod-pills">
-        <a class="pill" href="https://readmaster-franchise.vercel.app/setup-admin" target="_blank" rel="noopener">초기 설정</a>
-        <a class="pill pill-gold" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener">GitHub</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/readmaster-study-platform.git" target="_blank" rel="noopener">학습 플랫폼</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/knot.git" target="_blank" rel="noopener">Knot</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/voca-monster.git" target="_blank" rel="noopener">Voca Monster</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/grade-report-generator.git" target="_blank" rel="noopener">성적 리포트 생성기</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/academy-assessment.git" target="_blank" rel="noopener">영어 학력 진단</a>
-        <a class="pill" href="https://github.com/Reasonofmoon/csat-question-eval.git" target="_blank" rel="noopener">수능 문항 분석</a>
+        <a class="pill" href="https://readmaster-franchise.vercel.app/setup-admin" target="_blank" rel="noopener" data-cta="index-cta-34">초기 설정</a>
+        <a class="pill pill-gold" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener" data-cta="index-cta-35">GitHub</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/readmaster-study-platform.git" target="_blank" rel="noopener" data-cta="index-cta-36">학습 플랫폼</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/knot.git" target="_blank" rel="noopener" data-cta="index-cta-37">Knot</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/voca-monster.git" target="_blank" rel="noopener" data-cta="index-cta-38">Voca Monster</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/grade-report-generator.git" target="_blank" rel="noopener" data-cta="index-cta-39">성적 리포트 생성기</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/academy-assessment.git" target="_blank" rel="noopener" data-cta="index-cta-40">영어 학력 진단</a>
+        <a class="pill" href="https://github.com/Reasonofmoon/csat-question-eval.git" target="_blank" rel="noopener" data-cta="index-cta-41">수능 문항 분석</a>
       </div>
-      <a class="hub-primary" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener">readmaster-hq 보기</a>
+      <a class="hub-primary" href="https://github.com/Reasonofmoon/readmaster-hq.git" target="_blank" rel="noopener" data-cta="index-cta-42">readmaster-hq 보기</a>
     </article>
   </div>
 </section>
@@ -534,10 +534,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
       <article class="mod-card reveal">
         <div class="mod-title">영어 능력테스트</div>
         <div class="mod-desc">IRT 기반 영어 독해 능력 진단 프로토타입입니다. CEFR A1-C1 기준으로 독해 위치를 확인합니다.</div>
-        <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/IRT-READING-LEVEL-TEST.git" target="_blank" rel="noopener">테스트 저장소</a></div>
+        <div class="mod-pills"><a class="pill" href="https://github.com/Reasonofmoon/IRT-READING-LEVEL-TEST.git" target="_blank" rel="noopener" data-cta="index-cta-43">테스트 저장소</a></div>
       </article>
     </div>
-    <a href="#booking" class="btn-g" style="font-size:1rem;padding:16px 40px;display:inline-block;font-weight:800">무료 레벨테스트 예약 →</a>
+    <a href="#booking" class="btn-g" style="font-size:1rem;padding:16px 40px;display:inline-block;font-weight:800" data-cta="index-cta-44">무료 레벨테스트 예약 →</a>
   </div>
 </section>
 <section id="booking">
@@ -583,7 +583,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
       <input type="tel" id="f-phone" placeholder="010-0000-0000"/>
       <label>희망 상담 일시</label>
       <input type="datetime-local" id="f-date"/>
-      <button class="btn-submit" onclick="submit()">맞춤 커리큘럼 상담 예약 →</button>
+      <button class="btn-submit" onclick="submit()" data-cta="index-cta-45">맞춤 커리큘럼 상담 예약 →</button>
       <div class="form-trust">🔒 개인정보 보호 · 스팸 없음 · 언제든 취소 가능</div>
     </div>
   </div>
@@ -611,11 +611,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--border-focused);box-s
   </div>
   <div class="ft-links">
     <a href="#programs">초·중·고 과정</a>
-    <a href="#level-test">무료 레벨테스트</a>
-    <a href="briefing.html">간담회</a>
+    <a href="#level-test" data-cta="index-cta-46">무료 레벨테스트</a>
+    <a href="briefing.html" data-cta="index-cta-47">간담회</a>
     <a href="okgil.html">교육허브</a>
     <a href="briefing-curriculum.html">상세 커리큘럼</a>
-    <a href="#booking">상담 예약</a>
+    <a href="#booking" data-cta="index-cta-48">상담 예약</a>
   </div>
   <div class="ft-legal" style="max-width:1080px;margin:16px auto 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);font-size:.72rem;line-height:1.75;opacity:.72;text-align:center">
     <strong>학원 법정 표시</strong> · 리드마스터 학원(READ MASTER ACADEMY) · 대표자 [성명]<br/>
@@ -889,5 +889,6 @@ const rmAuth = {
 
 rmAuth.init();
 </script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>

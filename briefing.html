@@ -558,7 +558,7 @@
   </style>
 </head>
 <body>
-  <a class="skip" href="#reservation">예약 폼으로 이동</a>
+  <a class="skip" href="#reservation" data-cta="briefing-cta-01">예약 폼으로 이동</a>
   <nav class="nav" aria-label="주요 메뉴">
     <a class="brand" href="#top" aria-label="리드마스터 홈">
       <img class="brand-logo" src="assets/readmaster-logo.svg" alt="">
@@ -568,7 +568,7 @@
       <a href="#system">시스템</a>
       <a href="#levels">8단계</a>
       <a href="#briefing">레벨테스트</a>
-      <a class="btn" href="#reservation">무료 레벨테스트 예약</a>
+      <a class="btn" href="#reservation" data-cta="briefing-cta-02">무료 레벨테스트 예약</a>
     </div>
   </nav>
 
@@ -578,8 +578,8 @@
       <h1>영어책 읽기에서 내신·수능·디지털 리터러시까지.</h1>
       <p class="lead">리드마스터는 초등 원서읽기, 중등 학교별 내신, 고등 수능 독해와 수행평가 역량을 하나의 문해력 성장 경로로 묶습니다.</p>
       <div class="hero-actions">
-        <a class="btn" href="#reservation">수시 레벨테스트 예약</a>
-        <a class="btn secondary" href="#levels">커리큘럼 보기</a>
+        <a class="btn" href="#reservation" data-cta="briefing-cta-03">수시 레벨테스트 예약</a>
+        <a class="btn secondary" href="#levels" data-cta="briefing-cta-04">커리큘럼 보기</a>
       </div>
       <div class="proof" aria-label="핵심 지표">
         <div><strong>초등</strong><span>AR/Lexile 기반 원서읽기와 Rewrite</span></div>
@@ -652,7 +652,7 @@
         </article>
       </div>
       <p style="margin-top:22px">
-        <a class="btn secondary" href="briefing-curriculum.html">커리큘럼·샘플 자료 자세히 보기</a>
+        <a class="btn secondary" href="briefing-curriculum.html" data-cta="briefing-cta-05">커리큘럼·샘플 자료 자세히 보기</a>
       </p>
     </section>
 
@@ -671,7 +671,7 @@
         <div class="sample-download">
           <h3>논술 샘플 자료</h3>
           <p>학년별 샘플은 상세페이지에서 필요한 자료만 골라 내려받을 수 있습니다.</p>
-          <a class="btn secondary" href="briefing-curriculum.html#briefing">학년별 샘플 보기</a>
+          <a class="btn secondary" href="briefing-curriculum.html#briefing" data-cta="briefing-cta-06">학년별 샘플 보기</a>
         </div>
       </div>
 
@@ -718,7 +718,7 @@
           <input type="checkbox" required>
           <span>레벨테스트 예약과 안내 연락을 위한 개인정보 수집·이용에 동의합니다. 상담 목적 범위 안에서만 사용합니다.</span>
         </label>
-        <button class="btn" type="submit">예약 신청하기</button>
+        <button class="btn" type="submit" data-cta="briefing-cta-07">예약 신청하기</button>
         <div class="message" id="formMessage" role="status" aria-live="polite"></div>
       </form>
     </section>
@@ -730,7 +730,7 @@
   </footer>
 
   <div class="mobile-cta" aria-hidden="false">
-    <a class="btn" href="#reservation">무료 레벨테스트 예약</a>
+    <a class="btn" href="#reservation" data-cta="briefing-cta-08">무료 레벨테스트 예약</a>
   </div>
 
   <script>
@@ -791,5 +791,6 @@
       interest.value = document.querySelector('[aria-selected="true"][data-grade-tab]').dataset.interest;
     });
   </script>
+<script src="assets/analytics.js" defer></script>
 </body>
 </html>
