@@ -1,0 +1,12 @@
+# Keep the static site, linked downloads, and api/ on the deployment.
+# Everything else in git is tooling or source and must not be served.
+# Paths stay at the repo root so existing routes and the serverless function
+# do not move. A public/ output directory would relocate every page.
+
+gas-backend/
+scripts/
+tests/
+demo/
+*.md
+ecosystem.json
+.gitignore
